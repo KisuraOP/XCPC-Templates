@@ -1,0 +1,39 @@
+name: Release PDF
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          # cache not work because restriction between different tags
+          # cache: 'pip'
+      - run: |
+          pip install -r requirements.txt
+          python main.py
+      - run: |
+          chmod +x script.sh
+          ./script.sh
+      - uses: xu-cheng/latex-action@v3
+        with:
+          root_file: output.tex
+          latexmk_use_xelatex: true
+          args: -jobname=output_${{ github.ref_name }}
+          extra_fonts: |
+            ./fonts/*.otf
+            ./fonts/*.ttf
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: output_${{ github.ref_name }}.pdf

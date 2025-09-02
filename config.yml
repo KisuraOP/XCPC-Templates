@@ -1,0 +1,5 @@
+root-directory: templates
+latex-pre: latex-pre.tex
+latex-post: latex-post.tex
+title: UESTC Nanana Templates
+author: UESTC_Nanana
