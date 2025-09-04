@@ -9,3 +9,5 @@
     code: LazySegTree.cpp
   - name: 吉司机线段树
     code: segTree_beat.cpp
+  - name: 李超线段树
+    code: LiChaoSegTree.cpp
