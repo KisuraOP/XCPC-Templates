@@ -1,17 +1,17 @@
 ﻿contents:
-  - name: dsu_on_tree
-    code: dsu_on_tree.cpp
-  - name: get_centroid
-    code: get_centroid.cpp
-  - name: LCA
+  - name: LCA（倍增）
     code: LCA.cpp
-  - name: level_ancestor
-    code: level_ancestor.cpp
-  - name: rmqLCA
+  - name: LCA（欧拉序）
     code: rmqLCA.cpp
-  - name: treeHash
+  - name: 树上启发式合并
+    code: dsu_on_tree.cpp
+  - name: 树的重心
+    code: get_centroid.cpp
+  - name: 树上k级祖先
+    code: level_ancestor.cpp
+  - name: 树哈希
     code: treeHash.cpp
+  - name: 虚树
+    code: virtualTree.cpp
   - name: treeMaxPath
     code: treeMaxPath.cpp
-  - name: virtualTree
-    code: virtualTree.cpp
