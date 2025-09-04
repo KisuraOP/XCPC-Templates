@@ -1,0 +1,19 @@
+﻿contents:
+  - name: 对拍脚本
+    code: checker.cpp
+  - name: 日期计算
+    code: date_calc.cpp
+  - name: 分数类
+    code: Fraction.cpp
+  - name: 幽默火车头
+    code: no_way.cpp
+  - name: fread
+    code: fread.cpp
+  - name: int128
+    code: int128.cpp
+  - name: mini_Bigint
+    code: mini_Bigint.cpp
+  - name: Rand
+    code: Rand.cpp
+  - name: unmap_hash
+    code: unmap_hash.cpp

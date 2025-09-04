@@ -1,0 +1,5 @@
+﻿contents:
+  - name: 最长公共子序列
+    code: getLCS.cpp
+  - name: 最长不下降子序列
+    code: getLNDS.cpp

@@ -1,0 +1,9 @@
+﻿contents:
+  - name: 最大异或和
+    code: basis.cpp
+  - name: 线性表出，方案数
+    code: basis_count.cpp
+  - name: 区间线性基
+    code: basis_range_xor.cpp
+  - name: GF(3)
+    code: basis_GF(3).cpp

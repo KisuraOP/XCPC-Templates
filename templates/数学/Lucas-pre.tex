@@ -1,0 +1,7 @@
+$$
+\binom{n}{m}\bmod{p} = \binom{\lfloor n/p\rfloor}{\lfloor m/p\rfloor}\binom{n \bmod p}{m \bmod p}\bmod p
+$$
+
+时间复杂度：$O(f(p))-O(g(n)\log n)$。
+
+其中 $f(x)$ 为预处理组合数的复杂度，$g(x)$ 为单次求组合数的复杂度。

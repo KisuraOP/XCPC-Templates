@@ -1,0 +1,5 @@
+﻿contents:
+  - name: 欧拉函数
+    code: single_phi.cpp
+  - name: 莫比乌斯函数
+    code: single_mu.cpp

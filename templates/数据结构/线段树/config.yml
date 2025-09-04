@@ -1,0 +1,11 @@
+﻿contents:
+  - name: 普通线段树
+    code: segTree_old.cpp
+  - name: 操作封装
+    code: segTree_normal.cpp
+  - name: 动态开点
+    code: dynamic_segTree.cpp
+  - name: 懒标记线段树_操作封装
+    code: LazySegTree.cpp
+  - name: 吉司机线段树
+    code: segTree_beat.cpp

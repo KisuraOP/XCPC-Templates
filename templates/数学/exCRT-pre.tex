@@ -1,0 +1,16 @@
+exCRT 用于求解如下形式的问题：
+
+\begin{itemize}
+\item 给定 $n$ 组非负整数 $a_i, m_i$，求解如下关于 $x$ 的方程组的最小非负整数解。
+\end{itemize}
+
+$$
+\begin{cases}
+x \equiv a_1 \pmod{m_1} \\
+x \equiv a_2 \pmod{m_2} \\
+\cdots \\
+x \equiv a_n \pmod{m_n}
+\end{cases}
+$$
+
+时间复杂度：$O(n\log(\max\{m_i\}))$。

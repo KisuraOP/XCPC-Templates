@@ -1,7 +1,17 @@
-contents:
-  - name: lca
-    code: lca.cpp
-    code-pre: lca-pre.tex
-    code-post: lca-post.tex
-  - name: 流
+﻿contents:
+  - name: 最短路
+    directory: 最短路
+  - name: 连通性
+    directory: 连通性
+  - name: 网络流
     directory: 流
+  - name: 圆方树
+    code: BlockTree.cpp
+  - name: 基环树
+    code: pseudoTree.cpp
+  - name: 2-SAT
+    code: TwoSat.cpp
+  - name: 网格图转对偶图
+    code: Grid2Dual.cpp
+  - name: 平面图转对偶图
+    code: Planar2Dual.cpp

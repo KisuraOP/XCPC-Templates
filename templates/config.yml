@@ -1,7 +1,19 @@
-contents:
-  - name: 图论
-    directory: 图论
-  - name: 数学
-    directory: 数学
+﻿contents:
+  - name: 字符串
+    directory: 字符串
   - name: 数据结构
     directory: 数据结构
+  - name: 树论
+    directory: 树论
+  - name: 图论
+    directory: 图论
+  - name: 动态规划
+    directory: 动态规划
+  - name: 数学
+    directory: 数学
+  - name: 字符串
+    directory: 字符串
+  - name: 计算几何
+    directory: 计算几何
+  - name: 杂项
+    directory: 杂项

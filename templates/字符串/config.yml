@@ -1,0 +1,17 @@
+﻿contents:
+  - name: 字符串哈希
+    code: string_hash.cpp
+  - name: 二维字符串哈希
+    code: hash_2D.cpp
+  - name: KMP
+    code: KMP.cpp
+  - name: Z-函数
+    code: zFunction.cpp
+  - name: manacher
+    code: manacher.cpp
+  - name: AC自动机
+    code: ACTree.cpp
+  - name: 后缀自动机
+    code: SAM.cpp
+  - name: 回文自动机
+    code: PAM.cpp

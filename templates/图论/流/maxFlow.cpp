@@ -1,77 +1,83 @@
+/*
+一般图：O(n^2 m)
+二分图：O(m\sqrt n)
+
+Dinic G(n);
+n 为顶点数
+
+G.add(u, v, cap);
+连一条 u -> v 容量为 cap 的有向边。
+
+int flow = G.dinic(S, T);
+求解从源点 S 流向汇点 T 的最大流。
+*/
+
 struct Dinic {
-    struct Edge {
-        int v;
-        LL w;
-        Edge(int v, LL w) : v(v), w(w) {}
-    };
-
-    int n;
-    vector<Edge> edges;
-    vector<int> d, cur;
-    vector<vector<int>> e;
-    Dinic(int n) : n(n), d(n), cur(n), e(n) {}
-
-    void reset(int n) { 
-        this->n = n;
-        edges.clear();
-        e.resize(n), d.resize(n), cur.resize(n);
-        for (int i = 0; i < n; ++i) 
-            e.clear();
-    }
-
-    void add(int u, int v, LL w) {
-        e[u].push_back(edges.size());
-        edges.emplace_back(v, w);
-        e[v].push_back(edges.size());
-        edges.emplace_back(u, 0);
-    }
-
-    bool bfs(int s, int t) {
-        d.assign(n, 0);
-        queue<int> q;
-        d[s] = 1;
-        q.push(s);
-        while (q.size()) {
-            int u = q.front();
-            q.pop();
-            for (int i : e[u]) {
-                auto [v, w] = edges[i];
-                if (w && !d[v]) {  // 有 w 才能保证正确性（能正确回溯）
-                    d[v] = d[u] + 1;
-                    q.push(v);
-                    if (v == t) return 1;
-                }
-            }
-        }
-        return 0;
-    }
-
-    LL maxFlow(int s, int t) {
-        LL maxflow = 0;
-
-        auto dfs = [&](auto &&self, int u, LL flow) -> LL {
-            if (u == t) {
-                return flow;  // 返回至多能减多少。
-            }
-            LL rest = flow;
-            for (int &i = cur[u]; i < (int)e[u].size(); ++i) {
-                int j = e[u][i];
-                auto [v, w] = edges[j];
-                if (w && d[v] == d[u] + 1) {
-                    LL k = self(self, v, min(rest, w));
-                    if (!k) d[v] = 0;
-                    rest -= k, edges[j].w -= k, edges[j ^ 1].w += k;
-                    if (!rest) break;  // 这里 break 才能保证复杂度。
-                }
-            }
-            return flow - rest;
-        };
-
-        while (bfs(s, t)) {
-            cur.assign(n, 0);
-            maxflow += dfs(dfs, s, numeric_limits<LL>::max());
-        }
-
-        return maxflow;
-    }
+	struct Edge {
+		int x, cap;
+		Edge(int x, int cap) : x(x), cap(cap) {} 
+	};
+	int n;
+	vector<Edge> e;
+	vector<vector<int>> adj;
+	vector<int> dep, cur;
+	Dinic(int size) {
+		this->n = size;
+		adj.resize(n + 1);
+	}
+	void add(int x, int y, int cap) {
+		adj[x].push_back(e.size());
+		e.push_back({y, cap});
+		adj[y].push_back(e.size());
+		e.push_back({x, 0});
+	}
+	int bfs(int S, int T) {
+		dep.assign(n + 1, -1);
+		queue<int> q;
+		q.push(S);
+		dep[S] = 0;
+		while (!q.empty()) {
+			int x = q.front();
+			q.pop();
+			for (auto i : adj[x]) {
+				auto [y, cap] = e[i];
+				if (cap > 0 && dep[y] == -1) {
+					dep[y] = dep[x] + 1;
+					if (y == T) {
+						return true;
+					}
+					q.push(y);
+				}
+			}
+		}
+		return false;
+	}
+	int dfs(int x, int T, int limit) {
+		if (x == T) {
+			return limit;
+		}
+		int r = limit;
+		for (int &i = cur[x]; i < adj[x].size(); i++) {
+			const int j = adj[x][i];
+			auto [y, cap] = e[j];
+			if (cap > 0 && dep[y] == dep[x] + 1) {
+				int t = dfs(y, T, min(r, cap));
+				e[j].cap -= t;
+				e[j ^ 1].cap += t;
+				r -= t;
+				if (r == 0) {
+					return limit;
+				}
+			}
+		}
+		return limit - r;
+	}
+	int dinic(int S, int T) {
+		int flow = 0;
+		while (bfs(S, T)) {
+			cur.assign(n + 1, 0);
+			flow += dfs(S, T, inf); 
+		} 
+		return flow;
+	}
 };

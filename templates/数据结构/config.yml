@@ -1,5 +1,27 @@
-contents:
-  - name: disjoint_set_union
-    code: disjoint_set_union.cpp
-  - name: fenwick-tree
-    code: fenwick-tree.cpp
+﻿contents:
+  - name: 并查集
+    directory: 并查集
+  - name: 线段树
+    directory: 线段树
+  - name: 树状数组
+    directory: 树状数组
+  - name: 主席树
+    directory: 主席树
+  - name: 笛卡尔树
+    code: cartesian_tree.cpp
+  - name: 动态中位数（对顶堆）
+    code: dynamic_mid.cpp
+  - name: 状压 RMQ
+    code: fast_RMQ.cpp
+  - name: 重链剖分
+    code: HLD.cpp
+  - name: 莫队
+    code: Mo_algo.cpp
+  - name: pbds 平衡树
+    code: pbds.cpp
+  - name: 线段树优化建图
+    code: segEdge.cpp
+  - name: set 维护区间并
+    code: segSet.cpp
+  - name: ST 表
+    code: STable.cpp
