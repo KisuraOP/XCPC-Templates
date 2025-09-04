@@ -1,6 +1,4 @@
 ﻿contents:
-  - name: 字符串
-    directory: 字符串
   - name: 数据结构
     directory: 数据结构
   - name: 树论
