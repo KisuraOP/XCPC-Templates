@@ -5,3 +5,5 @@
     code: johnson.cpp
   - name: spfa-负环，差分约束
     code: spfa.cpp
+  - name: floyd-最小环
+  - code: floyd.cpp
