@@ -12,6 +12,8 @@
   - name: Lucas 定理
     code: Lucas.cpp
     code-pre: Lucas-pre.tex
+  - name: exgcd
+    code: exgcd.cpp
   - name: BSGS
     code: BSGS.cpp
     code-pre: BSGS-pre.tex
