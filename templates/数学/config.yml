@@ -24,7 +24,5 @@
     code-pre: exCRT-pre.tex
   - name: 二元一次不定方程
     code: xy_function.cpp
-  - name: 高斯消元
-    code: gauss.cpp
   - name: 矩阵与行列式
     code: matrix_and_det.cpp
