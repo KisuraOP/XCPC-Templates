@@ -1,9 +1,7 @@
 struct DSU {
 	vector<int> f, siz;
 	DSU() {}
-	DSU(int n) {
-		f.resize(n + 1);
-		siz.resize(n + 1);
+	DSU(int n) : f(n + 1), siz(n + 1) {
 		for(int i = 0; i <= n; i++) {
 			f[i] = i;
 			siz[i] = 1;

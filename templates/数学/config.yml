@@ -7,6 +7,8 @@
     directory: 多项式
   - name: 线性基
     directory: 线性基
+  - name: 高斯消元
+    directory: 高斯消元
   - name: 组合数
     code: comb.cpp
   - name: Lucas 定理

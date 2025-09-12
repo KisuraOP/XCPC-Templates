@@ -1,13 +1,13 @@
 vector fa(n + 1, vector<int>(22, 0));
 vector<int> dep(n + 1);
-auto dfs = [&] (auto self, int x, int fath) -> void {
-	fa[x][0] = fath;
-	dep[x] = dep[fath] + 1;
+auto dfs = [&] (auto self, int x, int f) -> void {
+	fa[x][0] = f;
+	dep[x] = dep[f] + 1;
 	for (int i = 1; i <= __lg(dep[x]) + 1; i++) {
 		fa[x][i] = fa[fa[x][i - 1]][i - 1];
 	}
 	for (auto y : adj[x]) {
-		if (y != fath) {
+		if (y != f) {
 			self(self, y, x);
 		}
 	}
