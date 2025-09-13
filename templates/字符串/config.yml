@@ -1,6 +1,6 @@
 ﻿contents:
   - name: 字符串哈希
-    code: string_hash.cpp
+    code: hash.cpp
   - name: 二维字符串哈希
     code: hash_2D.cpp
   - name: KMP

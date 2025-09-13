@@ -1,4 +1,6 @@
 ﻿contents:
+  - name: 质数表
+    code-pre: prime-pre.tex
   - name: 对拍脚本
     code: checker.cpp
   - name: 日期计算
@@ -7,9 +9,9 @@
     code: Fraction.cpp
   - name: 幽默火车头
     code: no_way.cpp
-  - name: fread
+  - name: 快速读入(fread)
     code: fread.cpp
-  - name: int128
+  - name: int128重载
     code: int128.cpp
   - name: mini_Bigint
     code: mini_Bigint.cpp
