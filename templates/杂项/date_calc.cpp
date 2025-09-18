@@ -1,9 +1,10 @@
-int F(int c, int y, int m, int d) {
-	y %= 100;
+int F(int y, int m, int d) {
 	if (m == 1 || m == 2) {
-		y = (y - 1 + 100) % 100; 
+		y--;
 		m += 12;
 	}
+	int c = y / 100;
+	y %= 100;
 	int res = y + y / 4 + c / 4 - 2 * c + 26 * (m + 1) / 10 + d - 1;
 	return (res % 7 + 7) % 7;
 }
