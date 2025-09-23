@@ -1,0 +1,6 @@
+﻿contents:
+  - name: 倍增
+    code: LCA.cpp
+  - name: 欧拉序
+    code: rmqLCA.cpp
+

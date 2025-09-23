@@ -1,8 +1,6 @@
 ﻿contents:
-  - name: LCA（倍增）
-    code: LCA.cpp
-  - name: LCA（欧拉序）
-    code: rmqLCA.cpp
+  - name: LCA
+    directory: LCA
   - name: 树上启发式合并
     code: dsu_on_tree.cpp
   - name: 树的重心
@@ -15,3 +13,5 @@
     code: virtualTree.cpp
   - name: treeMaxPath
     code: treeMaxPath.cpp
+  - name: 树链求交
+    code: PathUnion.cpp
