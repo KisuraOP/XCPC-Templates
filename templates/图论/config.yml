@@ -4,7 +4,9 @@
   - name: 连通性
     directory: 连通性
   - name: 网络流
-    directory: 流
+    directory: 网络流
+  - name: 匹配
+    directory: 匹配
   - name: 圆方树
     code: BlockTree.cpp
   - name: 基环树
