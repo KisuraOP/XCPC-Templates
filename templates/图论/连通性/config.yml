@@ -1,7 +1,9 @@
 ﻿contents:
   - name: SCC-强连通分量
     code: SCC.cpp
-  - name: EBCC-双连通分量
-    code: EBCC.cpp
+  - name: vBCC-点双连通分量、割点
+    code: vBCC.cpp
+  - name: eBCC-边双连通分量、割边
+    code: eBCC.cpp
   - name: 动态仙人掌
     code: dynamic_cactus.cpp

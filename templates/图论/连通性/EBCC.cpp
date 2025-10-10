@@ -1,91 +1,25 @@
-/*
-EBCC G(n);
-n 为顶点数。
-
-G.addEdge(x, y, w);
-连一条 x -> y 边权为 w 的双向边。
-
-vector<int> bel = G.work_Node();
-求点双连通分量，返回 bel 数组，bel[x] 代表 x 所在的点双连通分量编号。
-
-vector<int> bel = G.work_Edge();
-求边双连通分量，返回 bel 数组，bel[x] 代表 x 所在的边双连通分量编号。
-
-_node adj = G.shrinkPoint();
-缩点，返回缩点后图的邻接表。
-
-求割点：将第 3 行和函数 tarjan_point 内的注释取消，割点编号存在 cut 数组中。
-求割边：将第 2 行和函数 tarjan_edge 内的注释取消，割边编号存在 E 数组中。
-*/
-
-using vvi = vector<vector<array<int, 2>>>;
 // set<array<int, 2>> E;
-// set<int> cut;
-struct EBCC {
+struct eBCC {
 	int n;
-	vvi adj;
+	vector<vector<array<int, 2>>> adj;
 	vector<vector<int>> scc;
 	vector<int> dfn, low, stk, c;
-	int tim, top, cnt;
+	int tim, top, cnt, eid;
 
-	EBCC(int _n) : n(_n), adj(n + 1), dfn(n + 1), low(n + 1), 
-	stk(n + 1), c(n + 1), tim(0), top(0), cnt(0) {}
+	eBCC(int _n) : n(_n), adj(n + 1), dfn(n + 1), low(n + 1), 
+	stk(n + 1), c(n + 1), tim(0), top(0), cnt(0), eid(0) {}
 
-	void addEdge(int x, int y, int w) {
-		adj[x].push_back({y, w});
-		adj[y].push_back({x, w});
-	}
-	void tarjan_Node(int x, int par) {
-		dfn[x] = low[x] = ++tim;
-		stk[++top] = x;
-		int son = 0;
-		for (auto [y, _] : adj[x]) {
-			if (!dfn[y]) {
-				son++;
-				tarjan_Node(y, x);
-				low[x] = min(low[x], low[y]);
-				if (low[y] >= dfn[x]) {
-					cnt++;
-					scc.push_back({});
-					while (stk[top + 1] != y) {
-						scc[cnt].push_back(stk[top--]);
-					}
-					scc[cnt].push_back(x);
-				}
-				/*
-				if (par && low[y] >= dfn[x]) {
-					cut.insert(x);
-				}
-				*/
-			} else if (y != par) {
-				low[x] = min(low[x], dfn[y]);
-			}
-		}
-		/*
-		if (!par && son >= 2) {
-			cut.insert(x);
-		}
-		*/
-		if (par == 0 && son == 0) {
-			cnt++;
-			scc.push_back({});
-			scc[cnt].push_back(x);
-		}
-	}
-	vector<int> work_Node() {
-		scc.push_back({});
-		for (int i = 1; i <= n; i++) {
-			if (!dfn[i]) tarjan_Node(i, 0);
-		}
-		return c;
+	void addEdge(int x, int y) {
+		adj[x].push_back({y, ++eid});
+		adj[y].push_back({x, eid});
 	}
 	void tarjan_Edge(int x, int par) {
 		dfn[x] = low[x] = ++tim;
 		stk[++top] = x;
-		for (auto [y, _] : adj[x]) {
-			if (y == par) continue;
+		for (auto [y, e] : adj[x]) {
+			if (e == par) continue;
 			if (!dfn[y]) {
-				tarjan_Edge(y, x);
+				tarjan_Edge(y, e);
 				low[x] = min(low[x], low[y]);
 				/*
 				if (low[y] > dfn[x]) {
@@ -113,12 +47,12 @@ struct EBCC {
 		}
 		return c;
 	}
-	vvi shrinkPoint() {
-		vvi Adj(n + 1);
+	vector<vector<int>> shrinkPoint() {
+		vector<vector<int>> Adj(n + 1);
 		for (int x = 1; x <= n; x++) {
-			for (auto [y, w] : adj[x]) {
+			for (auto [y, _] : adj[x]) {
 				if (c[x] == c[y]) continue;
-				Adj[c[x]].push_back({c[y], w});
+				Adj[c[x]].push_back(c[y]);
 			}
 		}
 		return Adj;
