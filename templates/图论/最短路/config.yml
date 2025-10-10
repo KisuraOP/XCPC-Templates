@@ -1,9 +1,9 @@
 ﻿contents:
-  - name: dijkstra
-    code: dijkstra.cpp
-  - name: johnson-全源最短路
-    code: johnson.cpp
-  - name: spfa-负环，差分约束
-    code: spfa.cpp
-  - name: floyd-最小环
-    code: floyd.cpp
+  - name: Dijkstra
+    code: Dijkstra.cpp
+  - name: Johnson-全源最短路
+    code: Johnson.cpp
+  - name: SPFA-负环，差分约束
+    code: SPFA.cpp
+  - name: Floyd-最小环
+    code: Floyd.cpp
