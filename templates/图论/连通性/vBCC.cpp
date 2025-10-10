@@ -1,7 +1,3 @@
-/*
-能够处理自环和重边。
-*/
-
 // set<int> cut;
 struct vBCC {
 	int n;
