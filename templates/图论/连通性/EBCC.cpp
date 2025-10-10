@@ -1,3 +1,7 @@
+/*
+能够处理自环和重边。
+*/
+
 // set<array<int, 2>> E;
 struct eBCC {
 	int n;
