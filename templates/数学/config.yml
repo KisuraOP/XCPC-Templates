@@ -26,3 +26,6 @@
     code: xy_function.cpp
   - name: 矩阵与行列式
     code: matrix_and_det.cpp
+  - name: floor_sum
+    code: floor_sum.cpp
+    code-pre: floor_sum-pre.tex
