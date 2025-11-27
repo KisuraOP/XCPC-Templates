@@ -17,3 +17,5 @@
     code: Grid2Dual.cpp
   - name: 平面图转对偶图
     code: Planar2Dual.cpp
+  - name: 无向图枚举三元环
+    code: count_triangle.cpp

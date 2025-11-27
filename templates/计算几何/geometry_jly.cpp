@@ -1,3 +1,8 @@
+/*
+https://github.com/hh2048/XCPC/blob/main/03%20-%20jiangly%E6%A8%A1%E6%9D%BF%E6%94%B6%E9%9B%86/03%20-%20%E6%95%B0%E8%AE%BA%E3%80%81%E5%87%A0%E4%BD%95%E4%B8%8E%E5%A4%9A%E9%A1%B9%E5%BC%8F/09A%20-%20%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95%EF%BC%88Point%EF%BC%89.cpp
+略有修改
+*/
+
 template<class T>
 struct Point {
     T x, y;

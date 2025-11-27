@@ -29,3 +29,5 @@
   - name: floor_sum
     code: floor_sum.cpp
     code-pre: floor_sum-pre.tex
+  - name: Miller-Rabin素性检验
+    code: Miller_Rabin.cpp

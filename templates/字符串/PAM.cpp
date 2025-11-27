@@ -37,7 +37,9 @@ struct PAM {
 	}
 };
 
-例：记 c_{S}(T) 为 T 在 S 中的出现次数。给定 S，对所有回文子串 T，求 max_{T}(c_{s}(T) \cdot |T|^2)。
+/*
+例：记 cnt[T] 为 T 在 S 中的出现次数。
+给定 S，对所有回文子串 T，求 max_{T}(cnt[T] \cdot |T|^2)。
 
 void solve() {
 	string s;
@@ -58,7 +60,9 @@ void solve() {
 	}
 	cout << ans << "\n";
 }
+*/
 
+/*
 例：给定 S，对 i\in[1, n] 求以 S_i 结尾的回文子串个数，强制在线。
 
 int insert(int pos, int x) {
@@ -86,3 +90,4 @@ void solve() {
 		cout << t.insert(i, s[i] - 'a') << "\n";
 	}
 }
+*/

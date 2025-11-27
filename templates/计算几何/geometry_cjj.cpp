@@ -1,5 +1,7 @@
-// https://github.com/cjj490168650/Template/blob/main/Geometry.cpp
-// 略有修改
+/*
+https://github.com/cjj490168650/Template/blob/main/Geometry.cpp
+略有修改
+*/
 
 using std::numeric_limits;
 using std::abs, std::max, std::min, std::swap;
