@@ -1,13 +1,15 @@
 ﻿contents:
   - name: 质数表
     code: prime-table.cpp
-  - name: 对拍脚本
-    code: checker.cpp
+  - name: 对拍脚本-Windows
+    code: checker-windows.cpp
+  - name: 对拍脚本-Linux
+    code: checker-linux.cpp
   - name: 日期计算
     code: date_calc.cpp
   - name: 分数类
     code: Fraction.cpp
-  - name: 幽默火车头
+  - name: 火车头
     code: no_way.cpp
   - name: 快速读入(fread)
     code: fread.cpp
