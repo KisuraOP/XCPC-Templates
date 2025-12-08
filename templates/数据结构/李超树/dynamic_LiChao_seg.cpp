@@ -23,7 +23,7 @@ struct LiChao {
     vector<Node> seg;
     LiChao(int l, int r) : L(l), R(r) {
     	// 如果 runtime error, 尝试取消下面一行的注释
-		seg.reserve(2e7);
+		// seg.reserve(2e7);
 		seg.push_back({});
 		seg.push_back({});
     }
