@@ -7,6 +7,8 @@
     directory: 树状数组
   - name: 主席树
     directory: 主席树
+  - name: 李超树
+    directory: 李超树
   - name: 笛卡尔树
     code: cartesian_tree.cpp
   - name: 动态中位数（对顶堆）

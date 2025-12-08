@@ -1,15 +1,11 @@
 ﻿contents:
   - name: 普通线段树
     code: segTree_old.cpp
-  - name: 操作封装
+  - name: 普通线段树-操作封装
     code: segTree_normal.cpp
-  - name: 动态开点
-    code: dynamic_segTree.cpp
   - name: 懒标记线段树-操作封装
-    code: LazySegTree.cpp
+    code: segTree_lazy.cpp
+  - name: 动态开点线段树
+    code: dynamic_segTree.cpp
   - name: 吉司机线段树
     code: segTree_beat.cpp
-  - name: 李超线段树
-    code: LiChaoSegTree.cpp
-  - name: 李超线段树-带定义域
-    code: LiChaoSegTree-v2.cpp
