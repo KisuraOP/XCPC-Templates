@@ -11,3 +11,5 @@
     code: segTree_beat.cpp
   - name: 李超线段树
     code: LiChaoSegTree.cpp
+  - name: 李超线段树-带定义域
+    code: LiChaoSegTree-v2.cpp

@@ -1,23 +1,7 @@
 /*
-LiChao G(L, R);
-其中 L, R 是自变量 x 的取值范围。
-
-G.insert({k, b});
-插入直线 y = kx + b。
-
-int res = G.query(x);
-查询 max(kx + b)。
-
-若要查询 min(kx + b), 进行如下修改
-- Line 里 b(-1e18) 改成 b(1e18)
-- insert 里 
-  lo.F(mid) < hi.F(mid), 
-  lo.F(l) < hi.F(l), 
-  lo.F(r) < hi.F(r),
-  三处小于号改成大于号
-- query 里两个 max 改成 min
-
-int 可以换成 double。
+insert(xl, xr, {k, b});
+插入定义域 [xl, xr] 的线段 y = kx + b。
+比无定义域版本多一个 log。
 
 TODO：动态开点。
 */
@@ -37,7 +21,7 @@ struct LiChao {
     LiChao(int l, int r) : L(l), R(r) {
         seg.assign(4 * (R - L + 1) + 5, Line());
     }
-    void insert(int p, int l, int r, Line x) {
+    void update(int p, int l, int r, Line x) {
         int mid = l + r >> 1;
         Line lo = seg[p], hi = x;
         if (lo.F(mid) < hi.F(mid)) {
@@ -45,13 +29,30 @@ struct LiChao {
         }
         seg[p] = lo;
         if (lo.F(l) < hi.F(l)) {
-            insert(p << 1, l, mid, hi);
+            update(p << 1, l, mid, hi);
         } else if (lo.F(r) < hi.F(r)) {
-            insert(p << 1 | 1, mid + 1, r, hi);
+            update(p << 1 | 1, mid + 1, r, hi);
         }
     }
-    void insert(Line x) {
-        insert(1, L, R, x);
+	void insert(int p, int l, int r, int xl, int xr, Line x) {
+		if (xl <= l && xr >= r) {
+			update(p, l, r, x);
+			return ;
+		}
+		int mid = l + r >> 1;
+		if (xl <= mid) {
+			insert(p << 1, l, mid, xl, xr, x);
+		}
+		if (xr > mid) {
+			insert(p << 1 | 1, mid + 1, r, xl, xr, x);
+		}
+	}
+    void insert(int xl, int xr, Line x) {
+    	if (xl > xr) {
+    		return ;
+    	} 
+    	assert(xl >= L && xr <= R);
+        insert(1, L, R, xl, xr, x);
     }
     int query(int p, int l, int r, int x) {
         int mid = l + r >> 1;
