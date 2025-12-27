@@ -6,4 +6,4 @@
   - name: eBCC-边双连通分量、割边
     code: eBCC.cpp
   - name: 动态仙人掌
-    code: dynamic_cactus.cpp
+    code: Dynamic_Cactus.cpp

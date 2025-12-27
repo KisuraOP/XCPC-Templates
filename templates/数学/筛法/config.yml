@@ -1,5 +1,5 @@
 ﻿contents:
   - name: 素数，最小质因子，欧拉函数，莫比乌斯函数
-    code: prime_phi_mu.cpp
+    code: Prime_Minp_Phi_Mu.cpp
   - name: 约数个数，约数和
-    code: divide.cpp
+    code: Divisor_Count.cpp

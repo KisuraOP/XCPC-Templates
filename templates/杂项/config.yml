@@ -1,23 +1,23 @@
 ﻿contents:
   - name: 质数表
-    code: prime-table.cpp
-  - name: 对拍脚本-Windows
-    code: checker-windows.cpp
-  - name: 对拍脚本-Linux
-    code: checker-linux.cpp
+    code: Prime_Table.cpp
+  - name: Windows对拍脚本
+    code: Checker_Windows.cpp
+  - name: Linux对拍脚本
+    code: Checker_Linux.cpp
   - name: 日期计算
-    code: date_calc.cpp
+    code: Day_Calc.cpp
   - name: 分数类
     code: Fraction.cpp
   - name: 火车头
-    code: no_way.cpp
+    code: GCC_Optimize.cpp
   - name: 快速读入(fread)
     code: fread.cpp
   - name: int128重载
     code: int128.cpp
-  - name: mini_Bigint
-    code: mini_Bigint.cpp
+  - name: Mini_Bigint
+    code: Mini_Bigint.cpp
   - name: Rand
     code: Rand.cpp
-  - name: unmap_hash
-    code: unmap_hash.cpp
+  - name: Unmap_Hash
+    code: Unmap_Hash.cpp

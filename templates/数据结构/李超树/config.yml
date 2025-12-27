@@ -1,9 +1,9 @@
 contents:
   - name: 直线
-    code: LiChao_line.cpp
+    code: LiChao_Line.cpp
   - name: 线段
-    code: LiChao_seg.cpp
+    code: LiChao_Segment.cpp
   - name: 直线-动态开点
-    code: dynamic_LiChao_line.cpp
+    code: Dynamic_LiChao_Line.cpp
   - name: 线段-动态开点
-    code: dynamic_LiChao_seg.cpp
+    code: Dynamic_LiChao_Segment.cpp

@@ -1,16 +1,16 @@
 ﻿contents:
   - name: 字符串哈希
-    code: hash.cpp
+    code: Hash.cpp
   - name: 二维字符串哈希
-    code: hash_2D.cpp
+    code: Hash_2D.cpp
   - name: KMP
     code: KMP.cpp
   - name: Z-函数
-    code: zFunction.cpp
+    code: Z_Algorithm.cpp
   - name: manacher
-    code: manacher.cpp
+    code: Manacher.cpp
   - name: AC自动机
-    code: ACTree.cpp
+    code: AC_Automaton.cpp
   - name: 后缀自动机
     code: SAM.cpp
   - name: 回文自动机

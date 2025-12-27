@@ -1,5 +1,5 @@
 ﻿contents:
   - name: 普通高斯消元
-    code: gauss.cpp
+    code: Gauss.cpp
   - name: GF(2)+bitset
-    code: gauss_GF(2).cpp
+    code: Gauss_GF(2).cpp

@@ -10,20 +10,20 @@
   - name: 李超树
     directory: 李超树
   - name: 笛卡尔树
-    code: cartesian_tree.cpp
+    code: Cartesian_Tree.cpp
   - name: 动态中位数（对顶堆）
-    code: dynamic_mid.cpp
+    code: Dynamic_Median.cpp
   - name: 状压 RMQ
-    code: fast_RMQ.cpp
+    code: Fast_RMQ.cpp
   - name: 重链剖分
     code: HLD.cpp
   - name: 莫队
-    code: Mo_algo.cpp
+    code: Mo_Algorithm.cpp
   - name: pbds 平衡树
-    code: pbds.cpp
+    code: Balanced_Tree(with pbds).cpp
   - name: 线段树优化建图
-    code: segEdge.cpp
+    code: Add_Edge_with_SegTree.cpp
   - name: set 维护区间并
-    code: segSet.cpp
+    code: Maintain_Seg_with_Set.cpp
   - name: ST 表
-    code: STable.cpp
+    code: Sparse_Table.cpp

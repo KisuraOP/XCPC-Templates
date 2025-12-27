@@ -1,5 +1,5 @@
 ﻿contents:
   - name: 欧拉函数
-    code: single_phi.cpp
+    code: Single_Phi_Calc.cpp
   - name: 莫比乌斯函数
-    code: single_mu.cpp
+    code: Single_Mu_Calc.cpp

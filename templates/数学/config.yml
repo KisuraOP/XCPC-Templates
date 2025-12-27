@@ -23,11 +23,11 @@
     code: exCRT.cpp
     code-pre: exCRT-pre.tex
   - name: 二元一次不定方程
-    code: xy_function.cpp
+    code: xy_Function.cpp
   - name: 矩阵与行列式
-    code: matrix_and_det.cpp
-  - name: floor_sum
-    code: floor_sum.cpp
+    code: Matrix_and_Det.cpp
+  - name: Floor_Sum
+    code: Floor_Sum.cpp
     code-pre: floor_sum-pre.tex
   - name: Miller-Rabin素性检验
     code: Miller_Rabin.cpp

@@ -2,16 +2,16 @@
   - name: LCA
     directory: LCA
   - name: 树上启发式合并
-    code: dsu_on_tree.cpp
+    code: Dsu_On_Tree.cpp
   - name: 树的重心
-    code: get_centroid.cpp
+    code: Centroid.cpp
   - name: 树上k级祖先
-    code: level_ancestor.cpp
+    code: Level_Ancestor.cpp
   - name: 树哈希
-    code: treeHash.cpp
+    code: Tree_Hash.cpp
   - name: 虚树
-    code: virtualTree.cpp
+    code: Virtual_Tree.cpp
   - name: treeMaxPath
-    code: treeMaxPath.cpp
+    code: Tree_Max_Path.cpp
   - name: 树链求交
     code: PathUnion.cpp

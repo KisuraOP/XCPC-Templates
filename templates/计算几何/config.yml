@@ -1,11 +1,11 @@
 ﻿contents:
-  - name: geometry_cjj
-    code: geometry_cjj.cpp
-  - name: geometry_jiangly
-    code: geometry_jly.cpp
+  - name: Geometry_Rabbit
+    code: Geometry_Rabbit.cpp
+  - name: Geometry_Jiangly
+    code: Geometry_Jiangly.cpp
   - name: 三维计算几何
-    code: 3D_geometry.cpp
+    code: 3D_Geometry.cpp
   - name: 分数点类
-    code: Point_Frac.cpp
+    code: Point_Fraction.cpp
   - name: 三角剖分
     code: Triangulation.cpp

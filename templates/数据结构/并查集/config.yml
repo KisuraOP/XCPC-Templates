@@ -1,7 +1,7 @@
 ﻿contents:
   - name: 普通并查集
-    code: dsu.cpp
+    code: DSU.cpp
   - name: 可撤销并查集
-    code: presistent_dsu.cpp
+    code: Presistent_DSU.cpp
   - name: XOR_circle
-    code: XOR_circle.cpp
+    code: XOR_Circle.cpp

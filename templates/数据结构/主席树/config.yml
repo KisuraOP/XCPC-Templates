@@ -1,5 +1,5 @@
 ﻿contents:
   - name: 静态区间第k小
-    code: static_kth.cpp
+    code: Static_Kth_Number.cpp
   - name: 区间不同的数个数
-    code: range_diff_cnt.cpp
+    code: Range_Diff_Count.cpp

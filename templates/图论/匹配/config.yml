@@ -1,9 +1,9 @@
 contents:
   - name: 二分图最大匹配
-    code: BigraphMatching.cpp
+    code: Bigraph_Matching.cpp
   - name: 二分图最大权匹配
-    code: Weighted_BigraphMatching.cpp
+    code: Weighted_Bigraph_Matching.cpp
   - name: 一般图最大匹配
-    code: GraphMatching.cpp
+    code: Graph_Matching.cpp
   - name: 一般图最大权匹配
-    code: Weighted_GraphMatching.cpp
+    code: Weighted_Graph_Matching.cpp

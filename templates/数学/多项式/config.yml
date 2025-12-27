@@ -1,7 +1,7 @@
 ﻿contents:
   - name: 循环卷积
-    code: cyc_mul.cpp
+    code: Cyc_Mul.cpp
   - name: (max,+)卷积
     code: (max,+)conv.cpp
   - name: 多项式全家桶
-    code: poly.cpp
+    code: Poly.cpp

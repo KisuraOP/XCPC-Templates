@@ -8,14 +8,14 @@
   - name: 匹配
     directory: 匹配
   - name: 圆方树
-    code: BlockTree.cpp
+    code: Block_Tree.cpp
   - name: 基环树
-    code: pseudoTree.cpp
+    code: Pseudo_Tree.cpp
   - name: 2-SAT
-    code: TwoSat.cpp
+    code: Two_Sat.cpp
   - name: 网格图转对偶图
-    code: Grid2Dual.cpp
+    code: Grid_2_Dual.cpp
   - name: 平面图转对偶图
-    code: Planar2Dual.cpp
+    code: Planar_2_Dual.cpp
   - name: 无向图枚举三元环
-    code: count_triangle.cpp
+    code: Count_Triangle.cpp
