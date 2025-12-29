@@ -1,0 +1,8 @@
+﻿contents:
+  - name: O(n^2)
+    cide: Comb_BF.cpp
+  - name: O(n)
+    code: Comb.cpp
+  - name: Lucas定理
+    code: Lucas.cpp
+    code-pre: Lucas-pre.tex

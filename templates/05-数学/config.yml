@@ -10,10 +10,7 @@
   - name: 高斯消元
     directory: 高斯消元
   - name: 组合数
-    code: Comb.cpp
-  - name: Lucas 定理
-    code: Lucas.cpp
-    code-pre: Lucas-pre.tex
+    directory: 组合数
   - name: 线性求逆元
     code: Linear_inv.cpp
   - name: Exgcd
