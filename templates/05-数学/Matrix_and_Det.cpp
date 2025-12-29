@@ -37,11 +37,13 @@ constexpr int mod = 1e9 + 7;
 matrix operator * (const matrix &x, const matrix &y) {
 	assert(x.m == y.n);
 	matrix z(x.n, y.m);
-	for (int k = 0; k < x.m; k++) {
-		for (int i = 0; i < x.n; i++) {
+	for (int i = 0; i < x.n; i++) {
+		for (int k = 0; k < x.m; k++) {
+			if (x.a[i][k] == 0) {
+				continue;
+			}
 			for (int j = 0; j < y.m; j++) {
-				z.a[i][j] += x.a[i][k] * y.a[k][j] % mod;
-				z.a[i][j] %= mod;
+				z.a[i][j] = (z.a[i][j] + x.a[i][k] * y.a[k][j]) % mod;
 			}
 		}
 	}
