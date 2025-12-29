@@ -10,7 +10,7 @@
   - name: 高斯消元
     directory: 高斯消元
   - name: 组合数
-    code: comb.cpp
+    code: Comb.cpp
   - name: Lucas 定理
     code: Lucas.cpp
     code-pre: Lucas-pre.tex
@@ -23,13 +23,13 @@
     code-pre: BSGS-pre.tex
   - name: ExCRT
     code: ExCRT.cpp
-    code-pre: exCRT-pre.tex
+    code-pre: ExCRT-pre.tex
   - name: 二元一次不定方程
     code: XY_Function.cpp
   - name: 矩阵与行列式
     code: Matrix_and_Det.cpp
   - name: Floor_Sum
     code: Floor_Sum.cpp
-    code-pre: floor_sum-pre.tex
+    code-pre: Floor_Sum-pre.tex
   - name: Miller-Rabin素性检验
     code: Miller_Rabin.cpp
