@@ -1,22 +1,35 @@
 半在线卷积通常用于解决如下问题：
 
+
 给定序列 $g_{1, 2, \ldots, n - 1}$，求序列 $f_{0, 1, \ldots, n - 1}$。
+
 
 其中 $f_i = \sum\limits_{j = 1}^{i} f_{i - j}\cdot g_j$，边界是 $f_0 = 1$。
 
+
 转化：
+
 
 设 $F(x) = \sum\limits_{i = 0}^{\infty}f_i x^i$，$G(x)=\sum\limits_{i = 0}^{\infty}g_i x^i$，且 $g_0 = 0$。
 
+
 那么 $F(x)G(x) = \sum\limits_{i = 0}^{\infty} \left( \sum\limits_{j + k = i} f_{j} g_{k} \right) x^i$。
+
 
 设 $F(x)G(x)$ 的系数为 $h_i$，那么：
 
-- 当 $i = 0$ 时，$h_0 = f_0\cdot g_0 = 0$。
 
-- 当 $i \ge 1$ 时，$h_i = \sum\limits_{j + k = i} f_{j} g_{k} = \sum\limits_{j = 0}^{i} f_{i - j} g_{j} = f_{i} g_{0} + \sum\limits_{j = 1}^{i} f_{i - j} g_{j} = f_i$。
+\begin{itemize}
+
+\item 当 $i = 0$ 时，$h_0 = f_0\cdot g_0 = 0$。
+
+\item 当 $i \ge 1$ 时，$h_i = \sum\limits_{j + k = i} f_{j} g_{k} = \sum\limits_{j = 0}^{i} f_{i - j} g_{j} = f_{i} g_{0} + \sum\limits_{j = 1}^{i} f_{i - j} g_{j} = f_i$。
+
+\end{itemize}
+
 
 即 $F(x)G(x) = F(x) - f_0 x^0$，也就是
+
 
 $$
 F(x) = \frac{1}{1 - G(x)}
