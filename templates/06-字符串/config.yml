@@ -7,7 +7,7 @@
     code: KMP.cpp
   - name: Z-函数
     code: Z_Algorithm.cpp
-  - name: manacher
+  - name: Manacher
     code: Manacher.cpp
   - name: AC自动机
     code: AC_Automaton.cpp

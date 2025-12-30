@@ -1,7 +1,9 @@
 ﻿contents:
   - name: 循环卷积
-    code: Cyc_Mul.cpp
+    code: Cyc_Conv.cpp
   - name: (max,+)卷积
-    code: (max,+)conv.cpp
+    code: (max,+)_Conv.cpp
+  - name: 半在线卷积
+    code-pre: Semi_Online_Conv-pre.tex
   - name: 多项式全家桶
     code: Poly.cpp

@@ -1,6 +1,6 @@
 2023 年至今 UESTC_EndlessEmbrace 所使用的 XCPC 模板库。
 
-使用 llleixx 编写的[工具](https://github.com/llleixx/XCPC-Templates)进行组织。
+本项目使用 llleixx 编写的[工具](https://github.com/llleixx/XCPC-Templates)进行组织，可以在 [Releases](https://github.com/KisuraOP/XCPC-Templates/releases) 中下载最新的 pdf。
 
 仅纪念可能是我人生中最美好的一段时光。
 
