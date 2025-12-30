@@ -1,23 +1,14 @@
 半在线卷积通常用于解决如下问题：
 
+给定序列 $g_{1, 2, \ldots, n - 1}$，求序列 $f_{0, 1, \ldots, n - 1}$。其中 $f_i = \sum\limits_{j = 1}^{i} f_{i - j}\cdot g_j$，边界是 $f_0 = 1$。
 
-给定序列 $g_{1, 2, \ldots, n - 1}$，求序列 $f_{0, 1, \ldots, n - 1}$。
-
-
-其中 $f_i = \sum\limits_{j = 1}^{i} f_{i - j}\cdot g_j$，边界是 $f_0 = 1$。
-
-
-转化：
-
+转化如下：
 
 设 $F(x) = \sum\limits_{i = 0}^{\infty}f_i x^i$，$G(x)=\sum\limits_{i = 0}^{\infty}g_i x^i$，且 $g_0 = 0$。
 
-
 那么 $F(x)G(x) = \sum\limits_{i = 0}^{\infty} \left( \sum\limits_{j + k = i} f_{j} g_{k} \right) x^i$。
 
-
 设 $F(x)G(x)$ 的系数为 $h_i$，那么：
-
 
 \begin{itemize}
 
@@ -27,9 +18,7 @@
 
 \end{itemize}
 
-
 即 $F(x)G(x) = F(x) - f_0 x^0$，也就是
-
 
 $$
 F(x) = \frac{1}{1 - G(x)}
