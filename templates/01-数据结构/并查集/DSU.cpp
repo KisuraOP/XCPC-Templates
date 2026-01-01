@@ -8,10 +8,7 @@ struct DSU {
 		}
 	}
 	int find(int x) {
-		if (x == f[x]) {
-			return x;
-		}
-		return f[x] = find(f[x]);
+		return x == f[x] ? x : f[x] = find(f[x]);
 	}
 	bool same(int x, int y) {
 		return find(x) == find(y);

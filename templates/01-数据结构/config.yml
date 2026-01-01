@@ -19,6 +19,8 @@
     code: HLD.cpp
   - name: 莫队
     code: Mo_Algorithm.cpp
+  - name: 左偏树
+    code: Leftist_Tree.cpp
   - name: pbds 平衡树
     code: Balanced_Tree(with pbds).cpp
   - name: 线段树优化建图
