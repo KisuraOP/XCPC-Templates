@@ -96,7 +96,8 @@ struct leftistTree {
 		}
 	}
 
-	leftistTree(int n, int m) : rt(n + 1), p(m + 1), bel(m + 1) {
+	leftistTree(int n, int m) : rt(n + 1), 
+	p(max(n, m) + 1), bel(max(n, m) + 1) {
 		iota(p.begin(), p.end(), 0);
 		a.push_back(Node());
 		d(0) = -1;
