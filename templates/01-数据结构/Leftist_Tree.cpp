@@ -24,11 +24,10 @@ int val = top(x);
 erase(x);
 把 **编号** 为 x 的元素删去。
 
-dkey(x, y);
+modify(x, y);
 把 **编号** 为 x 的元素的值更改为 y。
-需要保证 y 严格小于更改前 **编号** 为 x 的元素的值。
 
-add(x, y);
+range_add(x, y);
 把编号为 x 的集合里的所有元素的值加上 y。
 
 rt[x] 表示编号为 x 的集合的堆顶元素的编号。
@@ -150,7 +149,7 @@ struct leftistTree {
 		}
 		d(x) = -2; 
 	}
-	void dkey(int x, int y) {
+	void modify(int x, int y) {
 		if (x >= a.size() || d(x) == -2) {
 			return;
 		}
@@ -160,7 +159,7 @@ struct leftistTree {
 		v(x) = y; 
 		_union(z, x);
 	}
-	void add(int x, int y) {
+	void range_add(int x, int y) {
 		if (rt[x]) {
 			tag(rt[x]) += y;
 		}

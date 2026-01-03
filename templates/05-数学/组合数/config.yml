@@ -1,6 +1,6 @@
 ﻿contents:
   - name: O(n^2)
-    code: Comb_BF.cpp
+    code: Comb_Brute_Force.cpp
   - name: O(n)
     code: Comb.cpp
   - name: Lucas定理

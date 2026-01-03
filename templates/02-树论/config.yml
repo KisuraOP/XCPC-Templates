@@ -14,4 +14,4 @@
   - name: treeMaxPath
     code: Tree_Max_Path.cpp
   - name: 树链求交
-    code: PathUnion.cpp
+    code: Path_Union.cpp
