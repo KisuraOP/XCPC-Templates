@@ -10,6 +10,28 @@ G.add(u, v, cap);
 
 int flow = G.dinic(S, T);
 求解从源点 S 流向汇点 T 的最大流。
+
+输出最小割方案：
+
+vector<int> vis(n + 1);
+auto dfs = [&] (auto self, int x) -> void {
+	vis[x] = 1;
+	for (auto i : G.adj[x]) {
+		auto [y, cap] = G.e[i];
+		if (!vis[y] && cap > 0) {
+			self(self, y);
+		}
+	}
+};
+dfs(dfs, 源点编号);
+for (int x = 1; x <= n; x++) {
+	for (auto i : G.adj[x]) {
+		auto [y, _] = G.e[i];
+		if (vis[x] != vis[y]) {
+			// 边 (x, y) 在方案中
+		}
+	}
+}
 */
 
 struct Dinic {

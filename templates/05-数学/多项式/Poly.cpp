@@ -1,82 +1,84 @@
 constexpr int mod = 998244353;
 constexpr int G = 3; // 原根
 
-int qpow(int k, int n) {
-	int s = 1;
-	for ( ; n; n >>= 1, k = k * k % mod) {
-		if (n & 1) s = s * k % mod;
-	}
-	return s;
+constexpr int qpow(int k, int n) {
+    int s = 1;
+    for (; n; n >>= 1, k = k * k % mod) {
+        if (n & 1) s = s * k % mod;
+    }
+    return s;
 }
 
 // ---------- 多项式乘法 (NTT) ---------- 
 
-vector<int> rev;
-vector<int> rt{0, 1};
+const int Ginv = qpow(G, mod - 2);
+vector<int> rt = {0, 1}, irt = {0, 1};
+
+void init_rt(int n) {
+    int sz = rt.size();
+    if (sz >= n) return;
+    while (sz < n) sz <<= 1;
+    rt.resize(sz);
+    irt.resize(sz);
+    for (int k = 2; k < sz; k <<= 1) {
+        int z = qpow(G, (mod - 1) / (2 * k));
+        int iz = qpow(Ginv, (mod - 1) / (2 * k));
+        for (int j = 0; j < k; j += 2) {
+            rt[k + j] = rt[(k >> 1) + (j >> 1)];
+            rt[k + j + 1] = rt[k + j] * z % mod;
+            irt[k + j] = irt[(k >> 1) + (j >> 1)];
+            irt[k + j + 1] = irt[k + j] * iz % mod;
+        }
+    }
+}
 void dft(vector<int> &a) {
-	int n = a.size();
-	if ((int)rev.size() != n) {
-		int k = __builtin_ctz(n) - 1;
-		rev.resize(n);
-		for (int i = 0; i < n; i++) {
-			rev[i] = rev[i >> 1] >> 1 | (i & 1) << k;
-		}
-	}
-	for (int i = 0; i < n; i++) {
-		if (rev[i] < i) {
-			swap(a[i], a[rev[i]]);
-		}
-	}
-	if ((int)rt.size() < n) {
-		int k = __builtin_ctz(rt.size());
-		rt.resize(n);
-		while ((1 << k) < n) {
-			int e = qpow(G, (mod - 1) >> (k + 1));
-			for (int i = 1 << (k - 1); i < (1 << k); i++) {
-				rt[2 * i] = rt[i];
-				rt[2 * i + 1] = rt[i] * e % mod;
-			}
-			k++;
-		}
-	}
-	for (int k = 1; k < n; k *= 2) {
-		for (int i = 0; i < n; i += 2 * k) {
-			for (int j = 0; j < k; j++) {
-				int u = a[i + j];
-				int v = a[i + j + k] * rt[k + j] % mod;
-				a[i + j] = (u + v) % mod;
-				a[i + j + k] = (u - v + mod) % mod;
-			}
-		}
-	}
+    int n = a.size();
+    if (rt.size() < n) init_rt(n);
+    for (int k = n >> 1; k > 0; k >>= 1) {
+        for (int i = 0; i < n; i += 2 * k) {
+            const int* w = &rt[k]; 
+            for (int j = 0; j < k; ++j) {
+                int u = a[i + j];
+                int v = a[i + j + k];
+                int s = u + v, t = u - v;
+                a[i + j] = (s >= mod ? s - mod : s);
+                a[i + j + k] = (t < 0 ? t + mod : t) * w[j] % mod;
+            }
+        }
+    }
 }
 void idft(vector<int> &a) {
-	int n = a.size();
-	reverse(a.begin() + 1, a.end());
-	dft(a);
-	int inv = qpow(n, mod - 2);
-	inv = (inv + mod) % mod;
-	for (int i = 0; i < n; i++) {
-		a[i] *= inv;
-		a[i] %= mod;
-	}
+    int n = a.size();
+    for (int k = 1; k < n; k <<= 1) {
+        for (int i = 0; i < n; i += 2 * k) {
+            const int* w = &irt[k];
+            for (int j = 0; j < k; ++j) {
+                int u = a[i + j];
+                int v = a[i + j + k] * w[j] % mod;
+                int s = u + v, t = u - v;
+                a[i + j] = (s >= mod ? s - mod : s);
+                a[i + j + k] = (t < 0 ? t + mod : t);
+            }
+        }
+    }
+    int inv = qpow(n, mod - 2);
+    for (int i = 0; i < n; ++i) {
+        a[i] = a[i] * inv % mod;
+    }
 }
 vector<int> operator*(vector<int> a, vector<int> b) {
-	int sz = 1, tot = a.size() + b.size() - 1;
-	while (sz < tot) {
-		sz <<= 1;
-	}
-	a.resize(sz);
-	b.resize(sz);
-	dft(a);
-	dft(b);
-	for (int i = 0; i < sz; i++) {
-		a[i] *= b[i];
-		a[i] %= mod;
-	}
-	idft(a);
-	a.resize(tot);
-	return a;
+    int sz = 1, n = a.size() + b.size() - 1;
+    while (sz < n) sz <<= 1;
+    a.resize(sz);
+    b.resize(sz);
+    dft(a);
+    dft(b);
+    for (int i = 0; i < sz; ++i) {
+        a[i] = a[i] * b[i] % mod;
+    }
+    idft(a);
+    a.resize(n);
+    return a;
 }
 
 // ---------- 多项式加减、求导、积分 ----------
@@ -92,8 +94,7 @@ void shrink(vector<int> &a) {
 vector<int> operator+(vector<int> a, const vector<int> &b) {
 	a.resize(max(a.size(), b.size()));
 	for (int i = 0; i < b.size(); i++) {
-		a[i] += b[i];
-		a[i] %= mod;
+		a[i] = (a[i] + b[i]) % mod;
 	}
 	shrink(a);
 	return a;
@@ -102,7 +103,9 @@ vector<int> operator-(vector<int> a, const vector<int> &b) {
 	a.resize(max(a.size(), b.size()));
 	for (int i = 0; i < b.size(); i++) {
 		a[i] -= b[i];
-		a[i] = (a[i] + mod) % mod;
+		if (a[i] < 0) {
+			a[i] += mod;
+		}
 	}
 	shrink(a);
 	return a;
@@ -164,7 +167,10 @@ vector<int> poly_inv(const vector<int> &a, int n) {
 		for (auto &x : c) {
 			x = mod - x;
 		}
-		c[0] = (c[0] + 2) % mod;
+		c[0] += 2;
+		if (c[0] >= mod) {
+			c[0] -= mod;
+		}
 		b = b * c;
 		b.resize(k);
 	}
@@ -213,9 +219,7 @@ int eval(const vector<int> &F, int x) {
 vector<int> poly_log(vector<int> a, int n) {
 	assert(!a.empty() && a[0] == 1);
 	a.resize(n);
-	auto deriv_a = poly_deriv(a);
-	auto inv_a = poly_inv(a, n);
-	auto res = deriv_a * inv_a;
+	auto res = poly_deriv(a) * poly_inv(a, n);
 	res.resize(n);
 	res = poly_integral(res);
 	res.resize(n);
@@ -235,13 +239,19 @@ vector<int> poly_exp(vector<int> a, int n) {
 	int k = 1;
 	while (k < n) {
 		k <<= 1;
-		auto log_b = poly_log(b, k);
+		auto lb = poly_log(b, k);
 		vector<int> c(a.begin(), a.begin() + min((int)a.size(), k));
 		c.resize(k, 0);
 		for (int i = 0; i < k; ++i) {
-			c[i] = (c[i] - log_b[i] + mod) % mod;
+			c[i] -= lb[i];
+			if (c[i] < 0) {
+				c[i] += mod;
+			}
 		}
-		c[0] = (c[0] + 1) % mod;
+		c[0] += 1;
+		if (c[0] >= mod) {
+			c[0] -= mod;
+		}
 		b = b * c;
 		b.resize(k);
 	}
