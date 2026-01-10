@@ -3,7 +3,7 @@ constexpr int G = 3; // 原根
 
 constexpr int qpow(int k, int n) {
     int s = 1;
-    for (; n; n >>= 1, k = k * k % mod) {
+    for ( ; n; n >>= 1, k = k * k % mod) {
         if (n & 1) s = s * k % mod;
     }
     return s;
@@ -37,7 +37,7 @@ void dft(vector<int> &a) {
     for (int k = n >> 1; k > 0; k >>= 1) {
         for (int i = 0; i < n; i += 2 * k) {
             const int* w = &rt[k]; 
-            for (int j = 0; j < k; ++j) {
+            for (int j = 0; j < k; j++) {
                 int u = a[i + j];
                 int v = a[i + j + k];
                 int s = u + v, t = u - v;
@@ -52,7 +52,7 @@ void idft(vector<int> &a) {
     for (int k = 1; k < n; k <<= 1) {
         for (int i = 0; i < n; i += 2 * k) {
             const int* w = &irt[k];
-            for (int j = 0; j < k; ++j) {
+            for (int j = 0; j < k; j++) {
                 int u = a[i + j];
                 int v = a[i + j + k] * w[j] % mod;
                 int s = u + v, t = u - v;
@@ -62,7 +62,7 @@ void idft(vector<int> &a) {
         }
     }
     int inv = qpow(n, mod - 2);
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; i++) {
         a[i] = a[i] * inv % mod;
     }
 }
@@ -73,7 +73,7 @@ vector<int> operator*(vector<int> a, vector<int> b) {
     b.resize(sz);
     dft(a);
     dft(b);
-    for (int i = 0; i < sz; ++i) {
+    for (int i = 0; i < sz; i++) {
         a[i] = a[i] * b[i] % mod;
     }
     idft(a);
