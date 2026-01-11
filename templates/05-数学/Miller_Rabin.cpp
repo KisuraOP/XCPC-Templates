@@ -1,14 +1,19 @@
+/*
+检验 long long 范围内的质数。
+时间复杂度 O(|A| \log n), 如下代码中 |A| = 8。
+*/
+
 int mul(int a, int b, int m) {
-    return static_cast<__int128>(a) * b % m;
+	return (__int128)a * b % m;
 }
 int qpow(int a, int b, int m) {
-    int res = 1;
-    for ( ; b; b >>= 1, a = mul(a, a, m)) {
-        if (b & 1) {
-            res = mul(res, a, m);
-        }
-    }
-    return res;
+	int res = 1 % m;
+	for ( ; b; b >>= 1, a = mul(a, a, m)) {
+		if (b & 1) {
+			res = mul(res, a, m);
+		}
+	}
+	return res;
 }
 int A[] = {2, 3, 5, 7, 11, 13, 17, 37};
 bool isprime(int n) {
