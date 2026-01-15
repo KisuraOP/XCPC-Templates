@@ -7,7 +7,7 @@ int mul(int a, int b, int m) {
 	return (__int128)a * b % m;
 }
 int qpow(int a, int b, int m) {
-	int res = 1 % m;
+	int res = 1;
 	for ( ; b; b >>= 1, a = mul(a, a, m)) {
 		if (b & 1) {
 			res = mul(res, a, m);

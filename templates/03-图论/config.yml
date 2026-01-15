@@ -19,3 +19,6 @@
     code: Planar_2_Dual.cpp
   - name: 无向图枚举三元环
     code: Count_Triangle.cpp
+  - name: Prufer序列
+    code: Prufer_Code.cpp
+    code-pre: Prufer_Code-pre.tex
