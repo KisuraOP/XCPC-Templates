@@ -7,3 +7,5 @@
     code: Basis_Range_Count.cpp
   - name: GF(3)
     code: Basis_GF(3).cpp
+  - name: 互质基
+    code: Basis_Coprime.cpp
