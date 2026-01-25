@@ -31,7 +31,7 @@ bool isprime(int n) {
 			continue;
 		}
 		bool ok = false;
-		for (int i = 0; i < s - 1; ++i) {
+		for (int i = 0; i < s - 1; i++) {
 			x = mul(x, x, n);
 			if (x == n - 1) {
 				ok = true;

@@ -1,49 +1,35 @@
 /*
-**正确性有待进一步验证！**
-
-选取一组两两互质的基, 存储在 {p} 中。
+选取一组两两互质的基, 存储在 {bs} 中。
 满足所有向量都能被基向量的幂的乘积唯一表示。
 
-基的大小: |basis| = O(nw)。
+基的大小: |bs| = O(nw)。
 n 为插入次数, w 为不同质因数个数。
-时间复杂度: O(n|basis|)。
+时间复杂度: O(n * |bs|)。
 */
 struct Basis {
-	vector<int> p;
+	vector<int> bs;
 	Basis() {}
 	void insert(int x) {
-		if (x <= 1) {
+		for (auto p : bs) {
+			while (x % p == 0) {
+				x /= p;
+			}
+		}
+		if (x == 1) {
 			return ;
 		}
-		queue<int> q;
-		q.push(x);
-		while (!q.empty()) {
-			int v = q.front();
-			q.pop();
-			if (v <= 1) {
-				continue;
-			}
-			bool f = false;
-			for (int i = 0; i < p.size(); i++) {
-				int b = p[i];
-				int g = __gcd(v, b);
-				if (g > 1) {
-					p[i] = p.back();
-					p.pop_back();
-					if (v / g > 1) {
-						q.push(v / g);
-					}
-					if (b / g > 1) {
-						q.push(b / g);
-					}
-					q.push(g);
-					f = true;
-					break;
-				}
-			}
-			if (!f) {
-				p.push_back(v);
+		for (int i = 0; i < bs.size(); i++) {
+			int p = bs[i];
+			int g = __gcd(x, p);
+			if (g != 1) {
+				swap(bs[i], bs.back());
+				bs.pop_back();
+				insert(x / g);
+				insert(p / g);
+				insert(g);
+				return ;
 			}
 		}
+		bs.push_back(x);
 	}
 };

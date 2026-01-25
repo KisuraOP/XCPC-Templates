@@ -30,3 +30,5 @@
     code-pre: Floor_Sum-pre.tex
   - name: Miller-Rabin素性检验
     code: Miller_Rabin.cpp
+  - name: Pollard_Rho
+    code: Pollard_Rho.cpp
