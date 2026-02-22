@@ -895,8 +895,8 @@ bool seg_in_poly(Segment s, const Polygon &poly) {
             return false;
         }
         if (s.is_on(u)) {
-            if (s.a != u && !in_angle(s.a - u, v - u, w - u)) return false;
-            if (s.b != u && !in_angle(s.b - u, v - u, w - u)) return false;
+            if (!(s.a == u) && !in_angle(s.a - u, v - u, w - u)) return false;
+            if (!(s.b == u) && !in_angle(s.b - u, v - u, w - u)) return false;
         } else {
             if (edge.is_on(s.a) == 1 && (s.b - s.a).toleft(v - u) > 0) return false;
             if (edge.is_on(s.b) == 1 && (s.b - s.a).toleft(v - u) < 0) return false;
