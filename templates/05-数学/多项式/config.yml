@@ -1,9 +1,11 @@
 ﻿contents:
   - name: 循环卷积
-    code: Cyc_Conv.cpp
+    code: Cycle_Conv.cpp
   - name: (max,+)卷积
     code: (max,+)_Conv.cpp
   - name: 半在线卷积
     code-pre: Semi_Online_Conv-pre.tex
   - name: 多项式全家桶
     code: Poly.cpp
+  - name: 多项式插值O(n^2)
+    code: Poly_Interpolate.cpp
