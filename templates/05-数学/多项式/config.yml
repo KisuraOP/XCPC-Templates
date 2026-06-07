@@ -9,3 +9,4 @@
     code: Poly.cpp
   - name: 多项式插值O(n^2)
     code: Poly_Interpolate.cpp
+    code-pre: Poly_Interpolate.tex
