@@ -1,3 +1,3 @@
-计算 $\binom{n}{m}\bmod p$，不需要保证 $p$ 是质数。
+计算 $\binom{n}{m}\bmod \text{mod}$，不需要保证 $\text{mod}$ 是质数。
 
-时间复杂度 $O(p\log n)$。
+设 $\text{mod}=\prod p_i^{k_i}$，$P_i=p_i^{k_i}$，那么时间复杂度 $O(\sqrt{\text{mod}}+\sum P_i\log n)$。显然 $\text{mod}$ 为质数时是最坏情况，时间复杂度 $O(\text{mod}\log n)$。

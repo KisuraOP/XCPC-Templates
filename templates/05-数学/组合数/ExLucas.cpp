@@ -21,7 +21,6 @@ int inv(int a, int p) {
 	return (x % p + p) % p;
 } 
 
-// 时间复杂度: O(mod \log n)
 struct ExLucas {
 	int fac(int x, int pi, int pk) {
 		if (x == 0) {
