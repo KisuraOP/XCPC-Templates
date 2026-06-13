@@ -3,6 +3,9 @@
     code: Comb_Brute_Force.cpp
   - name: O(n)
     code: Comb.cpp
-  - name: Lucas定理
+  - name: Lucas
     code: Lucas.cpp
     code-pre: Lucas-pre.tex
+  - name: ExLucas
+    code: ExLucas.cpp
+    code-pre: ExLucas-pre.tex
