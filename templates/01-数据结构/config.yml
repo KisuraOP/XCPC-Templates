@@ -31,3 +31,5 @@
     code: Sparse_Table.cpp
   - name: 三维偏序
     code: CDQ.cpp
+  - name: KD-Tree
+    code: KD_Tree.cpp
