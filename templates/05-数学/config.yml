@@ -23,6 +23,8 @@
     code-pre: ExCRT-pre.tex
   - name: 二元一次不定方程
     code: XY_Function.cpp
+  - name: 二次剩余
+    code: Cipolla.cpp
   - name: 矩阵与行列式
     code: Matrix_and_Det.cpp
   - name: Floor_Sum
