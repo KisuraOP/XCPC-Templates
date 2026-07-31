@@ -17,6 +17,9 @@ struct Merge_SegTree {
 		} else {
 			p = ++tot;
 		}
+		tr[p] = Info();
+		tag[p] = Tag();
+		lc[p] = rc[p] = 0;
 		return p;
 	}
 	void del_node(int p) {
@@ -247,8 +250,8 @@ struct Info {
 		sum *= t.mul;
 		sum += t.add * len;
 	}
-	void merge(const Info &other) {
-		sum += other.sum;
+	void merge(const Info &oth) {
+		sum += oth.sum;
 	}
 };
 Info operator+(const Info &a, const Info &b) {
