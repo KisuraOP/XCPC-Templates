@@ -9,3 +9,5 @@
     code: Dynamic_SegTree.cpp
   - name: 吉司机线段树
     code: SegTree_Beat.cpp
+  - name: 线段树合并
+    code: SegTree_Merge.cpp
