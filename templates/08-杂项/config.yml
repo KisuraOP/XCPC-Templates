@@ -11,6 +11,8 @@
     code: Day_Calc.cpp
   - name: 分数类
     code: Fraction.cpp
+  - name: De_Bruijn序列生成
+    code: De_Bruijn.cpp
   - name: 火车头
     code: GCC_Optimize.cpp
   - name: 快速读入(fread)
