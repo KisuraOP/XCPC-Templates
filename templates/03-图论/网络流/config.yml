@@ -5,3 +5,5 @@
     code: maxFlow_minCost.cpp
   - name: 最高标号预流推进
     code: HLPP.cpp
+  - name: 全局最小割(Stoer_Wagner)
+    code: Stoer_Wagner.cpp
