@@ -11,6 +11,8 @@
     directory: 高斯消元
   - name: 组合数
     directory: 组合数
+  - name: 公式表
+    directory: 公式表
   - name: 线性求逆元
     code: Linear_inv.cpp
   - name: Exgcd
