@@ -7,3 +7,5 @@
     code: HLPP.cpp
   - name: 全局最小割(Stoer_Wagner)
     code: Stoer_Wagner.cpp
+  - name: 最小割树(Gusfield)
+    code: MinCutTree.cpp
