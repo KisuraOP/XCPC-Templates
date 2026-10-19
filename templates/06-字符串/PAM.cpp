@@ -4,12 +4,16 @@ struct PAM {
 	string s;
 	vector<array<int, S>> ch;
 	vector<int> fail, len, cnt;
-	PAM(int n) : tot(-1), lst(0), fail(2 * n + 1), 
-	len(2 * n + 1), cnt(2 * n + 1), ch(2 * n + 1) {
+	PAM(int n) : tot(-1), lst(0), fail(n + 2), 
+	len(n + 2), cnt(n + 2), ch(n + 2) {
 		init();
 	}
 	void init() {
-		s += '@';
+		tot = -1;
+		lst = 0;
+		s = "@";
+		ch.assign(ch.size(), {});
+		cnt.assign(cnt.size(), 0);
 		len[++tot] = 0;
 		len[++tot] = -1;
 		fail[0] = 1;

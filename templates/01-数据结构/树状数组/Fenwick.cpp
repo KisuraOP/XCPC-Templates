@@ -8,7 +8,7 @@ fen.add(x, v);
 int res = fen.sum(x);
 求区间 [1, x] 的和。
 
-int res = fen.sum(l, r);
+int res = fen.query(l, r);
 求区间 [l, r] 的和。
 
 int res = fen.kth(x);
@@ -40,7 +40,7 @@ struct Fenwick {
 	int kth(int k) {
 		// tr[x] count the cnt of x
 		int res = 0, cnt = 0;
-		for (int i = 20; i >= 0; i--) {
+		for (int i = __lg(n); i >= 0; i--) {
 			res += (1LL << i);
 			if (res > n || cnt + tr[res] >= k) {
 				res -= (1LL << i);

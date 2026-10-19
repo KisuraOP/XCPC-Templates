@@ -51,6 +51,10 @@ struct CRT {
 		n++;
 		a.push_back(x);
 		m.push_back(P);
+		if (n == 0) {
+			A = x % P;
+			if (A < 0) A += P;
+		}
 		if (n > 0 && A != inf) {
 			merge(n - 1, n);
 		}

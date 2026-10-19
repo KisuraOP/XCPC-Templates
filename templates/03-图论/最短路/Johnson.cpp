@@ -1,5 +1,5 @@
 /*
-时间复杂度 O(nm\log m)
+时间复杂度 O(n^2+nm\log m)
 
 Johnson G(adj);
 adj 为邻接表。
@@ -76,7 +76,7 @@ struct Johnson {
 		}
 	}
 	vector<vector<int>> work() {
-		vector ans(n + 1, vector<int>(n + 1, -inf));
+		vector ans(n + 1, vector<int>(n + 1, -1));
 		if (!spfa(0)) {
 			return ans;
 		}
@@ -93,6 +93,11 @@ struct Johnson {
 				} else {
 					ans[i][j] = dis[j] + (h[j] - h[i]);
 				}
+			}
+		}
+		for (int x = 1; x <= n; x++) {
+			for (auto &[y, w] : adj[x]) {
+				w -= h[x] - h[y];
 			}
 		}
 		return ans;

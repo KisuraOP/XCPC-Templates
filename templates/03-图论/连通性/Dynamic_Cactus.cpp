@@ -217,8 +217,8 @@ struct DynamicCactus {
 			pushup_Round(y);
 			return 1;
 		}
-		const bool f = t[p].son[1] && t[t[p].son[1]].val == z;
-		if (!t[p].son[f] || t[t[p].son[f]].val ^ z) {
+		const bool f = t[t[p].son[1]].edge && t[t[p].son[1]].val == z;
+		if (!t[t[p].son[f]].edge || t[t[p].son[f]].val ^ z) {
 			return 0;
 		}
 		if (!f) {
@@ -245,7 +245,7 @@ struct DynamicCactus {
 };
 
 /*
-定义: Link_Cut_Cactus t(n, m);
+定义: DynamicCactus t(n, m);
 
 连边: t.link(u, v, w); 
 若连边后仍为沙漠, 返回 true; 否则撤销操作, 返回 false.

@@ -15,7 +15,7 @@ t.erase(x);
 
 int res = t.get();
 获取当前中位数。
-中位数定义为 1-index 下排序后的第 "n / 2 下取整" 个数。
+中位数定义为 1-index 下排序后的第 "(n + 1) / 2 下取整" 个数。
 */
 
 struct Node {
@@ -74,7 +74,7 @@ struct Node {
 	}
 	void erase(int x) {
 		n--;
-		if (s2.count(x)) {
+		if (s2.find(x) != s2.end()) {
 			s2.extract(x);
 		} else {
 			s1.extract(x);

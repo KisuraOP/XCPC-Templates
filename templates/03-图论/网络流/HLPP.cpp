@@ -132,7 +132,7 @@ class HLPP {
 		T GetMaxFlow() {
 			GlobalRelabel();
 			for (auto &e : vec[s]) {
-				if (e.flow) {
+				if (e.flow && h[e.to] < n) {
 					PushFlow(s, e, e.flow);
 					maxh = max(maxh, h[e.to]);
 				}

@@ -28,6 +28,7 @@ struct DSU {
 	DSU() {}
 	DSU(int n) { init(n);}
 	void init(int n) {
+		ver.clear();
 		f.resize(n + 2);
 		iota(f.begin(), f.end(), 0);
 		siz.assign(n + 2, 1);

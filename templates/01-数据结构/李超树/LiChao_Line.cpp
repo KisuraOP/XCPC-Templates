@@ -9,7 +9,7 @@ int res = G.query(x);
 查询 max(kx + b)。
 
 若要查询 min(kx + b), 进行如下修改
-- Line 里 b(-1e18) 改成 b(1e18)
+- Line 里 b(-inf) 改成 b(inf)
 - insert 里 
   lo.F(mid) < hi.F(mid), 
   lo.F(l) < hi.F(l), 
@@ -22,7 +22,7 @@ int 可以换成 double。
 
 struct Line {
     int k, b;
-    Line() : k(0), b(-1e18) {}
+    Line() : k(0), b(-inf) {}
     Line(int _k, int _b) : k(_k), b(_b) {} 
     int F(int x) {
         return k * x + b;

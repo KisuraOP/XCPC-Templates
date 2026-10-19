@@ -24,6 +24,8 @@ void pushup(int p) {
 	tr[p] = tr[ls] + tr[rs];
 }
 void build(int p, int l, int r, vector<int> &a) {
+	ta[p] = 0;
+	tc[p] = -1;
 	if (l == r) {
 		tr[p] = {a[l], a[l], a[l]};
 		return ;
@@ -38,7 +40,7 @@ void apply(int p, int l, int r, int x, int y) {
 		ta[p] = 0;
 		tc[p] = y;
 	}
-	if (x > 0) {
+	if (x) {
 		tr[p].sum += (r - l + 1) * x;
 		tr[p].mn += x;
 		tr[p].mx += x;

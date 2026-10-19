@@ -27,7 +27,7 @@ dfs(dfs, 源点编号);
 for (int x = 1; x <= n; x++) {
 	for (auto i : G.adj[x]) {
 		auto [y, _] = G.e[i];
-		if (vis[x] != vis[y]) {
+		if (vis[x] && !vis[y] && !(i & 1)) {
 			// 边 (x, y) 在方案中
 		}
 	}

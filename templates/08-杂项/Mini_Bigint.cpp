@@ -27,7 +27,7 @@ struct BigInt {
         }
         return *this;
     }
-    BigInt &operator+=(const BigInt &x) {
+    BigInt &operator+=(BigInt x) {
         for (int i = 0; i < N; i++) {
             a[i] += x.a[i];
             if (a[i] >= 10) {
@@ -40,7 +40,7 @@ struct BigInt {
 };
 ostream &operator<<(ostream &o, const BigInt &a) {
     int t = N - 1;
-    while (a.a[t] == 0) {
+    while (t && a.a[t] == 0) {
         t--;
     }
     for (int i = t; i >= 0; i--) {

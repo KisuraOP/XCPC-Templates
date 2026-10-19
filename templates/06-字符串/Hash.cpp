@@ -34,7 +34,7 @@ H get(H &l, H &r) {
 		  r.len - l.len
 	};
 }
-bool operator == (H &a, H &b) {
+bool operator == (H a, H b) {
 	return a.x == b.x;
 }
 

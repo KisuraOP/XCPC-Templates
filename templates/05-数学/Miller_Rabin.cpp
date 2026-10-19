@@ -1,6 +1,6 @@
 /*
 检验 long long 范围内的质数。
-时间复杂度 O(|A| \log n), 如下代码中 |A| = 8。
+时间复杂度 O(|A| \log n), 如下代码中 |A| = 9。
 */
 
 int mul(int a, int b, int m) {
@@ -15,7 +15,7 @@ int qpow(int a, int b, int m) {
 	}
 	return res;
 }
-int A[] = {2, 3, 5, 7, 11, 13, 17, 37};
+int A[] = {2, 3, 5, 7, 11, 13, 17, 19, 37};
 bool isprime(int n) {
 	if (n < 2) {
 		return false;

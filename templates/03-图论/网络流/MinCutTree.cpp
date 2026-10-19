@@ -24,22 +24,33 @@ struct MinCutTree {
 	void add(int x, int y, int cap) {
 		E.push_back({x, y, cap});
 	}
-	// O(n^3 m)
+	// O(n^2+n^3 m)
 	void build() {
-		vector<int> p(n + 1, 1);
+		for (auto &v : tr) v.clear();
+		vector<int> p(n + 1, 1), w(n + 1);
 		for (int i = 2; i <= n; i++) {
 			Dinic G(n);
 			for (auto [x, y, cap] : E) {
 				G.add(x, y, cap);
 			}
 			int flow = G.dinic(i, p[i]);
-			tr[i].push_back({p[i], flow});
-			tr[p[i]].push_back({i, flow});
-			for (int j = i + 1; j <= n; j++) {
-				if (p[j] == p[i] && G.dep[j] != -1) {
+			w[i] = flow;
+			for (int j = 2; j <= n; j++) {
+				if (j != i && p[j] == p[i] && G.dep[j] != -1) {
 					p[j] = i;
 				}
 			}
+			if (G.dep[p[p[i]]] != -1) {
+				w[i] = w[p[i]];
+				w[p[i]] = flow;
+				int x = p[i];
+				p[i] = p[x];
+				p[x] = i;
+			}
+		}
+		for (int i = 2; i <= n; i++) {
+			tr[i].push_back({p[i], w[i]});
+			tr[p[i]].push_back({i, w[i]});
 		}
 	}
 	// 返回最小割。 O(n)

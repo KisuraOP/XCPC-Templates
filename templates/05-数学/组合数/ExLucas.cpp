@@ -32,7 +32,7 @@ struct ExLucas {
 				res = res * i % pk;
 			}
 		}
-		res = qpow(res, x / pk, pk);
+		if (x / pk % 2 == 0) res = 1;
 		for (int i = 1; i <= x % pk; i++) {
 			if (i % pi != 0) {
 				res = res * i % pk;

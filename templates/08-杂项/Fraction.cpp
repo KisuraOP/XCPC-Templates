@@ -18,7 +18,7 @@ struct Frac {
 	Frac& operator += (const Frac &oth) { num = num * oth.den + oth.num * den; den = den * oth.den; work(); return *this;}
 	Frac& operator -= (const Frac &oth) { num = num * oth.den - oth.num * den; den = den * oth.den; work(); return *this;}
 	Frac& operator *= (const Frac &oth) { num *= oth.num; den *= oth.den; work(); return *this;}
-	Frac& operator /= (const Frac &oth) { assert(oth.num != 0); num *= oth.den; den *= oth.num; work(); return *this;}
+	Frac& operator /= (Frac oth) { assert(oth.num != 0); num *= oth.den; den *= oth.num; work(); return *this;}
 	explicit operator double() const { return static_cast<double>(num) / den;}
 };
 Frac operator + (Frac lhs, const Frac &rhs) { return lhs += rhs;}

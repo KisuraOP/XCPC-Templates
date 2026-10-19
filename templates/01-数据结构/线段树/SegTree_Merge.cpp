@@ -7,7 +7,7 @@ struct Merge_SegTree {
 	vector<int> del;
 
 	// M 是最大节点数, 通常是 nlogn 的常数倍
-	Merge_SegTree(int n, int M) : n(n), tot(0), tr(M), tag(M), lc(M), rc(M) {}
+	Merge_SegTree(int n, int M) : n(n), tot(0), tr(M + 1), tag(M + 1), lc(M + 1), rc(M + 1) {}
 
 	int new_node() {
 		int p;
@@ -44,12 +44,6 @@ struct Merge_SegTree {
 		if (!tag[p].has_tag()) {
 			return ;
 		}
-		if (!lc[p]) {
-			lc[p] = new_node();
-		}
-		if (!rc[p]) {
-			rc[p] = new_node(); 
-		}
 		apply(lc[p], tag[p]);
 		apply(rc[p], tag[p]);
 		tag[p] = Tag();
@@ -75,11 +69,8 @@ struct Merge_SegTree {
 		modify(rt, 1, n, pos, x);
 	}
 	void modify(int &p, int l, int r, int ql, int qr, const Tag &x) {
-		if (l > qr || r < ql) {
+		if (!p || l > qr || r < ql) {
 			return ;
-		}
-		if (!p) {
-			p = new_node();
 		}
 		if (ql <= l && qr >= r) {
 			apply(p, x);
@@ -155,6 +146,8 @@ struct Info {
 };
 Info operator+(const Info &a, const Info &b) {
 	Info c;
+	if (!a.pos) return b;
+	if (!b.pos) return a;
 	if (a.sum >= b.sum) {
 		c.pos = a.pos;
 		c.sum = a.sum;
@@ -184,6 +177,7 @@ struct Info {
 		sum += t.add * len;
 	}
 	void merge(const Info &oth) {
+		len = 1;
 		sum += oth.sum;
 	}
 };
@@ -219,6 +213,7 @@ struct Info {
 		}
 	}
 	void merge(const Info &oth) {
+		len = 1;
 		sum = oth.sum;
 	}
 };
@@ -251,6 +246,7 @@ struct Info {
 		sum += t.add * len;
 	}
 	void merge(const Info &oth) {
+		len = 1;
 		sum += oth.sum;
 	}
 };

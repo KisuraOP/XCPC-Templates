@@ -23,11 +23,11 @@ auto spfa = [&] (int s) {
 	num.assign(n + 2, 0);
 	dis[s] = 0;
 	vis[s] = true;
-	priority_queue<int> q;
+	queue<int> q;
 	q.push(s);
 	num[s]++;
 	while(!q.empty()) {
-		int x = q.top();
+		int x = q.front();
 		q.pop();
 		vis[x] = false;
 		for (auto [y, z] : adj[x]) {

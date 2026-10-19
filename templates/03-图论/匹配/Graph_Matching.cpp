@@ -1,4 +1,4 @@
-// 一般图最大匹配 O(nm^2)
+// 一般图最大匹配 O(n+nm^2)
 // 返回 mat[i] 表示与点 i 匹配的点的编号。
 // 若没有点与 i 匹配则 mat[i] = -1。
 struct graphMatching {
@@ -104,7 +104,7 @@ struct graphMatching {
 			return false;
 		};
 		for (int i = 1; i <= n; i++) {
-			if (mat[i] == -1) {
+			if (mat[i] == -1 && !adj[i].empty()) {
 				bfs(i);
 			}
 		}

@@ -24,11 +24,13 @@ bool func(int a, int b, int c) {
 	y = y * c / d;
 	int tx = b / d;
 	int ty = a / d;
-	int k = ceil((1.0 - x) / tx);
+	int k = (1 - x) / tx;
+	if (x + tx * k < 1) k++;
 	x += tx * k;
 	y -= ty * k;
 	if (y <= 0) { // no solution for positive intergers
-		min_y = y + ty * ceil((1.0 - y) / ty);
+		num_x = 0;
+		min_y = y % ty + ty;
 		min_x = x;
 		max_y = -1;
 		max_x = -1;

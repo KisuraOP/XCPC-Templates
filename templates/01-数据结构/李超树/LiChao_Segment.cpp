@@ -6,7 +6,7 @@ insert(xl, xr, {k, b});
 
 struct Line {
     int k, b;
-    Line() : k(0), b(-1e18) {}
+    Line() : k(0), b(-inf) {}
     Line(int _k, int _b) : k(_k), b(_b) {} 
     int F(int x) {
         return k * x + b;

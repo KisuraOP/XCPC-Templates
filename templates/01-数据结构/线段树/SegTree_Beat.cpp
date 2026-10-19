@@ -1,9 +1,9 @@
 // 时间复杂度：O(n\log^2 n)。
 struct Node {
-	vector<int> sum, mx, mn;
+	vector<int> sum, mx, mn, sx, sn, cx, cn;
 	vector<int> tc, ta, L, R;
 	#define N 4 * n + 5
-	Node(int n) : sum(N), mx(N), mn(N), tc(N), ta(N), L(N), R(N) {} 
+	Node(int n) : sum(N), mx(N), mn(N), sx(N), sn(N), cx(N), cn(N), tc(N), ta(N), L(N), R(N) {} 
 
 	#define ls (p << 1)
 	#define rs (p << 1 | 1)
@@ -13,18 +13,39 @@ struct Node {
 		sum[p] = sum[ls] + sum[rs];
 		mx[p] = max(mx[ls], mx[rs]);
 		mn[p] = min(mn[ls], mn[rs]);
+		sx[p] = max(mx[ls] == mx[p] ? sx[ls] : mx[ls], mx[rs] == mx[p] ? sx[rs] : mx[rs]);
+		sn[p] = min(mn[ls] == mn[p] ? sn[ls] : mn[ls], mn[rs] == mn[p] ? sn[rs] : mn[rs]);
+		cx[p] = (mx[ls] == mx[p] ? cx[ls] : 0) + (mx[rs] == mx[p] ? cx[rs] : 0);
+		cn[p] = (mn[ls] == mn[p] ? cn[ls] : 0) + (mn[rs] == mn[p] ? cn[rs] : 0);
 	}
 	void Cover(int p, int w) {
 		sum[p] = (R[p] - L[p] + 1) * w;
 		mx[p] = mn[p] = tc[p] = w;
+		sx[p] = -inf;
+		sn[p] = inf;
+		cx[p] = cn[p] = R[p] - L[p] + 1;
 		ta[p] = 0;
 	}
 	void Add(int p, int w) {
 		sum[p] += (R[p] - L[p] + 1) * w;
+		if (cx[p] < R[p] - L[p] + 1) sx[p] += w;
+		if (cn[p] < R[p] - L[p] + 1) sn[p] += w;
 		mx[p] += w;
 		mn[p] += w;
 		ta[p] += w;
 	} 
+	void Chmin(int p, int w) {
+		if (mx[p] == mn[p]) return Cover(p, w);
+		sum[p] += (w - mx[p]) * cx[p];
+		if (sn[p] == mx[p]) sn[p] = w;
+		mx[p] = w;
+	}
+	void Chmax(int p, int w) {
+		if (mx[p] == mn[p]) return Cover(p, w);
+		sum[p] += (w - mn[p]) * cn[p];
+		if (sx[p] == mn[p]) sx[p] = w;
+		mn[p] = w;
+	}
 	void pushdown(int p) {
 		if (tc[p] != inf) {
 			Cover(ls, tc[p]);
@@ -36,13 +57,21 @@ struct Node {
 			Add(rs, ta[p]);			
 			ta[p] = 0;
 		}
+		for (int x : {ls, rs}) {
+			if (mx[x] > mx[p]) Chmin(x, mx[p]);
+			if (mn[x] < mn[p]) Chmax(x, mn[p]);
+		}
 	}
 	void build(int p, int l, int r, vector<int> &a) {
 		L[p] = l;
 		R[p] = r;
 		tc[p] = inf;
+		ta[p] = 0;
 		if (l == r) {
 			sum[p] = mx[p] = mn[p] = a[l];
+			sx[p] = -inf;
+			sn[p] = inf;
+			cx[p] = cn[p] = 1;
 			return ;
 		}
 		build(ls, l, mid, a);
@@ -111,6 +140,9 @@ struct Node {
 		if (l <= L[p] && r >= R[p] && mx[p] <= w) {
 			return Cover(p, w);
 		}
+		if (l <= L[p] && r >= R[p] && sn[p] > w) {
+			return Chmax(p, w);
+		}
 		pushdown(p);
 		if (l <= mid) {
 			modify_max(ls, l, r, w);
@@ -126,6 +158,9 @@ struct Node {
 		}
 		if (l <= L[p] && r >= R[p] && mn[p] >= w) {
 			return Cover(p, w);
+		}
+		if (l <= L[p] && r >= R[p] && sx[p] < w) {
+			return Chmin(p, w);
 		}
 		pushdown(p);
 		if (l <= mid) {

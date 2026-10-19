@@ -1,6 +1,6 @@
 /*
 原始对偶算法。
-时间复杂度：O(fm\log n)。
+初始化 O(n+nm)，增广 O(f(n+m\log m))。
 
 Dinic G(n);
 n 为顶点数。
@@ -59,9 +59,21 @@ struct Dinic {
 	array<int, 2> dinic(int S, int T) {
 		int flow = 0, cost = 0;
 		h.assign(n + 1, 0);
+		for (int k = 1; k < n; k++) {
+			bool ok = false;
+			for (int i = 0; i < e.size(); i++) {
+				auto [y, cap, w] = e[i];
+				int x = e[i ^ 1].x;
+				if (cap > 0 && h[y] > h[x] + w) {
+					h[y] = h[x] + w;
+					ok = true;
+				}
+			}
+			if (!ok) break;
+		}
 		while (dijkstra(S, T)) {
 			for (int i = 1; i <= n; i++) {
-				h[i] += dis[i];
+				if (dis[i] != inf) h[i] += dis[i];
 			}
 			int res = inf;
 			for (int i = T; i != S; i = e[pre[i] ^ 1].x) {
@@ -72,7 +84,7 @@ struct Dinic {
 				e[pre[i] ^ 1].cap += res;
 			}
 			flow += res;
-			cost += res * h[T];
+			cost += res * (h[T] - h[S]);
 
 		}
 		return {flow, cost};

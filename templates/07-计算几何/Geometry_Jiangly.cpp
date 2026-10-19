@@ -9,7 +9,7 @@ struct Point {
     Point(T x_ = 0, T y_ = 0) : x(x_), y(y_) {}
     
     template<class U>
-    operator Point<U>() {
+    operator Point<U>() const {
         return Point<U>(U(x), U(y));
     }
     Point &operator+=(Point p) & {
@@ -167,7 +167,7 @@ tuple<int, Point<T>, Point<T>> segmentIntersection(Line<T> l1, Line<T> l2) {
         return {0, Point<T>(), Point<T>()};
     }
     if (cross(l1.b - l1.a, l2.b - l2.a) == 0) {
-        if (cross(l1.b - l1.a, l2.a - l1.a) != 0) {
+        if (cross(l1.b - l1.a, l2.a - l1.a) != 0 || cross(l2.b - l2.a, l1.a - l2.a) != 0) {
             return {0, Point<T>(), Point<T>()};
         } else {
             auto maxx1 = max(l1.a.x, l1.b.x);
@@ -199,7 +199,7 @@ tuple<int, Point<T>, Point<T>> segmentIntersection(Line<T> l1, Line<T> l2) {
         return {0, Point<T>(), Point<T>()};
     }
     
-    Point p = lineIntersection(l1, l2);
+    Point p = cp1 == 0 ? l1.a : cp2 == 0 ? l1.b : cp3 == 0 ? l2.a : cp4 == 0 ? l2.b : lineIntersection(l1, l2);
     if (cp1 != 0 && cp2 != 0 && cp3 != 0 && cp4 != 0) {
         return {1, p, p};
     } else {
@@ -213,6 +213,7 @@ bool segmentInPolygon(Line<T> l, vector<Point<T>> p) {
     if (!pointInPolygon(l.a, p)) {
         return false;
     }
+    if (l.a == l.b) return true;
     if (!pointInPolygon(l.b, p)) {
         return false;
     }
@@ -304,6 +305,9 @@ vector<Point<T>> hp(vector<Line<T>> lines) {
             ls.push_back(l);
             continue;
         }
+        
+        if (pointOnLine(l.a, ls.back()) && pointOnLine(l.b, ls.back())
+            && dot(l.b - l.a, ls.back().b - ls.back().a) > 0) continue;
         
         while (!ps.empty() && !pointOnLineLeft(ps.back(), l)) {
             ps.pop_back();

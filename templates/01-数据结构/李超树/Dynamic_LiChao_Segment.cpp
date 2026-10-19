@@ -31,6 +31,7 @@ struct LiChao {
 		if (p == 0) {
 			p = seg.size();
 			seg.push_back({});
+			return seg.size() - 1;
 		}
 		return p;
 	}

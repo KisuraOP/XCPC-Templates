@@ -24,7 +24,7 @@ struct P {
 	}
 };
 
-// 平面图转对偶图 O(m log n)
+// 平面图转对偶图 O(n + m log n)
 // 给定的平面图不能有重边。
 // 1-index
 struct Planar2Dual {
@@ -36,7 +36,7 @@ struct Planar2Dual {
 	// 对偶图
 	int cnt = 0; // 面数
 	int rt = -1; // 无限面编号
-	vector<vector<int>> face; // 组成面的点的编号
+	vector<vector<int>> face; // 面边界的点；多个边界依次拼接
 	vector<vector<int>> Adj;
 
 	Planar2Dual(const vector<P> &_a, const vector<vector<int>> &_adj)
@@ -49,14 +49,11 @@ struct Planar2Dual {
 	void work() {
 		for (int i = 1; i <= n; i++) {
 			sort(adj[i].begin(), adj[i].end(), [&] (const int &A, const int &B) {
-				double r1 = atan2l((double)(a[A].y - a[i].y), (double)(a[A].x - a[i].x));
-				double r2 = atan2l((double)(a[B].y - a[i].y), (double)(a[B].x - a[i].x));
-				if (abs(r1 - r2) > eps) {
-					return r1 < r2;
-				}
-				double d1 = (double)((a[A].x - a[i].x) * (a[A].x - a[i].x) + (a[A].y - a[i].y) * (a[A].y - a[i].y));
-				double d2 = (double)((a[B].x - a[i].x) * (a[B].x - a[i].x) + (a[B].y - a[i].y) * (a[B].y - a[i].y));
-				return d1 < d2;
+				P u = a[A] - a[i], v = a[B] - a[i];
+				bool p = u.y > 0 || (u.y == 0 && u.x > 0);
+				bool q = v.y > 0 || (v.y == 0 && v.x > 0);
+				if (p != q) return p > q;
+				return u.x * v.y - u.y * v.x > 0;
 			});
 		}
 		// vector<unordered_map<int, int>> nxt(n + 1);
@@ -82,7 +79,7 @@ struct Planar2Dual {
 				int v = y;
 				vector<int> path;
 				while (!vis[ID(u, v)]) {
-					vis[ID(u, v)] = true;
+					vis[ID(u, v)] = cnt;
 					path.push_back(u);
 					face_id[ID(min(u, v), max(u, v))].push_back(cnt);
 					int t = nxt[v][u];
@@ -92,30 +89,90 @@ struct Planar2Dual {
 				face.push_back(path);
 			}
 		}
-		vector<int> inf_face(cnt + 1);
+		vector<int> par(cnt + 1), who;
+		iota(par.begin(), par.end(), 0);
+		auto get = [&] (auto self, int x) -> int {
+			return par[x] == x ? x : par[x] = self(self, par[x]);
+		};
+		vector<array<int, 2>> seg;
+		vector<array<int, 3>> evt;
+		for (int u = 1; u <= n; u++) {
+			for (auto v : adj[u]) if (u < v && a[u].x != a[v].x) {
+				int x = u, y = v, k = seg.size();
+				if (a[y] < a[x]) swap(x, y);
+				seg.push_back({x, y});
+				who.push_back(0);
+				evt.push_back({a[x].x, 2, k});
+				evt.push_back({a[y].x, 1, k});
+			}
+		}
 		for (int i = 1; i <= cnt; i++) {
-			double area = 0;
+			int area = 0;
 			for (int j = 0; j < face[i].size(); j++) {
 				P p1 = a[face[i][j]];
 				P p2 = a[face[i][(j + 1) % face[i].size()]];
-				area += (double)p1.x * (double)p2.y - (double)p2.x * (double)p1.y;
+				area += p1.x * p2.y - p2.x * p1.y;
 			}
 			if (area <= 0) {
-				rt = i;
-				inf_face[i] = true;
+				int x = face[i][0], k = seg.size();
+				for (auto y : face[i]) if (a[y] < a[x]) x = y;
+				seg.push_back({x, x});
+				who.push_back(i);
+				evt.push_back({a[x].x, 0, k});
 			}
 		}
+		// 在每个分量最左点的左侧，向下找包含它的面。
+		auto cross = [&] (P u, P v) { return u.x * v.y - u.y * v.x; };
+		auto cmp = [&] (int i, int j) {
+			auto [u, v] = seg[i];
+			auto [x, y] = seg[j];
+			int z;
+			if (a[u].x < a[x].x) {
+				z = cross(a[v] - a[u], a[x] - a[u]);
+				if (z) return z > 0;
+			} else if (a[u].x > a[x].x) {
+				z = cross(a[y] - a[x], a[u] - a[x]);
+				if (z) return z < 0;
+			} else if (a[u].y != a[x].y) {
+				return a[u].y < a[x].y;
+			}
+			z = cross(a[v] - a[u], a[y] - a[x]);
+			return z ? z > 0 : i < j;
+		};
+		set<int, decltype(cmp)> st(cmp);
+		sort(evt.begin(), evt.end());
+		for (auto [_, t, k] : evt) {
+			if (t == 2) st.insert(k);
+			else if (t == 1) st.erase(k);
+			else {
+				auto it = st.lower_bound(k);
+				int f = 0;
+				if (it != st.begin()) {
+					auto [u, v] = seg[*--it];
+					f = vis[ID(u, v)];
+				}
+				par[get(get, who[k])] = get(get, f);
+			}
+		}
+		vector<int> id(cnt + 1);
+		int tot = 0;
+		for (int i = 0; i <= cnt; i++) {
+			int x = get(get, i);
+			if (!id[x]) id[x] = ++tot;
+		}
+		vector<vector<int>> F(tot + 1);
+		for (int i = 1; i <= cnt; i++) {
+			auto &v = F[id[get(get, i)]];
+			v.insert(v.end(), face[i].begin(), face[i].end());
+		}
+		face = move(F);
+		cnt = tot;
+		rt = id[get(get, 0)];
 		Adj.assign(cnt + 1, {});
 		for (auto [_, v] : face_id) {
 			if (v.size() == 2) {
-				int x = v[0];
-				int y = v[1];
-				if (inf_face[x]) {
-					x = rt;
-				}
-				if (inf_face[y]) {
-					y = rt;
-				}
+				int x = id[get(get, v[0])];
+				int y = id[get(get, v[1])];
 				Adj[x].push_back(y);
 				Adj[y].push_back(x);
 			}

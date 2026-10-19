@@ -4,3 +4,6 @@
 *.toc
 *.log
 output.*
+/output/
+/AGENTS.md
+.DS_Store

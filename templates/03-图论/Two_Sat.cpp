@@ -1,5 +1,5 @@
 /*
-Twosat ts(n);
+TwoSat ts(n);
 n 为变元数量。
 
 ts.addbind(x1, t1, x2, t2);

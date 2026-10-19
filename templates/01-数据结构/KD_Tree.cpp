@@ -1,4 +1,4 @@
-// 时间复杂度: 插入 O(log^2 n), 修改 O(n^{1 - 1 / k}), 查询 O(n^{1 - 1 / k})
+// 时间复杂度: 插入摊还 O(log^2 n), 修改、查询 O(log^2 n + n^{1 - 1 / k})
 // 空间复杂度: 严格 O(n)
 
 template <class Info, typename T = int>
@@ -324,34 +324,34 @@ struct Tag {
 	}
 };
 struct Info {
-	int cnt[60]; // 维护每一位上 1 的个数
+	int cnt[64]; // 维护每一位上 1 的个数
 	Info() {
 		memset(cnt, 0, sizeof(cnt));
 	}
 	Info(int x) {
 		memset(cnt, 0, sizeof(cnt));
-		for (int i = 0; i < 60; i++) {
+		for (int i = 0; i < 64; i++) {
 			if ((x >> i) & 1) cnt[i] = 1;
 		}
 	}
 	Info operator+(const Info& oth) const {
 		Info res;
-		for (int i = 0; i < 60; i++) {
+		for (int i = 0; i < 64; i++) {
 			res.cnt[i] = cnt[i] + oth.cnt[i];
 		}
 		return res;
 	}
 	void apply(const Tag& tag, int sz) {
-		for (int i = 0; i < 60; i++) {
+		for (int i = 0; i < 64; i++) {
 			if ((tag.v >> i) & 1) {
 				cnt[i] = sz - cnt[i];
 			}
 		}
 	}
 	int get_sum() const {
-		int sum = 0;
-		for (int i = 0; i < 60; i++) {
-			sum += (1LL << i) * cnt[i];
+		int sum = -cnt[63];
+		for (int i = 62; i >= 0; i--) {
+			sum = (sum + cnt[i] / 2) * 2 + cnt[i] % 2;
 		}
 		return sum;
 	}

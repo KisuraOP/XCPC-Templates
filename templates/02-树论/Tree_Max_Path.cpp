@@ -19,7 +19,7 @@ struct Node {
 		fa[x][0] = fath;
 		dis[x][0] = w;
 		dep[x] = dep[fath] + 1;
-		for (int i = 1; i <= __lg(dep[x]) + 1; i++) {
+		for (int i = 1; i < fa[x].size(); i++) {
 			fa[x][i] = fa[fa[x][i - 1]][i - 1];
 			dis[x][i] = max(dis[x][i - 1], dis[fa[x][i - 1]][i - 1]);
 		}
@@ -51,7 +51,7 @@ struct Node {
 		return fa[x][0];
 	}
 	int dist(int x, int y) {
-		int res = 0;
+		int res = -inf;
 		if (dep[x] < dep[y]) {
 			swap(x, y);
 		}
@@ -62,6 +62,7 @@ struct Node {
 		return res;
 	}
 	int getmx(int x, int y) {
+		if (x == y) return 0;
 		int lca = LCA(x, y);
 		return max(dist(x, lca), dist(y, lca));
 	}

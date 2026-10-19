@@ -1,5 +1,5 @@
 /*
-VBCC G(n);
+vBCC G(n);
 
 G.addEdge(x, y);
 连一条 x -> y 的无向边。
@@ -55,7 +55,7 @@ struct vBCC {
 				son++;
 				estk.push_back(eid);
 				
-				tarjan_Node(y, x);
+				tarjan_Node(y, eid);
 				low[x] = min(low[x], low[y]);
 				
 				if (low[y] >= dfn[x]) {
@@ -88,7 +88,7 @@ struct vBCC {
 				if (par && low[y] >= dfn[x]) {
 					iscut[x] = true;
 				}
-			} else if (y != par) {
+			} else if (eid != par) {
 				if (dfn[y] < dfn[x]) {
 					estk.push_back(eid);
 				}
@@ -105,6 +105,13 @@ struct vBCC {
 		}
 	}
 	void work_Node() {
+		if (tim) {
+			dfn.assign(n + 1, 0);
+			iscut.assign(n + 1, 0);
+			c.assign(n + 1, {});
+			scc.resize(1);
+			tim = cnt = 0;
+		}
 		for (int i = 1; i <= n; i++) {
 			if (!dfn[i]) {
 				tarjan_Node(i, 0);

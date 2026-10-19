@@ -30,7 +30,7 @@ struct Node {
 };
 
 // All 1-index
-// 返回 res[i] 表示满足 aj <= ai && bj <= bi && cj <= ci 的 j 的数量
+// 返回 res[i] 表示满足 j != i && aj <= ai && bj <= bi && cj <= ci 的 j 的数量
 vector<int> solve(vector<int> &a, vector<int> &b, vector<int> &c) {
 	int n = a.size() - 1;
 	vector<Node> v(n + 1);

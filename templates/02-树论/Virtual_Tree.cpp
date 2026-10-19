@@ -18,7 +18,7 @@ G.id[x] 代表原树中的节点 x 在虚树中的编号。
 
 #define _node vector<vector<array<int, 2>>>
 struct VirtualTree {
-	int n;
+	int n, rt;
 	_node adj;
 	vector<vector<int>> fa;
 	vector<int> dfn, depth, id;
@@ -39,7 +39,7 @@ struct VirtualTree {
 		dfn[x] = ++tim;
 		fa[x][0] = fath;
 		depth[x] = depth[fath] + 1;
-		for (int i = 1; i <= __lg(depth[x]) + 1; i++) {
+		for (int i = 1; i < fa[x].size(); i++) {
 			fa[x][i] = fa[fa[x][i - 1]][i - 1];
 		}
 		for (auto [y, z] : adj[x]) {
@@ -49,6 +49,7 @@ struct VirtualTree {
 		}
 	}
 	void init(int rt) {
+		this->rt = rt;
 		dfs(rt, 0, 0);
 	}
 	int LCA(int x, int y) {
@@ -103,9 +104,11 @@ struct VirtualTree {
 
 		_node Adj(sz + 1);
 		vector<int> stk(sz + 1);
-		stk[top] = 1;
+		stk[top] = rt;
+		id[rt] = ++tot;
+		b.push_back(rt);
 		for (auto x : a) {
-			if (x == 1) {
+			if (x == stk[top]) {
 				continue;
 			}
 			int lca = LCA(x, stk[top]);

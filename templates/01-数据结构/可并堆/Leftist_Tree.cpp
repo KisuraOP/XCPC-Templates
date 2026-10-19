@@ -41,7 +41,7 @@ struct leftistTree {
 	};
 	vector<Node> a;
 	vector<int> rt;
-	vector<int> p, bel;
+	vector<int> p, bel, sz;
 
 	#define l(x) a[x].l
 	#define r(x) a[x].r
@@ -58,12 +58,16 @@ struct leftistTree {
 			rt[x] = y;
 			bel[_find(rt[x])] = x;
 		} else {
-			int z = rt[x];
+			int z = _find(rt[x]);
 			rt[x] = _merge(rt[x], y);
 			fa(rt[x]) = 0;
-			p[_find(z)] = _find(rt[x]);
-			p[_find(y)] = _find(rt[x]);
-			bel[_find(rt[x])] = x;
+			y = _find(y);
+			if (z != y) {
+				if (sz[z] < sz[y]) swap(z, y);
+				p[y] = z;
+				sz[z] += sz[y];
+			}
+			bel[z] = x;
 		}
 	}
 	int _merge(int x, int y) {
@@ -98,8 +102,9 @@ struct leftistTree {
 	}
 
 	leftistTree(int n, int m) : rt(n + 1), 
-	p(max(n, m) + 1), bel(max(n, m) + 1) {
+	p(max(n, m) + 1), bel(max(n, m) + 1), sz(m + 1, 1) {
 		iota(p.begin(), p.end(), 0);
+		a.reserve(m + 1);
 		a.push_back(Node());
 		d(0) = -1;
 	}

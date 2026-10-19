@@ -109,7 +109,7 @@ struct Random_Heap {
 		return z;
 	}
 	int get(int x) {
-		return !p[x] ? 0 : bel[_get(x)];
+		return x >= a.size() || !p[x] ? 0 : bel[_get(x)];
 	}
 	int top(int x) {
 		return !rt[x] ? -inf : v(rt[x]);

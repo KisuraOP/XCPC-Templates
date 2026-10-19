@@ -35,6 +35,7 @@ void pushup(int p) {
 }
 void build(int p, int l, int r, vector<int> &a) {
 	if (l == r) {
+		tr[p] = Node();
 		tr[p].add(a[l]);
 		return ;
 	}

@@ -4,13 +4,13 @@
 SegEdge seg(n);
 初始化。
 
-seg.PtoP(x, y);
+seg.PtoP(x, y, w);
 连一条点 x 向点 y 的单向边。
 
-seg.PtoS(x, l, r);
+seg.PtoS(x, l, r, w);
 连一条点 x 向线段 [l, r] 的单向边。
 
-seg.StoP(l, r, x);
+seg.StoP(l, r, x, w);
 连一条线段 [l, r] 向点 x 的单向边。
 
 线段向线段连边：需要在初始化时预留额外空间，每次建一个虚点，线段向虚点连边再连向另一条线段即可。
@@ -68,7 +68,7 @@ struct SegEdge {
 	void StoS(int l1, int r1, int l2, int r2, int w) {
 		++all;
 		adj.resize(all + 1);
-		StoP(l1, r1, all, 0);
-		PtoS(all, l2, r2, w);
+		addEdge(1, 1, n, l1, r1, all, 0, 2);
+		addEdge(1, 1, n, l2, r2, all - K, w, 1);
 	}
 };

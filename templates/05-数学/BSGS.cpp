@@ -15,6 +15,7 @@ int BSGS(int a, int b, int p) {
 	if (1 % p == b % p) {
 		return 0;
 	}
+	if (a % p == 0) return b % p == 0 ? 1 : -inf;
 	int k = sqrtl(p) + 1;
 	hs.clear();
 	for (int i = 0, r = b % p; i < k; i++) {
@@ -50,4 +51,13 @@ int exBSGS(int a, int b, int p) {
 		return exBSGS(a, b / d * x % (p / d), p / d) + 1;
 	}
 	return BSGS(a, b, p);
+}
+
+// 最小正整数解，无解返回 -inf
+int BSGS1(int a, int b, int p) {
+	int x, y, d;
+	exgcd(a, p, d, x, y);
+	if (b % d) return -inf;
+	int t = exBSGS(a, b / d * x % (p / d), p / d);
+	return t < 0 ? -inf : t + 1;
 }

@@ -24,8 +24,8 @@ struct Cipolla {
 		p = p_;
 	}
 	vector<int> solve(int n) {
-		if (n == 0) {
-			return {0};
+		if (n == 0 || p == 2) {
+			return {n};
 		}
 		if (qpow(n, (p - 1) / 2, p) == p - 1) {
 			return {};

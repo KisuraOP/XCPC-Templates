@@ -10,7 +10,7 @@ using std::tuple, std::make_tuple;
 using std::vector, std::deque;
 using std::set, std::multiset;
 
-using T=long double;  //全局数据类型
+using T=double;  //全局数据类型
 
 constexpr T eps=1e-8;
 constexpr T INF=numeric_limits<T>::max();
@@ -22,7 +22,7 @@ struct Point
     T x,y;
 
     bool operator==(const Point &a) const {return (abs(x-a.x)<=eps && abs(y-a.y)<=eps);}
-    bool operator<(const Point &a) const {if (abs(x-a.x)<=eps) return y<a.y-eps; return x<a.x-eps;}
+    bool operator<(const Point &a) const {return x!=a.x?x<a.x:y<a.y;}
     bool operator>(const Point &a) const {return !(*this<a || *this==a);}
     Point operator+(const Point &a) const {return {x+a.x,y+a.y};}
     Point operator-(const Point &a) const {return {x-a.x,y-a.y};}
@@ -36,16 +36,16 @@ struct Point
     T dis2(const Point &a) const {return (a-(*this)).len2();}  // 两点距离的平方
     int quad() const // 象限判断 0:原点 1:x轴正 2:第一象限 3:y轴正 4:第二象限 5:x轴负 6:第三象限 7:y轴负 8:第四象限
     {
-        if (abs(x)<=eps && abs(y)<=eps) return 0;
-        if (abs(y)<=eps) return x>eps ? 1 : 5;
-        if (abs(x)<=eps) return y>eps ? 3 : 7;
-        return y>eps ? (x>eps ? 2 : 4) : (x>eps ? 8 : 6);
+        if (x==0 && y==0) return 0;
+        if (y==0) return x>0 ? 1 : 5;
+        if (x==0) return y>0 ? 3 : 7;
+        return y>0 ? (x>0 ? 2 : 4) : (x>0 ? 8 : 6);
     }
 
     // 必须用浮点数
     T len() const {return sqrtl(len2());}  // 向量长度
     T dis(const Point &a) const {return sqrtl(dis2(a));}  // 两点距离
-    T ang(const Point &a) const {return acosl(max(-1.0l,min(1.0l,((*this)*a)/(len()*a.len()))));}  // 向量夹角
+    T ang(const Point &a) const {return atan2l(abs((*this)^a),(*this)*a);}  // 向量夹角
     Point rot(const T rad) const {return {x*cos(rad)-y*sin(rad),x*sin(rad)+y*cos(rad)};}  // 逆时针旋转（给定角度）
     Point rot(const T cosr,const T sinr) const {return {x*cosr-y*sinr,x*sinr+y*cosr};}  // 逆时针旋转（给定角度的正弦与余弦）
 
@@ -65,7 +65,7 @@ struct Argcmp
         if (qa!=qb) return qa<qb;
         const auto t=a^b;
         // if (abs(t)<=eps) return a*a<b*b-eps;  // 不同长度的向量需要分开
-        return t>eps;
+        return t>0;
     }
 };
 
@@ -78,7 +78,7 @@ struct Line
     int toleft(const Point &a) const {return v.toleft(a-p);}  // to-left 测试
     bool operator<(const Line &a) const  // 半平面交算法定义的排序
     {
-        if (abs(v^a.v)<=eps && v*a.v>=-eps) return toleft(a.p)==-1;
+        if ((v^a.v)==0 && v*a.v>0) return toleft(a.p)==-1;
         return Argcmp()(v,a.v);
     }
 
@@ -102,7 +102,7 @@ struct Segment
     int is_on(const Point &p) const  
     {
         if (p==a || p==b) return -1;
-        return (p-a).toleft(p-b)==0 && (p-a)*(p-b)<-eps;
+        return (p-a).toleft(p-b)==0 && (p-a)*(p-b)<0;
     }
 
     // 判断线段直线是否相交
@@ -125,7 +125,8 @@ struct Segment
     // 点到线段距离（必须用浮点数）
     T dis(const Point &p) const
     {
-        if ((p-a)*(b-a)<-eps || (p-b)*(a-b)<-eps) return min(p.dis(a),p.dis(b));
+        if (a.dis2(b)==0) return p.dis(a);
+        if ((p-a)*(b-a)<0 || (p-b)*(a-b)<0) return min(p.dis(a),p.dis(b));
         const Line l{a,b-a};
         return l.dis(p);
     }
@@ -148,8 +149,8 @@ struct Ray
     int is_on(const Point &a) const
     {
         if (a==p) return -1;
-        if ((a-p).toleft(v)!=0) return 0; // 不共线
-        return (a-p)*v>eps?1:0; // 方向相同
+        if (Line{p,v}.dis(a)>eps) return 0; // 不共线
+        return (a-p)*v>0?1:0; // 方向相同
     }
 };
 
@@ -170,7 +171,7 @@ struct Polygon
         for (size_t i=0;i<p.size();i++)
         {
             const Point u=p[i],v=p[nxt(i)];
-            if (abs((a-u)^(a-v))<=eps && (a-u)*(a-v)<=eps) return {true,0};
+            if (Segment{u,v}.is_on(a)) return {true,0};
             if (abs(u.y-v.y)<=eps) continue;
             const Line uv={u,v-u};
             if (u.y<v.y-eps && uv.toleft(a)<=0) continue;
@@ -276,6 +277,7 @@ struct Convex: Polygon
     template<typename F> size_t extreme(const F &dir) const
     {
         const auto &p=this->p;
+        if (p.size()<3) return p.size()==2 && dir(p[0]).toleft(p[1]-p[0])>=0;
         const auto check=[&](const size_t i){return dir(p[i]).toleft(p[this->nxt(i)]-p[i])>=0;};
         const auto dir0=dir(p[0]); const auto check0=check(0);
         if (!check0 && check(p.size()-1)) return 0;
@@ -356,38 +358,52 @@ struct Circle
         const int t=relation(l);
         if (t==0) return vector<Point>();
         if (t==1) return vector<Point>{p};
-        const T k=sqrt(r*r-d*d);
+        const T k=sqrt((r-d)*(r+d));
         return vector<Point>{p-(l.v/l.v.len())*k,p+(l.v/l.v.len())*k};
     }
 
     // 圆与圆交点
-    vector<Point> inter(const Circle &a) const
+    vector<Point> inter(const Circle &a,int t=-2) const
     {
         const T d=c.dis(a.c);
-        const int t=relation(a);
+        if (t==-2) t=relation(a);
         if (t==-1 || t==0 || t==4) return vector<Point>();
-        Point e=a.c-c; e=e/e.len()*r;
+        const Point e=(a.c-c)/d;
         if (t==1 || t==3) 
         {
-            if (r*r+d*d-a.r*a.r>=-eps) return vector<Point>{c+e};
-            return vector<Point>{c-e};
+            if (r*r+d*d-a.r*a.r>=-eps) return vector<Point>{c+e*r};
+            return vector<Point>{c-e*r};
         }
-        const T costh=(r*r+d*d-a.r*a.r)/(2*r*d),sinth=sqrt(1-costh*costh);
-        return vector<Point>{c+e.rot(costh,-sinth),c+e.rot(costh,sinth)};
+        const T u=max(r,a.r),v=min(r,a.r),z=d>v?v-(u-d):d-(u-v);
+        const Point w=a.c-c,k=w-a.c,b=(a.c-(w-k))-(c+k);
+        const T xx=w.x*w.x,yy=w.y*w.y,ss=xx+yy;
+        const T er=(fmal(w.x,w.x,-xx)+fmal(w.y,w.y,-yy)
+            +(xx>yy?(xx-ss)+yy:(yy-ss)+xx)+fmal(-d,d,ss)+2*(w*b)+b.len2())/(2*d);
+        const T h=sqrt((u+(v+d))/2*((u-d+v-er)/2)*((z+er)/d*((d+(u-v))/d)));
+        const T x=(d+(r-a.r)*(r+a.r)/d)/2;
+        const Point p=c+e*x,q={-e.y*h,e.x*h};
+        return vector<Point>{p-q,p+q};
     }
 
     // 圆与圆交面积
     T inter_area(const Circle &a) const
     {
         const T d=c.dis(a.c);
-        const int t=relation(a);
-        if (t==-1) return area();
-        if (t<2) return 0;
-        if (t>2) return min(area(),a.area());
-        const T costh1=(r*r+d*d-a.r*a.r)/(2*r*d),costh2=(a.r*a.r+d*d-r*r)/(2*a.r*d);
-        const T sinth1=sqrt(1-costh1*costh1),sinth2=sqrt(1-costh2*costh2);
-        const T th1=acos(costh1),th2=acos(costh2);
-        return r*r*(th1-costh1*sinth1)+a.r*a.r*(th2-costh2*sinth2);
+        if (d>=r+a.r) return 0;
+        if (d<=abs(r-a.r)) return min(area(),a.area());
+        const T u=max(r,a.r),v=min(r,a.r),z=d>v?v-(u-d):d-(u-v);
+        const Point w=a.c-c,k=w-a.c,b=(a.c-(w-k))-(c+k);
+        const T xx=w.x*w.x,yy=w.y*w.y,ss=xx+yy;
+        const T er=(fmal(w.x,w.x,-xx)+fmal(w.y,w.y,-yy)
+            +(xx>yy?(xx-ss)+yy:(yy-ss)+xx)+fmal(-d,d,ss)+2*(w*b)+b.len2())/(2*d);
+        const T h=sqrt((u+(v+d))/2*((u-d+v-er)/2)*((z+er)/d*((d+(u-v))/d)));
+        const T x=(d+(r-a.r)*(r+a.r)/d)/2;
+        const auto cal=[](T t)
+        {
+            const T z=t*t;
+            return t<.01l?t*z*(2.0l/3-z*(2.0l/15-z*4/315)):t-sin(t)*cos(t);
+        };
+        return r*r*cal(atan2l(h,x))+a.r*a.r*cal(atan2l(h,d-x));
     }
 
     // 过圆外一点圆的切线
@@ -521,8 +537,9 @@ T area_inter(const Circle &circ,const Polygon &poly)
 Convex convexhull(vector<Point> p)
 {
     vector<Point> st;
-    if (p.empty()) return Convex{st};
+    if (p.size()<2) return Convex{p};
     sort(p.begin(),p.end());
+    if (!(p.front()<p.back())) {p.resize(1); return Convex{p};}
     const auto check=[](const vector<Point> &st,const Point &u)
     {
         const auto back1=st.back(),back2=*prev(st.end(),2);
@@ -562,10 +579,10 @@ vector<Line> halfinter(vector<Line> l, const T lim=1e9)
     deque<Line> q;
     for (size_t i=0;i<l.size();i++)
     {
-        if (i>0 && l[i-1].v.toleft(l[i].v)==0 && l[i-1].v*l[i].v>eps) continue;
+        if (i>0 && (l[i-1].v^l[i].v)==0 && l[i-1].v*l[i].v>0) continue;
         while (q.size()>1 && check(l[i],q.back(),q[q.size()-2])) q.pop_back();
         while (q.size()>1 && check(l[i],q[0],q[1])) q.pop_front();
-        if (!q.empty() && q.back().v.toleft(l[i].v)<=0) return vector<Line>();
+        if (!q.empty() && (q.back().v^l[i].v)<=0) return vector<Line>();
         q.push_back(l[i]);
     }
     while (q.size()>1 && check(q[0],q.back(),q[q.size()-2])) q.pop_back();
@@ -587,13 +604,14 @@ pair<T,T> minmax_triangle(const vector<Point> &vec)
         for (size_t j=0;j<vec.size();j++)
         {
             if (i==j) continue;
-            if (vec[i]==vec[j]) minans=0;
+            if (vec[i].x==vec[j].x && vec[i].y==vec[j].y) minans=0;
             else evt.push_back({i,j});
         }
     }
     sort(evt.begin(),evt.end(),[&](const pair<int,int> &u,const pair<int,int> &v)
     {
         const Point du=vec[u.second]-vec[u.first],dv=vec[v.second]-vec[v.first];
+        if ((du^dv)==0 && du.quad()==dv.quad()) return du.x?abs(du.x)>abs(dv.x):abs(du.y)>abs(dv.y);
         return Argcmp()({du.y,-du.x},{dv.y,-dv.x});
     });
     vector<size_t> vx(vec.size()),pos(vec.size());
@@ -618,12 +636,12 @@ pair<T,T> minmax_triangle(const vector<Point> &vec)
 T closest_pair(vector<Point> points)
 {
     sort(points.begin(),points.end());
-    const auto cmpy=[](const Point &a,const Point &b){if (abs(a.y-b.y)<=eps) return a.x<b.x-eps; return a.y<b.y-eps;};
+    const auto cmpy=[](const Point &a,const Point &b){return a.y!=b.y?a.y<b.y:a.x<b.x;};
     multiset<Point,decltype(cmpy)> s{cmpy};
     T ans=INF;
     for (size_t i=0,l=0;i<points.size();i++)
     {
-        const T sqans=sqrtl(ans)+1;
+        const T sqans=sqrtl(ans);
         while (l<i && points[i].x-points[l].x>=sqans) s.erase(s.find(points[l++]));
         for (auto it=s.lower_bound(Point{-INF,points[i].y-sqans});it!=s.end()&&it->y-points[i].y<=sqans;it++)
         {
@@ -650,7 +668,7 @@ bool segs_inter(const vector<Segment> &segs)
     vector<seq_t> seq;
     for (auto seg:segs)
     {
-        if (seg.a.x>seg.b.x+eps) swap(seg.a,seg.b);
+        if (seg.a.x>seg.b.x) swap(seg.a,seg.b);
         seq.push_back({seg.a.x,0,seg});
         seq.push_back({seg.b.x,1,seg});
     }
@@ -658,7 +676,10 @@ bool segs_inter(const vector<Segment> &segs)
     T x_now;
     auto cmp=[&](const Segment &u, const Segment &v)
     {
-        if (abs(u.a.x-u.b.x)<=eps || abs(v.a.x-v.b.x)<=eps) return u.a.y<v.a.y-eps;
+        if (u.a.x==u.b.x || v.a.x==v.b.x) {
+            const auto at=[&](const Segment &s){return s.a.x==s.b.x?s.a.y:s.a.y+(x_now-s.a.x)*(s.b.y-s.a.y)/(s.b.x-s.a.x);};
+            return at(u)<at(v);
+        }
         return ((x_now-u.a.x)*(u.b.y-u.a.y)+u.a.y*(u.b.x-u.a.x))*(v.b.x-v.a.x)<((x_now-v.a.x)*(v.b.y-v.a.y)+v.a.y*(v.b.x-v.a.x))*(u.b.x-u.a.x)-eps;
     };
     multiset<Segment,decltype(cmp)> s{cmp};
@@ -756,63 +777,80 @@ vector<T> area_union(const vector<Polygon> &polys)
 // 圆面积并
 // 轮廓积分，复杂度 O(n^2logn)
 // ans[i] 表示被至少覆盖了 i+1 次的区域的面积
-vector<T> area_union(const vector<Circle> &circs)
+vector<T> area_union(vector<Circle> circs)
 {
+    Point o=circs.empty()?Point{}:circs[0].c;
+    for (const auto &c:circs)
+    {
+        if (abs(c.c.x-o.x)>=abs(o.x)/2) o.x=0;
+        if (abs(c.c.y-o.y)>=abs(o.y)/2) o.y=0;
+    }
+    for (auto &c:circs) c.c=c.c-o;
     const size_t siz=circs.size();
-    using arc_t=tuple<Point,T,T,T>;
+    using arc_t=tuple<Point,T,T,T,Point,Point>;
     vector<vector<arc_t>> arcs(siz);
     const auto eq=[](const arc_t &u,const arc_t &v)
     {
-        const auto [u1,u2,u3,u4]=u;
-        const auto [v1,v2,v3,v4]=v;
-        return u1==v1 && abs(u2-v2)<=eps && abs(u3-v3)<=eps && abs(u4-v4)<=eps;
+        const auto [u1,u2,u3,u4,u5,u6]=u;
+        const auto [v1,v2,v3,v4,v5,v6]=v;
+        return u1==v1 && abs(u2-v2)<=eps && u3==v3 && u4==v4;
     };
 
     auto cut_circ=[&](const Circle &ci,const size_t i)
     {
-        vector<pair<T,int>> evt;
-        evt.push_back({-PI,0}); evt.push_back({PI,0});
+        vector<tuple<T,int,Point>> evt;
+        const Point p={ci.c.x-ci.r,ci.c.y};
+        evt.push_back({-PI,0,p}); evt.push_back({PI,0,p});
         int init=0;
         for (size_t j=0;j<circs.size();j++)
         {
             if (i==j) continue;
             const Circle &cj=circs[j];
-            if (ci.r<cj.r-eps && ci.relation(cj)>=3) init++;
-            const auto inters=ci.inter(cj);
-            if (inters.size()==1) evt.push_back({atan2l((inters[0]-ci.c).y,(inters[0]-ci.c).x),0});
+            const T d=ci.c.dis(cj.c);
+            const int t=d>=ci.r+cj.r?0:d<=abs(ci.r-cj.r)?4:2;
+            if (ci.r<cj.r && t==4) init++;
+            const bool rev=tie(ci.c.x,ci.c.y,ci.r)>tie(cj.c.x,cj.c.y,cj.r);
+            auto inters=rev?cj.inter(ci,t):ci.inter(cj,t);
+            if (rev) reverse(inters.begin(),inters.end());
+            if (inters.size()==1) evt.push_back({atan2l((inters[0]-ci.c).y,(inters[0]-ci.c).x),0,inters[0]});
             if (inters.size()==2)
             {
                 const Point dl=inters[0]-ci.c,dr=inters[1]-ci.c;
                 T argl=atan2l(dl.y,dl.x),argr=atan2l(dr.y,dr.x);
-                if (abs(argl+PI)<=eps) argl=PI;
-                if (abs(argr+PI)<=eps) argr=PI;
-                if (argl>argr+eps)
+                if (argl==-PI) argl=PI;
+                if (argr==-PI) argr=PI;
+                if (argl>argr)
                 {
-                    evt.push_back({argl,1}); evt.push_back({PI,-1});
-                    evt.push_back({-PI,1}); evt.push_back({argr,-1});
+                    evt.push_back({argl,1,inters[0]}); evt.push_back({PI,-1,p});
+                    evt.push_back({-PI,1,p}); evt.push_back({argr,-1,inters[1]});
                 }
                 else
                 {
-                    evt.push_back({argl,1});
-                    evt.push_back({argr,-1});
+                    evt.push_back({argl,1,inters[0]});
+                    evt.push_back({argr,-1,inters[1]});
                 }
             }
         }
-        sort(evt.begin(),evt.end());
+        sort(evt.begin(),evt.end(),[](const auto &a,const auto &b){return get<0>(a)<get<0>(b);});
         int sum=init;
         for (size_t i=0;i<evt.size();i++)
         {
-            sum+=evt[i].second;
-            if (abs(evt[i].first-evt[i+1].first)>eps) arcs[sum].push_back({ci.c,ci.r,evt[i].first,evt[i+1].first});
-            if (abs(evt[i+1].first-PI)<=eps) break;
+            const auto [l,t,p]=evt[i];
+            const auto [r,v,q]=evt[i+1];
+            sum+=t;
+            if (l<r) arcs[sum].push_back({ci.c,ci.r,l,r,p,q});
+            if (r==PI) break;
         }
     };
 
-    const auto oint=[](const arc_t &arc)
+    const auto oint=[](const arc_t &arc,const Point &o)
     {
-        const auto [cc,cr,l,r]=arc;
-        if (abs(r-l-PI-PI)<=eps) return 2.0l*PI*cr*cr;
-        return cr*cr*(r-l)+cc.x*cr*(sin(r)-sin(l))-cc.y*cr*(cos(r)-cos(l));
+        const auto [cc,cr,l,r,p,q]=arc;
+        const Point a=p-cc,b=q-cc;
+        T t=atan2l(a^b,a*b);
+        if (t<0 || (t==0 && r-l>PI)) t+=2*PI;
+        const T z=t*t,d=t<.01l?t*z*(1.0l/6-z*(1.0l/120-z/5040)):t-sin(t);
+        return make_pair((p-q)^(q-o),cr*cr*d);
     };
 
     for (size_t i=0;i<circs.size();i++)
@@ -823,15 +861,16 @@ vector<T> area_union(const vector<Circle> &circs)
     vector<T> ans(siz);
     for (size_t i=0;i<siz;i++)
     {
-        T sum=0;
+        T sum=0,seg=0;
+        const Point o=arcs[i].empty()?Point{}:get<4>(arcs[i][0]);
         sort(arcs[i].begin(),arcs[i].end());
         int cnt=0;
         for (size_t j=0;j<arcs[i].size();j++)
         {
             if (j>0 && eq(arcs[i][j],arcs[i][j-1])) arcs[i+(++cnt)].push_back(arcs[i][j]);
-            else cnt=0,sum+=oint(arcs[i][j]);
+            else {cnt=0;const auto [a,b]=oint(arcs[i][j],o);sum+=a;seg+=b;}
         }
-        ans[i]=sum/2;
+        ans[i]=(sum+seg)/2;
     }
     return ans;
 }
@@ -842,13 +881,13 @@ vector<T> area_union(const vector<Circle> &circs)
 pair<bool, Point> ray_line_inter(const Ray &r, const Line &l)
 {
     T crs = r.v ^ l.v;
-    if (abs(crs) > eps) // 射线与直线不平行
+    if (crs != 0) // 射线与直线不平行
     {
         Point res = l.inter({r.p, r.v});
-        if ((res - r.p) * r.v >= -eps) return {true, res};
+        if (res == r.p || (res - r.p) * r.v >= 0) return {true, res};
         return {false, {}}; // 交点在射线的反方向延长线上
     }
-    if (l.toleft(r.p) == 0) return {true, r.p};
+    if (l.dis(r.p) <= eps) return {true, r.p};
     return {false, {}};
 }
 
@@ -858,14 +897,14 @@ pair<bool, Point> ray_line_inter(const Ray &r, const Line &l)
 pair<bool, Point> ray_seg_inter(const Ray &r, const Segment &s)
 {
     const Line seg = {s.a, s.b - s.a};
-    if (r.v.toleft(seg.v) == 0 && r.v.toleft(s.a - r.p) == 0) // 射线与线段共线
+    if ((r.v ^ seg.v) == 0) // 射线与线段平行
     {
+        if (s.is_on(r.p) != 0) return {true, r.p};
         bool s_a_on_ray = (r.is_on(s.a) != 0);
         bool s_b_on_ray = (r.is_on(s.b) != 0);
         if (s_a_on_ray && s_b_on_ray) return {true, r.p.dis2(s.a) < r.p.dis2(s.b) ? s.a : s.b};
         if (s_a_on_ray) return {true, s.a};
         if (s_b_on_ray) return {true, s.b};
-        if (s.is_on(r.p) != 0) return {true, r.p};
         return {false, {}};
     }
     auto res = ray_line_inter(r, seg);
@@ -882,6 +921,8 @@ bool in_angle(Point c, Point a, Point b) {
 
 // 线段是否完全在多边形内
 bool seg_in_poly(Segment s, const Polygon &poly) {
+    auto a = poly.winding(s.a), b = poly.winding(s.b);
+    if (!(a.first || a.second) || !(b.first || b.second)) return false;
     if (s.a == s.b) {
         auto wind = poly.winding(s.a);
         return wind.first || wind.second != 0;
@@ -907,23 +948,14 @@ bool seg_in_poly(Segment s, const Polygon &poly) {
 
 // 两个三角形是否严格相交（相交区域面积 > 0）
 bool triangle_cross(const Convex &A, const Convex &B) {
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            if ((A.p[A.nxt(i)] - A.p[i]).toleft(B.p[j]) == 0 && 
-                (A.p[A.nxt(i)] - A.p[i]).toleft(B.p[B.nxt(j)]) == 0) {
-                continue;
-            }
-            Segment l1 = {A.p[i], A.p[A.nxt(i)]};
-            Segment l2 = {B.p[j], B.p[B.nxt(j)]};
-            if (l1.is_inter(l2) == 1) {
-                return true;
-            }
+    for (int k = 0; k < 2; k++) {
+        const auto &p = k ? A.p : B.p, &q = k ? B.p : A.p;
+        for (int i = 0; i < 3; i++) {
+            bool ok = false;
+            for (int j = 0; j < 3; j++)
+                ok |= (p[(i + 1) % 3] - p[i]).toleft(q[j] - p[i]) > 0;
+            if (!ok) return false;
         }
     }
-    Point O1 {(A.p[0] + A.p[1] + A.p[2]) / 3};
-    Point O2 {(B.p[0] + B.p[1] + B.p[2]) / 3};
-    if (A.is_in(O2) == 1 || B.is_in(O1) == 1) {
-        return true;
-    }
-    return false;
+    return true;
 }

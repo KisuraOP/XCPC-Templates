@@ -3,14 +3,14 @@ istream &operator>>(istream &is, __int128 &n) {
 	is >> s;
 	n = 0;
 	bool neg = false;
-	if (!s.empty() && s[0] == '-') {
-		neg = true;
+	if (!s.empty() && (s[0] == '-' || s[0] == '+')) {
+		neg = s[0] == '-';
 		s = s.substr(1);
 	}
 	for (char c : s) { 
-		n = n * 10 + (c - '0');
+		n = n * 10 - (c - '0');
 	}
-	if (neg) {
+	if (!neg) {
 		n = -n;
 	}
 	return is;
@@ -21,11 +21,12 @@ ostream &operator<<(ostream &os, __int128 n) {
 	}
 	if (n < 0) {
 		os << "-";
+	} else {
 		n = -n;
 	}
 	string s;
-	while (n > 0) { 
-		s += char('0' + n % 10); 
+	while (n < 0) { 
+		s += char('0' - n % 10); 
 		n /= 10;
 	}
 	reverse(s.begin(), s.end());

@@ -12,7 +12,7 @@ int pollard_rho(int n) {
 	for (int g = 1; ; g <<= 1, s = t)   {
 		int v = 1;
 		for (int st = 1; st <= g; st++) {
-			t = (mul(t, t, n) + c) % n;
+			t = (mul(t, t, n) + (__int128)c) % n;
 			v = mul(v, abs(s - t), n);
 			if (st % 127 == 0) {
 				int d = __gcd(v, n);
