@@ -28,22 +28,34 @@ struct Node {
 	}
 	void Add(int p, int w) {
 		sum[p] += (R[p] - L[p] + 1) * w;
-		if (cx[p] < R[p] - L[p] + 1) sx[p] += w;
-		if (cn[p] < R[p] - L[p] + 1) sn[p] += w;
+		if (cx[p] < R[p] - L[p] + 1) {
+			sx[p] += w;
+		}
+		if (cn[p] < R[p] - L[p] + 1) {
+			sn[p] += w;
+		}
 		mx[p] += w;
 		mn[p] += w;
 		ta[p] += w;
 	} 
 	void Chmin(int p, int w) {
-		if (mx[p] == mn[p]) return Cover(p, w);
+		if (mx[p] == mn[p]) {
+			return Cover(p, w);
+		}
 		sum[p] += (w - mx[p]) * cx[p];
-		if (sn[p] == mx[p]) sn[p] = w;
+		if (sn[p] == mx[p]) {
+			sn[p] = w;
+		}
 		mx[p] = w;
 	}
 	void Chmax(int p, int w) {
-		if (mx[p] == mn[p]) return Cover(p, w);
+		if (mx[p] == mn[p]) {
+			return Cover(p, w);
+		}
 		sum[p] += (w - mn[p]) * cn[p];
-		if (sx[p] == mn[p]) sx[p] = w;
+		if (sx[p] == mn[p]) {
+			sx[p] = w;
+		}
 		mn[p] = w;
 	}
 	void pushdown(int p) {
@@ -58,8 +70,12 @@ struct Node {
 			ta[p] = 0;
 		}
 		for (int x : {ls, rs}) {
-			if (mx[x] > mx[p]) Chmin(x, mx[p]);
-			if (mn[x] < mn[p]) Chmax(x, mn[p]);
+			if (mx[x] > mx[p]) {
+				Chmin(x, mx[p]);
+			}
+			if (mn[x] < mn[p]) {
+				Chmax(x, mn[p]);
+			}
 		}
 	}
 	void build(int p, int l, int r, vector<int> &a) {

@@ -4,7 +4,9 @@ constexpr int G = 3; // 原根
 constexpr int qpow(int k, int n) {
     int s = 1;
     for ( ; n; n >>= 1, k = k * k % mod) {
-        if (n & 1) s = s * k % mod;
+        if (n & 1) {
+            s = s * k % mod;
+        }
     }
     return s;
 }
@@ -16,8 +18,12 @@ vector<int> rt = {0, 1}, irt = {0, 1};
 
 void init_rt(int n) {
     int sz = rt.size();
-    if (sz >= n) return;
-    while (sz < n) sz <<= 1;
+    if (sz >= n) {
+        return;
+    }
+    while (sz < n) {
+        sz <<= 1;
+    }
     rt.resize(sz);
     irt.resize(sz);
     for (int k = 2; k < sz; k <<= 1) {
@@ -33,7 +39,9 @@ void init_rt(int n) {
 }
 void dft(vector<int> &a) {
     int n = a.size();
-    if (rt.size() < n) init_rt(n);
+    if (rt.size() < n) {
+        init_rt(n);
+    }
     for (int k = n >> 1; k > 0; k >>= 1) {
         for (int i = 0; i < n; i += 2 * k) {
             const int* w = &rt[k]; 
@@ -68,7 +76,9 @@ void idft(vector<int> &a) {
 }
 vector<int> operator*(vector<int> a, vector<int> b) {
     int sz = 1, n = a.size() + b.size() - 1;
-    while (sz < n) sz <<= 1;
+    while (sz < n) {
+        sz <<= 1;
+    }
     a.resize(sz);
     b.resize(sz);
     dft(a);
@@ -346,8 +356,12 @@ vector<int> solve_interp(int p, int l, int r, const vector<int> &V) {
 }
 vector<int> poly_interpolate(const vector<array<int, 2>> &p) {
     int n = p.size();
-    if (n == 0) return {};
-    if (n == 1) return {(p[0][1] % mod + mod) % mod};
+    if (n == 0) {
+        return {};
+    }
+    if (n == 1) {
+        return {(p[0][1] % mod + mod) % mod};
+    }
     vector<int> X(n), Y(n);
     for (int i = 0; i < n; ++i) {
         X[i] = (p[i][0] % mod + mod) % mod;

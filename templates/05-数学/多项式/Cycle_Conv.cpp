@@ -13,7 +13,9 @@ vector<Z> qpow(vector<Z> a, int n) {
 	vector<Z> s(a.size());
 	s[0] = 1;
 	for ( ; n; n >>= 1, a = a * a) {
-		if (n & 1) s = s * a;
+		if (n & 1) {
+			s = s * a;
+		}
 	}
 	return s;
 }

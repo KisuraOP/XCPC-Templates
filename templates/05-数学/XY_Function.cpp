@@ -25,7 +25,9 @@ bool func(int a, int b, int c) {
 	int tx = b / d;
 	int ty = a / d;
 	int k = (1 - x) / tx;
-	if (x + tx * k < 1) k++;
+	if (x + tx * k < 1) {
+		k++;
+	}
 	x += tx * k;
 	y -= ty * k;
 	if (y <= 0) { // no solution for positive intergers

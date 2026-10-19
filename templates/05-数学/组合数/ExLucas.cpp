@@ -1,7 +1,9 @@
 int qpow(int k, int n, int p) {
 	int s = 1;
 	for ( ; n; n >>= 1, k = k * k % p) {
-		if (n & 1) s = s * k % p;
+		if (n & 1) {
+			s = s * k % p;
+		}
 	}
 	return s;
 }
@@ -32,7 +34,9 @@ struct ExLucas {
 				res = res * i % pk;
 			}
 		}
-		if (x / pk % 2 == 0) res = 1;
+		if (x / pk % 2 == 0) {
+			res = 1;
+		}
 		for (int i = 1; i <= x % pk; i++) {
 			if (i % pi != 0) {
 				res = res * i % pk;

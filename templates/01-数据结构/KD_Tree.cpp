@@ -231,8 +231,12 @@ struct Info {
 		return res;
 	}
 	void apply(const Tag& tag, int sz) {
-		if (mx != -inf) mx += tag.add;
-		if (mn != inf) mn += tag.add;
+		if (mx != -inf) {
+			mx += tag.add;
+		}
+		if (mn != inf) {
+			mn += tag.add;
+		}
 	}
 };
 
@@ -331,7 +335,9 @@ struct Info {
 	Info(int x) {
 		memset(cnt, 0, sizeof(cnt));
 		for (int i = 0; i < 64; i++) {
-			if ((x >> i) & 1) cnt[i] = 1;
+			if ((x >> i) & 1) {
+				cnt[i] = 1;
+			}
 		}
 	}
 	Info operator+(const Info& oth) const {

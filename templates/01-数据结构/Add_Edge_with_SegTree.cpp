@@ -37,7 +37,9 @@ struct SegEdge {
 		}
 	}
 	void build(int p, int l, int r) {
-		if (l == r) return id[l] = p, void();
+		if (l == r) {
+			return id[l] = p, void();
+		}
 		adj[p].push_back({p << 1, 0});
 		adj[p].push_back({p << 1 | 1, 0});
 		adj[(p << 1) + K].push_back({p + K, 0});
@@ -48,13 +50,20 @@ struct SegEdge {
 	}
 	void addEdge(int p, int l, int r, int lx, int rx, int x, int w, int opt) {
 		if (lx <= l && r <= rx) {
-			if (opt == 1) adj[x + K].push_back({p, w});
-			else adj[p + K].push_back({x, w});
+			if (opt == 1) {
+				adj[x + K].push_back({p, w});
+			} else {
+				adj[p + K].push_back({x, w});
+			}
 			return ;
 		}
 		int mid = l + r >> 1;
-		if (lx <= mid) addEdge(p << 1, l, mid, lx, rx, x, w, opt);
-		if (rx > mid) addEdge(p << 1 | 1, mid + 1, r, lx, rx, x, w, opt);
+		if (lx <= mid) {
+			addEdge(p << 1, l, mid, lx, rx, x, w, opt);
+		}
+		if (rx > mid) {
+			addEdge(p << 1 | 1, mid + 1, r, lx, rx, x, w, opt);
+		}
 	}
 	void PtoP(int x, int y, int w) {
 		adj[id[x] + K].push_back({id[y], w});

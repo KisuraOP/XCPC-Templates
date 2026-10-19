@@ -69,11 +69,15 @@ struct Dinic {
 					ok = true;
 				}
 			}
-			if (!ok) break;
+			if (!ok) {
+				break;
+			}
 		}
 		while (dijkstra(S, T)) {
 			for (int i = 1; i <= n; i++) {
-				if (dis[i] != inf) h[i] += dis[i];
+				if (dis[i] != inf) {
+					h[i] += dis[i];
+				}
 			}
 			int res = inf;
 			for (int i = T; i != S; i = e[pre[i] ^ 1].x) {

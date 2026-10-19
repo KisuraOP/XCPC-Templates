@@ -10,7 +10,9 @@ auto ans = C.solve(n);
 int qpow(int k, int n, int p) {
 	int s = 1;
 	for ( ; n; n >>= 1, k = k * k % p) {
-		if (n & 1) s = s * k % p;
+		if (n & 1) {
+			s = s * k % p;
+		}
 	}
 	return s;
 }
@@ -47,7 +49,9 @@ struct Cipolla {
 		auto cqpow = [&] (P k, int n) {
 			P s = {1, 0};
 			for ( ; n; n >>= 1, k = mul(k, k)) {
-				if (n & 1) s = mul(s, k);
+				if (n & 1) {
+					s = mul(s, k);
+				}
 			}
 			return s;
 		};

@@ -103,7 +103,8 @@ class HLPP {
 		}
 		void GlobalRelabel() {
 			maxgaph = maxh = workcnt = 0;
-			fill(h.begin(), h.end(), n), h[t] = 0;
+			fill(h.begin(), h.end(), n),
+			h[t] = 0;
 			fill(gap.begin(), gap.end(), -1);
 			fill(gappre.begin(), gappre.end(), -1);
 			fill(gapnex.begin(), gapnex.end(), -1);

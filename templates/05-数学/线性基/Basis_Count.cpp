@@ -10,7 +10,9 @@ int ways = t.getways(x);
 int qpow(int k, int n) {
 	int s = 1;
 	for ( ; n; n >>= 1, k = k * k % modp) {
-		if (n & 1) s = s * k % modp;
+		if (n & 1) {
+			s = s * k % modp;
+		}
 	}
 	return s;
 }

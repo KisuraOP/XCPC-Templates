@@ -17,7 +17,9 @@ struct eBCC {
 		dfn[x] = low[x] = ++tim;
 		stk[++top] = x;
 		for (auto [y, e] : adj[x]) {
-			if (e == par) continue;
+			if (e == par) {
+				continue;
+			}
 			if (!dfn[y]) {
 				tarjan_Edge(y, e);
 				low[x] = min(low[x], low[y]);
@@ -31,7 +33,8 @@ struct eBCC {
 			}
 		}
 		if (dfn[x] == low[x]) {
-			int now; cnt++;
+			int now;
+			cnt++;
 			scc.push_back({});
 			do {
 				now = stk[top--];
@@ -43,7 +46,9 @@ struct eBCC {
 	vector<int> work_Edge() {
 		scc.push_back({});
 		for (int i = 1; i <= n; i++) {
-			if (!dfn[i]) tarjan_Edge(i, 0);
+			if (!dfn[i]) {
+				tarjan_Edge(i, 0);
+			}
 		}
 		return c;
 	}
@@ -51,7 +56,9 @@ struct eBCC {
 		vector<vector<int>> Adj(n + 1);
 		for (int x = 1; x <= n; x++) {
 			for (auto [y, _] : adj[x]) {
-				if (c[x] == c[y]) continue;
+				if (c[x] == c[y]) {
+					continue;
+				}
 				Adj[c[x]].push_back(c[y]);
 			}
 		}

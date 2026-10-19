@@ -131,14 +131,18 @@ struct Merge_SegTree {
 
 // 单点修改, 单点极值(记录下标)
 struct Tag {
-	bool has_tag() const { return false; }
-	void apply(const Tag &t) & {}
+	bool has_tag() const {
+		return false;
+	}
+	void apply(const Tag &t) & {
+	}
 };
 struct Info {
 	int sum = 0, pos = 0;
 	Info() {}
 	Info(int x, int y) : sum(x), pos(y) {}
-	void apply(const Tag &t) & {}
+	void apply(const Tag &t) & {
+	}
 	void merge(const Info &oth) {
 		sum += oth.sum;
 		pos = oth.pos;
@@ -146,8 +150,12 @@ struct Info {
 };
 Info operator+(const Info &a, const Info &b) {
 	Info c;
-	if (!a.pos) return b;
-	if (!b.pos) return a;
+	if (!a.pos) {
+		return b;
+	}
+	if (!b.pos) {
+		return a;
+	}
 	if (a.sum >= b.sum) {
 		c.pos = a.pos;
 		c.sum = a.sum;
@@ -164,7 +172,9 @@ struct Tag {
 	int add = 0;
 	Tag() {}
 	Tag(int A) : add(A) {}
-	bool has_tag() const { return add != 0; }
+	bool has_tag() const {
+		return add != 0;
+	}
 	void apply(const Tag &t) & {
 		add += t.add;
 	}
@@ -195,7 +205,9 @@ struct Tag {
 	bool has_cov = false;
 	Tag() {}
 	Tag(int x) : cov(x), has_cov(true) {}
-	bool has_tag() const { return has_cov; }
+	bool has_tag() const {
+		return has_cov;
+	}
 	void apply(const Tag &t) & {
 		if (t.has_cov) {
 			cov = t.cov;
@@ -230,7 +242,9 @@ struct Tag {
 	int mul = 1, add = 0;
 	Tag() {}
 	Tag(int x, int y) : mul(x), add(y) {}
-	bool has_tag() const { return mul != 1 || add != 0; }
+	bool has_tag() const {
+		return mul != 1 || add != 0;
+	}
 	void apply(const Tag &t) & {
 		add *= t.mul;
 		mul *= t.mul;

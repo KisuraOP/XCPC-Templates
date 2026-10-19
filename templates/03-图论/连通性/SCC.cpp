@@ -18,7 +18,8 @@ auto tarjan = [&] (auto self, int x) -> void {
 		}
 	}
 	if (dfn[x] == low[x]) {
-		int now; ++cnt;
+		int now;
+		++cnt;
 		do {
 			now = stk[top--];
 			vis[now] = false;
@@ -32,7 +33,9 @@ vector<vector<int>> Adj(n + 1);
 auto shrinkPoint = [&]() {
 	for (int x = 1; x <= n; x++) {
 		for (auto y : adj[x]) {
-			if (c[x] == c[y]) continue;
+			if (c[x] == c[y]) {
+				continue;
+			}
 			Adj[c[x]].push_back(c[y]);
 			rd[c[y]]++;
 		}

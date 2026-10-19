@@ -26,7 +26,9 @@ struct DSU {
 	vector<int> f, siz;
 	vector<array<int, 3>> ver;
 	DSU() {}
-	DSU(int n) { init(n);}
+	DSU(int n) {
+		init(n);
+	}
 	void init(int n) {
 		ver.clear();
 		f.resize(n + 2);
@@ -34,7 +36,9 @@ struct DSU {
 		siz.assign(n + 2, 1);
 	}
 	int find(int x) {
-		if (x == f[x]) return x;
+		if (x == f[x]) {
+			return x;
+		}
 		return find(f[x]);
 	}
 	bool same(int x, int y) {
@@ -43,7 +47,9 @@ struct DSU {
 	bool merge(int x, int y) {
 		x = find(x);
 		y = find(y);
-		if (x == y) return false;
+		if (x == y) {
+			return false;
+		}
 		if (siz[x] < siz[y]) {
 			swap(x, y);
 		}

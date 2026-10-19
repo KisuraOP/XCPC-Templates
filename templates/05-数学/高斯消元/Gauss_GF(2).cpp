@@ -23,7 +23,9 @@ Node gauss(vector<vector<int>> &ori, int m) {
 	vector<bitset<N>> a(n);
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j <= m; j++) {
-			if (ori[i][j]) a[i][j] = 1;
+			if (ori[i][j]) {
+				a[i][j] = 1;
+			}
 		}
 	}
 	vector<int> wh(m, -1);

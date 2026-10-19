@@ -52,7 +52,9 @@ struct Planar2Dual {
 				P u = a[A] - a[i], v = a[B] - a[i];
 				bool p = u.y > 0 || (u.y == 0 && u.x > 0);
 				bool q = v.y > 0 || (v.y == 0 && v.x > 0);
-				if (p != q) return p > q;
+				if (p != q) {
+					return p > q;
+				}
 				return u.x * v.y - u.y * v.x > 0;
 			});
 		}
@@ -97,13 +99,17 @@ struct Planar2Dual {
 		vector<array<int, 2>> seg;
 		vector<array<int, 3>> evt;
 		for (int u = 1; u <= n; u++) {
-			for (auto v : adj[u]) if (u < v && a[u].x != a[v].x) {
-				int x = u, y = v, k = seg.size();
-				if (a[y] < a[x]) swap(x, y);
-				seg.push_back({x, y});
-				who.push_back(0);
-				evt.push_back({a[x].x, 2, k});
-				evt.push_back({a[y].x, 1, k});
+			for (auto v : adj[u]) {
+				if (u < v && a[u].x != a[v].x) {
+					int x = u, y = v, k = seg.size();
+					if (a[y] < a[x]) {
+						swap(x, y);
+					}
+					seg.push_back({x, y});
+					who.push_back(0);
+					evt.push_back({a[x].x, 2, k});
+					evt.push_back({a[y].x, 1, k});
+				}
 			}
 		}
 		for (int i = 1; i <= cnt; i++) {
@@ -115,24 +121,34 @@ struct Planar2Dual {
 			}
 			if (area <= 0) {
 				int x = face[i][0], k = seg.size();
-				for (auto y : face[i]) if (a[y] < a[x]) x = y;
+				for (auto y : face[i]) {
+					if (a[y] < a[x]) {
+						x = y;
+					}
+				}
 				seg.push_back({x, x});
 				who.push_back(i);
 				evt.push_back({a[x].x, 0, k});
 			}
 		}
 		// 在每个分量最左点的左侧，向下找包含它的面。
-		auto cross = [&] (P u, P v) { return u.x * v.y - u.y * v.x; };
+		auto cross = [&] (P u, P v) {
+			return u.x * v.y - u.y * v.x;
+		};
 		auto cmp = [&] (int i, int j) {
 			auto [u, v] = seg[i];
 			auto [x, y] = seg[j];
 			int z;
 			if (a[u].x < a[x].x) {
 				z = cross(a[v] - a[u], a[x] - a[u]);
-				if (z) return z > 0;
+				if (z) {
+					return z > 0;
+				}
 			} else if (a[u].x > a[x].x) {
 				z = cross(a[y] - a[x], a[u] - a[x]);
-				if (z) return z < 0;
+				if (z) {
+					return z < 0;
+				}
 			} else if (a[u].y != a[x].y) {
 				return a[u].y < a[x].y;
 			}
@@ -142,9 +158,11 @@ struct Planar2Dual {
 		set<int, decltype(cmp)> st(cmp);
 		sort(evt.begin(), evt.end());
 		for (auto [_, t, k] : evt) {
-			if (t == 2) st.insert(k);
-			else if (t == 1) st.erase(k);
-			else {
+			if (t == 2) {
+				st.insert(k);
+			} else if (t == 1) {
+				st.erase(k);
+			} else {
 				auto it = st.lower_bound(k);
 				int f = 0;
 				if (it != st.begin()) {
@@ -158,7 +176,9 @@ struct Planar2Dual {
 		int tot = 0;
 		for (int i = 0; i <= cnt; i++) {
 			int x = get(get, i);
-			if (!id[x]) id[x] = ++tot;
+			if (!id[x]) {
+				id[x] = ++tot;
+			}
 		}
 		vector<vector<int>> F(tot + 1);
 		for (int i = 1; i <= cnt; i++) {

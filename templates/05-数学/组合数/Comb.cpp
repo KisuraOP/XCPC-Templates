@@ -3,7 +3,9 @@ constexpr int mod = 998244353;
 int qpow(int k, int n) {
 	int s = 1;
 	for ( ; n; n >>= 1, k = k * k % mod) {
-		if (n & 1) s = s * k % mod;
+		if (n & 1) {
+			s = s * k % mod;
+		}
 	}
 	return s;
 }
@@ -28,8 +30,12 @@ struct math {
 		size = n;
 	}
 	int C(int n, int m) {
-		if (n < m || m < 0) return 0;
-		if (n > size) init(n);
+		if (n < m || m < 0) {
+			return 0;
+		}
+		if (n > size) {
+			init(n);
+		}
 		return fac[n] * inv[m] % mod * inv[n - m] % mod;
 	}
 } binom;
@@ -38,15 +44,21 @@ int C(int n, int m) {
 	return binom.C(n, m); 
 }
 int fac(int n) {
-	if (binom.size < n) binom.init(n);
+	if (binom.size < n) {
+		binom.init(n);
+	}
 	return binom.fac[n];
 }
 int invfac(int n) {
-	if (binom.size < n) binom.init(n);
+	if (binom.size < n) {
+		binom.init(n);
+	}
 	return binom.inv[n];
 }
 int bfC(int n, int m) {
-	if (n < m || m < 0) return 0;
+	if (n < m || m < 0) {
+		return 0;
+	}
 	int s = 1;
 	for (int i = n - m + 1; i <= n; i++) {
 		s = s * i % mod;

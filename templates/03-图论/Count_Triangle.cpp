@@ -7,7 +7,8 @@ vector<array<int, 2>> E;
 for (int i = 0; i < m; i++) {
 	int x, y;
 	cin >> x >> y;
-	x++; y++;
+	x++;
+	y++;
 	E.push_back({x, y});
 	deg[x]++;
 	deg[y]++;

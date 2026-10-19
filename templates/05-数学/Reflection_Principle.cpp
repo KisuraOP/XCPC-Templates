@@ -3,7 +3,9 @@ constexpr int mod = 1e9 + 7;
 int qpow(int k, int n) {
 	int s = 1;
 	for ( ; n; n >>= 1, k = k * k % mod) {
-		if (n & 1) s = s * k % mod;
+		if (n & 1) {
+			s = s * k % mod;
+		}
 	}
 	return s;
 }

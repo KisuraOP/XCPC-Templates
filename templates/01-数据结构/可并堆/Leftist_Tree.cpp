@@ -63,7 +63,9 @@ struct leftistTree {
 			fa(rt[x]) = 0;
 			y = _find(y);
 			if (z != y) {
-				if (sz[z] < sz[y]) swap(z, y);
+				if (sz[z] < sz[y]) {
+					swap(z, y);
+				}
 				p[y] = z;
 				sz[z] += sz[y];
 			}

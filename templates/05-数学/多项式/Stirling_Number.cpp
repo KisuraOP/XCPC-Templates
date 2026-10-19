@@ -4,14 +4,18 @@ constexpr int G = 3; // 原根
 constexpr int qpow(int k, int n) {
 	int s = 1;
 	for ( ; n; n >>= 1, k = k * k % mod) {
-		if (n & 1) s = s * k % mod;
+		if (n & 1) {
+			s = s * k % mod;
+		}
 	}
 	return s;
 }
 vector<int> fac, invfac, inv;
 void init(int n) {
 	int sz = fac.size();
-	if (sz > n) return ;
+	if (sz > n) {
+		return ;
+	}
 	fac.resize(n + 1);
 	invfac.resize(n + 1);
 	inv.resize(n + 1);
@@ -38,8 +42,12 @@ vector<int> rt = {0, 1}, irt = {0, 1};
 
 void init_rt(int n) {
 	int sz = rt.size();
-	if (sz >= n) return;
-	while (sz < n) sz <<= 1;
+	if (sz >= n) {
+		return;
+	}
+	while (sz < n) {
+		sz <<= 1;
+	}
 	rt.resize(sz);
 	irt.resize(sz);
 	for (int k = 2; k < sz; k <<= 1) {
@@ -55,7 +63,9 @@ void init_rt(int n) {
 }
 void dft(vector<int> &a) {
 	int n = a.size();
-	if (rt.size() < n) init_rt(n);
+	if (rt.size() < n) {
+		init_rt(n);
+	}
 	for (int k = n >> 1; k > 0; k >>= 1) {
 		for (int i = 0; i < n; i += 2 * k) {
 			const int* w = &rt[k]; 
@@ -90,7 +100,9 @@ void idft(vector<int> &a) {
 }
 vector<int> operator*(vector<int> a, vector<int> b) {
 	int sz = 1, n = a.size() + b.size() - 1;
-	while (sz < n) sz <<= 1;
+	while (sz < n) {
+		sz <<= 1;
+	}
 	a.resize(sz);
 	b.resize(sz);
 	dft(a);
@@ -155,7 +167,9 @@ vector<int> poly_integral(vector<int> a) {
 }
 vector<int> poly_shift(const vector<int> &A, int c) {
 	int d = A.size() - 1;
-	if (d < 0) return {};
+	if (d < 0) {
+		return {};
+	}
 	init(d);
 	vector<int> f(d + 1), g(d + 1);
 	for (int i = 0; i <= d; i++) {
@@ -283,7 +297,9 @@ vector<int> poly_pow(vector<int> a, int k, int n) {
 // 同一行第二类斯特林数 O(N log N)
 // {S(n, 0), S(n, 1), ..., S(n, n)}
 vector<int> stirl2_row(int n) {
-	if (n == 0) return {1};
+	if (n == 0) {
+		return {1};
+	}
 	init(n);
 	vector<int> a(n + 1), b(n + 1);
 	for (int i = 0; i <= n; i++) {
@@ -298,7 +314,9 @@ vector<int> stirl2_row(int n) {
 // 同一列第二类斯特林数 O(N log N)
 // {S(0, k), S(1, k), ..., S(n, k)}
 vector<int> stirl2_col(int n, int k) {
-	if (k > n) return vector<int>(n + 1, 0);
+	if (k > n) {
+		return vector<int>(n + 1, 0);
+	}
 	if (k == 0) {
 		vector<int> res(n + 1, 0);
 		res[0] = 1;
@@ -320,9 +338,13 @@ vector<int> stirl2_col(int n, int k) {
 // 同一行无符号第一类斯特林数 O(N log N)
 // {s(n, 0), s(n, 1), ..., s(n, n)}
 vector<int> stirl1_row(int n) {
-	if (n == 0) return {1};
+	if (n == 0) {
+		return {1};
+	}
 	int h = 0;
-	while ((1LL << h) <= n) h++;
+	while ((1LL << h) <= n) {
+		h++;
+	}
 	vector<int> res = {0, 1};
 	int cur = 1; 
 	for (int i = h - 2; i >= 0; i--) {
@@ -346,7 +368,9 @@ vector<int> stirl1_row(int n) {
 // 同一列无符号第一类斯特林数 O(N log N)
 // {s(0, k), s(1, k), ..., s(n, k)}
 vector<int> stirl1_col(int n, int k) {
-	if (k > n) return vector<int>(n + 1, 0);
+	if (k > n) {
+		return vector<int>(n + 1, 0);
+	}
 	if (k == 0) {
 		vector<int> res(n + 1, 0);
 		res[0] = 1;

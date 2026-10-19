@@ -5,8 +5,10 @@ e: 无向边集, 顶点编号 1..n, n >= 2。
 vector<int> Tree2Prufer(vector<array<int, 2>> e, int n) {
 	vector<int> d(n + 1), s(n + 1), p(n - 2); // s 为邻点编号的异或和
 	for (auto [x, y] : e) {
-		d[x]++, d[y]++;
-		s[x] ^= y, s[y] ^= x;
+		d[x]++,
+		d[y]++;
+		s[x] ^= y,
+		s[y] ^= x;
 	}
 	for (int i = 0, j = 1; i < n - 2; i++, j++) {
 		while (j <= n && d[j] != 1) {

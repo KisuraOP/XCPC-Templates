@@ -42,7 +42,8 @@ struct TwoSat {
 				}
 			}
 			if (dfn[x] == low[x]) {
-				int now; ++cnt;
+				int now;
+				++cnt;
 				do{
 					now = stk[top--];
 					vis[now] = false;
@@ -51,10 +52,14 @@ struct TwoSat {
 			}
 		};
 		for (int i = 1; i <= 2 * n; i++) {
-			if (!dfn[i]) tarjan(i);
+			if (!dfn[i]) {
+				tarjan(i);
+			}
 		}
 		for (int i = 1; i <= n; i++) {
-			if (c[i] == c[i + n]) return false;
+			if (c[i] == c[i + n]) {
+				return false;
+			}
 			ans[i] = c[i] > c[i + n] ? 1ll : 0ll;
 		}
 		return true;

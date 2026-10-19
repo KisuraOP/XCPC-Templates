@@ -62,7 +62,9 @@ struct Node {
 		return res;
 	}
 	int getmx(int x, int y) {
-		if (x == y) return 0;
+		if (x == y) {
+			return 0;
+		}
 		int lca = LCA(x, y);
 		return max(dist(x, lca), dist(y, lca));
 	}

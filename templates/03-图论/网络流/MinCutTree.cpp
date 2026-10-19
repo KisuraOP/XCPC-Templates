@@ -26,7 +26,9 @@ struct MinCutTree {
 	}
 	// O(n^2+n^3 m)
 	void build() {
-		for (auto &v : tr) v.clear();
+		for (auto &v : tr) {
+			v.clear();
+		}
 		vector<int> p(n + 1, 1), w(n + 1);
 		for (int i = 2; i <= n; i++) {
 			Dinic G(n);

@@ -54,7 +54,9 @@ matrix qpow(matrix a, int k) {
 	matrix z(a.n);
 	z.build();
 	for ( ; k; k >>= 1, a = a * a) {
-		if (k & 1) z = z * a;
+		if (k & 1) {
+			z = z * a;
+		}
 	}
 	return z;
 }

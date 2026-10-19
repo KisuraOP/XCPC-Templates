@@ -42,7 +42,8 @@ struct BlockTree {
 				tarjan(y);
 				low[x] = min(low[x], low[y]);
 				if (low[y] == dfn[x]) {
-					int now; cnt++;
+					int now;
+					cnt++;
 					do {
 						now = stk[top--];
 						Add(cnt, now);
