@@ -1,3 +1,4 @@
 contents:
   - name: 概率生成函数
     code-pre: PGF.tex
+    columns: 2

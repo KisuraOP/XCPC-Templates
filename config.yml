@@ -3,3 +3,18 @@ latex-pre: latex-pre.tex
 latex-post: latex-post.tex
 title: UESTC EndlessEmbrace Templates
 author: KisuraOP
+
+columns: 3
+environment: templates/Environment.tex
+
+text:
+  subtitle: 算法竞赛模板
+  env-title: 编写环境
+  layout: 三栏 8 pt /
+  color: 彩色版
+  mono: 黑白打印版
+  date: "%Y年%m月%d日"
+  header: UESTC / EndlessEmbrace
+  footer: XCPC TEMPLATES
+  contents: 目录
+  listing: 代码

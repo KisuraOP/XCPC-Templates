@@ -1,92 +1,340 @@
-\documentclass{article}
+\documentclass[9pt]{extarticle}
+
+% 宏包
 \usepackage[fontset=none]{ctex}
-\usepackage{amsmath, amsthm, amssymb}
-\usepackage{lmodern}
-\usepackage{listings,xcolor}
-\usepackage{geometry}
+\usepackage{amsmath, amssymb, amsthm}
 \usepackage{fontspec}
-\usepackage{graphicx}
-\usepackage[colorlinks, linkcolor=blue, anchorcolor=blue, citecolor=green]{hyperref} % 超链接颜色设置
-\usepackage{setspace}
-\usepackage{fancyhdr}
-\usepackage{titletoc}
+\usepackage{geometry}
+\usepackage{xcolor, listings, multicol, fancyhdr, titlesec, tocloft, graphicx}
+\usepackage{enumitem, needspace}
+\usepackage[
+    colorlinks,
+    linkcolor=Accent,
+    urlcolor=Accent,
+    bookmarksnumbered
+]{hyperref}
 
-% 页面布局设置
-\geometry{a4paper, left=1.7cm, right=1.7cm, top=1.7cm, bottom=0.85cm} 
-\setlength{\headsep}{10pt}
-\setlength{\headheight}{13pt}
-\setlength{\footskip}{20pt} 
-\setlength{\parindent}{0pt} 
+% 彩色与黑白配色
+\definecolor{Accent}{HTML}{3B4B5D}
+\definecolor{Ink}{HTML}{20262D}
+\definecolor{Muted}{HTML}{5B6875}
+\definecolor{Rule}{HTML}{C9D1D8}
+\definecolor{Soft}{HTML}{F6F7F8}
+\definecolor{Keyword}{HTML}{3B4B5D}
+\definecolor{String}{HTML}{8A4B31}
 
-% 字体设置
-\setCJKmainfont{Source Han Sans HW SC}[
-  ItalicFont={Source Han Sans HW SC},
-  ItalicFeatures={FakeSlant=0.2}
-]
-\setCJKsansfont{Source Han Sans HW SC}[
-  ItalicFont={Source Han Sans HW SC},
-  ItalicFeatures={FakeSlant=0.2}
-]
-\setCJKmonofont{Source Han Sans HW SC}[
-  ItalicFont={Source Han Sans HW SC},
-  ItalicFeatures={FakeSlant=0.2}
-]
+\ifdefined\TemplateMono
+    \definecolor{Accent}{HTML}{161616}
+    \definecolor{Ink}{HTML}{111111}
+    \definecolor{Muted}{HTML}{565656}
+    \definecolor{Rule}{HTML}{B3B3B3}
+    \definecolor{Soft}{HTML}{F5F5F5}
+    \definecolor{Keyword}{HTML}{111111}
+    \definecolor{String}{HTML}{333333}
+\fi
 
-\setmainfont{Inconsolata LGC Nerd Font Mono}
-\setsansfont{Inconsolata LGC Nerd Font Mono}
-\setmonofont{Inconsolata LGC Nerd Font Mono}
-
-% 页眉页脚设置
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\leftmark} % 页眉左侧显示章节名
-\fancyfoot[C]{\thepage} % 页脚中间显示页码
-
-% 代码样式设置
-\lstset{
-  language=C++, % 语言设置为 C++
-  basicstyle=\ttfamily\footnotesize\linespread{1.0}\selectfont,
-  keywordstyle=\color{blue}\bfseries, % 关键字颜色
-  commentstyle=\color{gray}\itshape, % 注释颜色，斜体
-  stringstyle=\color{red}, % 字符串颜色
-  numbers=left, % 行号显示在左侧
-  numberstyle=\small\color{gray}, % 行号样式
-  stepnumber=1, % 行号递增
-  numbersep=10pt, % 行号和代码的间隔
-  backgroundcolor=\color{gray!5},
-  showspaces=false, % 不显示空格
-  showstringspaces=false, % 字符串中不显示空格
-  breaklines=true, % 自动换行
-  frame=single, % 给代码添加边框
-  rulecolor=\color{black!30}, % 边框颜色
-  tabsize=4, % 设置 Tab 宽度
-  captionpos=b % 标题位置
+% 页面
+\geometry{
+    a4paper,
+    landscape,
+    left=8mm,
+    right=8mm,
+    top=8mm,
+    bottom=7mm,
+    includeheadfoot,
+    headheight=18pt,
+    headsep=2mm,
+    footskip=4mm
 }
 
+% 字体
+\setCJKmainfont{SourceHanSansHWSC-Regular.otf}[
+    Path=fonts/,
+    BoldFont=SourceHanSansHWSC-Bold.otf,
+    ItalicFeatures={FakeSlant=0.15}
+]
+\setCJKsansfont{SourceHanSansHWSC-Regular.otf}[
+    Path=fonts/,
+    BoldFont=SourceHanSansHWSC-Bold.otf
+]
+\setCJKmonofont{SourceHanSansHWSC-Regular.otf}[
+    Path=fonts/,
+    BoldFont=SourceHanSansHWSC-Bold.otf,
+    Scale=.88,
+    ItalicFeatures={FakeSlant=0.15}
+]
+\setmainfont{texgyreheros-regular.otf}[
+    BoldFont=texgyreheros-bold.otf
+]
+\setsansfont{texgyreheros-regular.otf}[
+    BoldFont=texgyreheros-bold.otf
+]
+\setmonofont{Inconsolata-Regular.ttf}[
+    Path=fonts/,
+    BoldFont=Inconsolata-Bold.ttf,
+    ItalicFeatures={FakeSlant=0.12},
+    BoldItalicFeatures={FakeSlant=0.12}
+]
 
-% 标题样式设置
-\usepackage{titlesec}
-\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+% 分栏与正文间距
+\newcommand{\Cols}{3}
+\newcommand{\DesignName}{{PLACEHOLDER:LAYOUT}}
+\newcommand{\PrintMode}{{PLACEHOLDER:COLOR}}
 
-% 目录样式设置
-\usepackage{tocloft}
-\cftsetindents{subsection}{1.5em}{3em}
-\cftsetindents{subsubsection}{3em}{4em}
+\setlength{\columnsep}{5.5mm}
+\setlength{\columnseprule}{0.2pt}
+\def\columnseprulecolor{\color{Rule}}
+\setlength{\multicolsep}{2mm}
 
-% 封面设置
-\title{{PLACEHOLDER:TITLE}}
-\author{{PLACEHOLDER:AUTHOR}}
-\date{\today}
+\setlength{\parindent}{0pt}
+\linespread{1}
+\setlength{\parskip}{2.5pt plus 1pt}
+\setlength{\emergencystretch}{1.5em}
+\setlist[itemize]{
+    leftmargin=1.3em,
+    labelsep=.4em,
+    itemsep=1pt,
+    topsep=3pt
+}
+
+\setlength{\abovedisplayskip}{5pt plus 1pt}
+\setlength{\belowdisplayskip}{5pt plus 1pt}
+\setlength{\abovedisplayshortskip}{3pt}
+\setlength{\belowdisplayshortskip}{3pt}
+\color{Ink}
+
+% 页眉与页脚
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+    \sffamily
+    \fontsize{7.3}{9}\selectfont
+    \bfseries
+    \color{Accent}{PLACEHOLDER:HEADER}
+}
+\fancyhead[R]{%
+    \sffamily
+    \fontsize{7.3}{9}\selectfont
+    \color{Muted}\nouppercase{\leftmark}%
+}
+\fancyfoot[L]{%
+    \sffamily
+    \fontsize{6.5}{8}\selectfont
+    \color{Muted}{PLACEHOLDER:FOOTER}
+}
+\fancyfoot[R]{%
+    \sffamily
+    \fontsize{7}{8}\selectfont
+    \color{Accent}\bfseries\thepage
+}
+
+\renewcommand{\headrulewidth}{.35pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrule}{%
+    \hbox to\headwidth{%
+        \color{Rule}
+        \leaders\hrule height\headrulewidth\hfill
+    }%
+}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\quad #1}{}}
+
+% 标题
+\titleformat{\section}
+    {\sffamily\bfseries\fontsize{12}{14}\selectfont\color{Accent}}
+    {\thesection}{.55em}{}
+    [\vspace{1pt}\color{Rule}\titlerule]
+\titleformat{\subsection}
+    {\sffamily\bfseries\fontsize{10}{12}\selectfont\color{Ink}}
+    {\thesubsection}{.5em}{}
+\titleformat{\subsubsection}
+    {\sffamily\bfseries\fontsize{8.7}{10.5}\selectfont\color{Ink}}
+    {\thesubsubsection}{.5em}{}
+
+\titlespacing*{\section}{0pt}{8pt plus 2pt}{6pt}
+\titlespacing*{\subsection}{0pt}{7pt plus 1pt}{4pt}
+\titlespacing*{\subsubsection}{0pt}{6pt plus 1pt}{3pt}
+
+% 代码
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\linespread{1}\fontsize{8.0}{8.0}\selectfont,
+    keywordstyle=\color{Keyword}\bfseries,
+    commentstyle=\color{Muted},
+    stringstyle=\color{String},
+    numbers=left,
+    numberstyle=\ttfamily\fontsize{5.6}{7}\selectfont\color{Muted},
+    stepnumber=1,
+    numbersep=3pt,
+    xleftmargin=3.5mm,
+    xrightmargin=0pt,
+    frame=l,
+    framerule=.25pt,
+    framesep=2pt,
+    rulecolor=\color{Rule},
+    backgroundcolor=\color{Soft},
+    showspaces=false,
+    showstringspaces=false,
+    breaklines=true,
+    breakatwhitespace=false,
+    breakautoindent=true,
+    breakindent=1em,
+    prebreak={},
+    postbreak=\mbox{\textcolor{Muted}{$\hookrightarrow$}\space},
+    tabsize=4,
+    columns=fullflexible,
+    keepspaces=true,
+    aboveskip=3pt,
+    belowskip=5pt,
+    captionpos=b,
+    abovecaptionskip=2pt,
+    escapeinside={(*@}{@*)}
+}
+\renewcommand{\lstlistingname}{{PLACEHOLDER:LISTING}}
+
+% 底色向下多画 2 pt，填满字体撑高的行间空隙；盒子尺寸不变。
+\makeatletter
+\let\lst@bgblock\lst@frameBlock
+\def\lst@frameBlock#1#2#3#4{%
+    \ifx#1\lst@bkgcolor
+        \begingroup
+        \setbox\@tempboxa\hbox{%
+            \lst@bgblock{#1}{#2}{#3}{\dimexpr#4+2pt\relax}%
+        }%
+        \dp\@tempboxa=#4\relax
+        \box\@tempboxa
+        \endgroup
+    \else
+        \lst@bgblock{#1}{#2}{#3}{#4}%
+    \fi
+}
+\makeatother
+
+% 目录与通栏正文
+\renewcommand{\contentsname}{{PLACEHOLDER:CONTENTS}}
+\setcounter{tocdepth}{3}
+\renewcommand{\cftsecfont}{\sffamily\bfseries\color{Accent}}
+\renewcommand{\cftsecpagefont}{\bfseries\color{Accent}}
+\setlength{\cftbeforesecskip}{7pt}
+\setlength{\cftbeforesubsecskip}{1.5pt}
+\setlength{\cftbeforesubsubsecskip}{.5pt}
+\cftsetindents{section}{0em}{1.3em}
+\cftsetindents{subsection}{.6em}{2em}
+\cftsetindents{subsubsection}{1.2em}{2.7em}
+
+\makeatletter
+\newenvironment{widecontent}{%
+    \par
+    \begingroup
+    \fontsize{8.0}{10.56}\selectfont
+    \setlength{\parskip}{3pt}%
+}{%
+    \par
+    \endgroup
+}
+\newcommand{\CompactContents}{\@starttoc{toc}}
+\makeatother
+\setcounter{collectmore}{-1}
 
 \begin{document}
 
-% 封面内容
-\maketitle
-{
-  \hypersetup{linkcolor=black}
-  \tableofcontents
-}
+% 封面
+\thispagestyle{empty}
+\begingroup
+\vspace*{14mm}
+\noindent\hspace*{.07\textwidth}
+\begin{minipage}{.86\textwidth}
+    {\color{Accent}\rule{26mm}{1.5pt}}\par
+    \vspace{7mm}
+    {%
+        \sffamily
+        \fontsize{10}{13}\selectfont
+        \color{Accent}{PLACEHOLDER:COVER}\par
+    }
+    \begin{minipage}{\linewidth}
+        \raggedright
+        \sffamily
+        \bfseries
+        \fontsize{32}{38}\selectfont
+        \color{Ink}{PLACEHOLDER:TITLE}\par
+    \end{minipage}\par
+    \vspace{4mm}
+    {%
+        \sffamily
+        \fontsize{16}{21}\selectfont
+        \color{Muted}{PLACEHOLDER:SUBTITLE}\par
+    }
+    \vspace{3mm}
+    {%
+        \sffamily
+        \fontsize{13}{18}\selectfont
+        \color{Muted}{PLACEHOLDER:AUTHOR}\par
+    }
+    {%
+        \sffamily
+        \fontsize{9}{13}\selectfont
+        \color{Muted}{PLACEHOLDER:PERIOD}\par
+    }
+    {%
+        \sffamily
+        \fontsize{9}{13}\selectfont
+        \color{Muted}{PLACEHOLDER:NOTE}\par
+    }
+    \vspace{10mm}
+    {\color{Rule}\rule{\linewidth}{.35pt}}\par
+    \vspace{10mm}
 
-\newpage
+    \setlength{\fboxsep}{12pt}
+    \setlength{\fboxrule}{.3pt}
+    \begin{minipage}[b]{.64\linewidth}
+        \fcolorbox{Rule}{Soft}{%
+            \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
+                {%
+                    \sffamily
+                    \bfseries
+                    \fontsize{10.5}{14}\selectfont
+                    \color{Ink}{PLACEHOLDER:ENV-TITLE}\par
+                }
+                \vspace{2mm}
+                {%
+                    \ttfamily
+                    \fontsize{11.2}{14.5}\selectfont
+                    \color{Ink}{PLACEHOLDER:ENVIRONMENT}
+                }
+            \end{minipage}%
+        }
+    \end{minipage}
+\end{minipage}
+\par
+\vfill
+\noindent\hspace*{.07\textwidth}
+\begin{minipage}{.86\textwidth}
+    \sffamily
+    \fontsize{8.5}{11}\selectfont
+    \color{Muted}
+    \DesignName\quad
+    \ifdefined\TemplateMono {PLACEHOLDER:MONO}\else {PLACEHOLDER:COLOR}\fi
+    \hfill {PLACEHOLDER:PAPER}\quad {PLACEHOLDER:DATE}\par
+\end{minipage}
+\par
+\endgroup
+\clearpage
+
+% 目录
+\pagenumbering{roman}
+\markboth{{PLACEHOLDER:CONTENTS}}{{PLACEHOLDER:CONTENTS}}
+{%
+    \sffamily
+    \bfseries
+    \fontsize{20}{24}\selectfont
+    \color{Accent}{PLACEHOLDER:CONTENTS}\par
+}
+\vspace{3mm}
+\begin{multicols}{3}
+    \fontsize{7.7}{9.7}\selectfont
+    \CompactContents
+\end{multicols}
+\clearpage
+
+% 正文
+\pagenumbering{arabic}
+\fontsize{8.0}{10.56}\selectfont

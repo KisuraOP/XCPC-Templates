@@ -3,6 +3,7 @@
     code: Prime_Table.cpp
   - name: 质因数与因数个数表
     code-pre: Divisor_Table.tex
+    columns: 1
   - name: Windows对拍脚本
     code: Checker_Windows.cpp
   - name: Linux对拍脚本

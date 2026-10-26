@@ -7,6 +7,7 @@
     code: (max,+)_Conv.cpp
   - name: 半在线卷积
     code-pre: Semi_Online_Conv-pre.tex
+    columns: 1
   - name: 多项式插值O(n^2)
     code: Poly_Interpolate.cpp
     code-pre: Poly_Interpolate.tex

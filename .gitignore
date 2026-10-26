@@ -7,3 +7,6 @@ output.*
 /output/
 /AGENTS.md
 .DS_Store
+
+/output-bw.*
+/fonts/

@@ -1,3 +1,4 @@
+from datetime import date
 import posixpath
 import re
 
@@ -93,23 +94,41 @@ def generate_latex_for_item(directory, item, depth):
     return "\n".join(latex_parts)
 
 
-def generate_latex_from_config(directory, depth=0):
-    config = get_config(directory)
-
-    latex_sections = []
-    for item in config.get("contents") or []:
+def entries(directory, depth=0):
+    for item in get_config(directory).get("contents") or []:
+        yield directory, item, depth
         if "directory" in item:
-            subdir_path = posixpath.join(directory, item["directory"])
+            yield from entries(posixpath.join(directory, item["directory"]), depth + 1)
 
-            if not posixpath.isdir(subdir_path):
-                raise NotADirectoryError(f"子目录不存在或不是目录：{subdir_path}")
 
-            latex_sections.append(generate_latex_for_item(directory, item, depth))
-            latex_sections.append(generate_latex_from_config(subdir_path, depth + 1))
-        else:
-            latex_sections.append(generate_latex_for_item(directory, item, depth))
-
-    return "\n".join(latex_sections)
+def generate_latex_from_config(directory, columns=1):
+    parts = []
+    headings = []
+    current = None
+    for directory, item, depth in entries(directory):
+        if "directory" in item:
+            headings.append(generate_latex_for_item(directory, item, depth))
+            continue
+        count = item.get("columns", columns)
+        if count != current:
+            if current is not None and current > 1:
+                parts.append("\\end{multicols}\n\\par\n\\vspace{3mm}\n")
+            elif current == 1:
+                parts.append("\\end{widecontent}\n\\par\n\\vspace{3mm}\n")
+            if count > 1:
+                parts.append(f"\\begin{{multicols}}{{{count}}}\n")
+            else:
+                parts.append("\\begin{widecontent}\n")
+            current = count
+        parts.append(f"\\needspace{{{60 + 20 * len(headings)}pt}}\n")
+        parts.extend(headings)
+        headings.clear()
+        parts.append(generate_latex_for_item(directory, item, depth))
+    if current is not None and current > 1:
+        parts.append("\\end{multicols}\n")
+    elif current == 1:
+        parts.append("\\end{widecontent}\n")
+    return "\n".join(parts)
 
 
 def generate_latex(root_dir):
@@ -122,12 +141,18 @@ def generate_latex(root_dir):
         latex_pre_path = config["latex-pre"]
         latex_pre = read_file(latex_pre_path)
 
-    title = escape_latex_special_chars(config.get("title", "UESTC Nanana Templates"))
-    author = escape_latex_special_chars(config.get("author", "UESTC_Nanana"))
+    def repl(m):
+        key = m[1].lower()
+        if key == "environment":
+            return read_file(config[key]) if config.get(key) else ""
+        text = config.get("text") or {}
+        val = config.get(key) if key in ["title", "author"] else text.get(key)
+        val = "" if val is None else str(val)
+        if key == "date":
+            val = date.today().strftime(val)
+        return escape_latex_special_chars(val)
 
-    latex_pre = latex_pre.replace("{PLACEHOLDER:TITLE}", title).replace(
-        "{PLACEHOLDER:AUTHOR}", author
-    )
+    latex_pre = re.sub(r"\{PLACEHOLDER:([A-Z-]+)\}", repl, latex_pre)
 
     if "latex-post" in config:
         latex_post_path = config["latex-post"]
@@ -138,7 +163,7 @@ def generate_latex(root_dir):
     if not posixpath.isdir(code_root):
         raise NotADirectoryError(f"模板根目录不存在或不是一个目录：{code_root}")
 
-    latex_content = generate_latex_from_config(code_root)
+    latex_content = generate_latex_from_config(code_root, config.get("columns", 1))
 
     return latex_pre + latex_content + latex_post
 
@@ -157,5 +182,6 @@ if __name__ == "__main__":
     latex_content = generate_latex(root_dir)
     output_file = "output.tex"
     write_latex_file(latex_content, output_file)
-    print(f"LaTeX 文件已生成：{output_file}")
+    write_latex_file("\\def\\TemplateMono{1}\n\\input{output.tex}\n", "output-bw.tex")
+    print("LaTeX 文件已生成：output.tex、output-bw.tex")
 
