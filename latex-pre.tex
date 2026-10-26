@@ -154,6 +154,16 @@
 \titlespacing*{\subsection}{0pt}{7pt plus 1pt}{4pt}
 \titlespacing*{\subsubsection}{0pt}{6pt plus 1pt}{3pt}
 
+% 换行箭头只排版一次，后续直接复制。
+\newsavebox{\BreakMark}
+\AtBeginDocument{%
+    \sbox{\BreakMark}{%
+        \ttfamily
+        \fontsize{8}{8}\selectfont
+        \textcolor{Muted}{$\hookrightarrow$}%
+    }%
+}
+
 % 代码
 \lstset{
     language=C++,
@@ -179,7 +189,7 @@
     breakautoindent=true,
     breakindent=1em,
     prebreak={},
-    postbreak=\mbox{\textcolor{Muted}{$\hookrightarrow$}\space},
+    postbreak={\copy\BreakMark\space},
     tabsize=4,
     columns=fullflexible,
     keepspaces=true,

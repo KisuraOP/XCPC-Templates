@@ -27,6 +27,13 @@ jobs:
             output.tex
             output-bw.tex
           latexmk_use_xelatex: true
+          pre_compile: |
+            latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode output.tex &
+            color_pid=$!
+            latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode output-bw.tex &
+            mono_pid=$!
+            wait "$color_pid"
+            wait "$mono_pid"
           extra_fonts: |
             ./fonts/*.otf
             ./fonts/*.ttf
