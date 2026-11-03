@@ -2,3 +2,17 @@ contents:
   - name: 概率生成函数
     code-pre: PGF.tex
     columns: 2
+  - name: 欧拉函数，欧拉反演
+    code-pre: Euler.tex
+    columns: 2
+  - name: 莫比乌斯函数，莫比乌斯反演
+    code-pre: Mobius.tex
+    columns: 2
+  - name: 组合公式
+    code-pre: Comb.tex
+    columns: 2
+  - name: 常见数列
+    directory: 数列
+  - name: 群论
+    code-pre: Group.tex
+    columns: 2

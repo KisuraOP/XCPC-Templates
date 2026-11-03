@@ -1,0 +1,67 @@
+以下整数参数未注明时均为正，$p$ 表示质数。
+
+定义与性质：\nopagebreak[4]
+
+$\varphi(n)=\displaystyle\sum_{i=1}^{n}[\gcd(i,n)=1],\quad\varphi(1)=1$
+
+$\varphi(n)=n\displaystyle\prod_{p\mid n}\left(1-\frac1p\right)$
+
+$\varphi(p^e)=p^{e-1}(p-1)$
+
+$n>2\implies 2\mid\varphi(n)$
+
+$\gcd(n,m)=1\implies\varphi(nm)=\varphi(n)\varphi(m)$
+
+$\varphi(nm)=\varphi(n)\varphi(m)\dfrac{\gcd(n,m)}{\varphi(\gcd(n,m))}$
+
+$\varphi(n^k)=n^{k-1}\varphi(n)$
+
+$\varphi(np)=\begin{cases}p\varphi(n),&p\mid n,\\(p-1)\varphi(n),&p\nmid n.\end{cases}$
+
+$\displaystyle\sum_{d\mid n}\varphi(d)=n,\qquad\sum_{d=1}^{n}\varphi(d)\left\lfloor\frac nd\right\rfloor=\frac{n(n+1)}2$
+
+$\displaystyle\sum_{\substack{1\le i\le n\\\gcd(i,n)=1}}i=\frac{n\varphi(n)}2,\quad n>1$
+
+欧拉定理与降幂（$m\ge2,\ a\ge1,\ b\ge0$）：\nopagebreak[4]
+
+$\gcd(a,m)=1\implies a^{\varphi(m)}\equiv1\pmod m$
+
+$\gcd(a,m)=1\implies a^b\equiv a^{b\bmod\varphi(m)}\pmod m$
+
+$\gcd(a,m)=1\implies a^{-1}\equiv a^{\varphi(m)-1}\pmod m$
+
+$p\nmid a\implies a^{p-1}\equiv1\pmod p,\qquad a^p\equiv a\pmod p$
+
+$b\ge\varphi(m)\implies a^b\equiv a^{b\bmod\varphi(m)+\varphi(m)}\pmod m$
+
+欧拉反演与 gcd 求和：\nopagebreak[4]
+
+$\gcd(a_1,\dots,a_k)=\displaystyle\sum_{\substack{d\mid a_1,\dots,d\mid a_k}}\varphi(d)$
+
+$\displaystyle\sum_{i=1}^{N}\gcd(i,n)=\sum_{d\mid n}\varphi(d)\left\lfloor\frac Nd\right\rfloor$
+
+$\displaystyle\sum_{i=1}^{n}\gcd(i,n)=\sum_{d\mid n}d\varphi\left(\frac nd\right)=n\prod_{p^e\parallel n}\left(1+e\left(1-\frac1p\right)\right)$
+
+$\displaystyle\sum_{i=1}^{N}\sum_{j=1}^{M}\gcd(i,j)=\sum_{d=1}^{\min(N,M)}\varphi(d)\left\lfloor\frac Nd\right\rfloor\left\lfloor\frac Md\right\rfloor$
+
+$\displaystyle\sum_{1\le i<j\le N}\gcd(i,j)=\sum_{d=1}^{N}\varphi(d)\binom{\lfloor N/d\rfloor}{2}$
+
+$\displaystyle\sum_{a_1=1}^{N_1}\cdots\sum_{a_k=1}^{N_k}\gcd(a_1,\dots,a_k)=\sum_{d=1}^{\min_iN_i}\varphi(d)\prod_{i=1}^{k}\left\lfloor\frac{N_i}{d}\right\rfloor$
+
+给定正整数序列 $a_1,\dots,a_N$，令 $c_d=\sum_{i=1}^{N}[d\mid a_i]$，$L=\max_i a_i$。\nopagebreak[4]
+
+$\displaystyle\sum_{1\le i<j\le N}\gcd(a_i,a_j)=\sum_{d=1}^{L}\varphi(d)\binom{c_d}{2}$
+
+lcm 求和：\nopagebreak[4]
+
+$\displaystyle\sum_{i=1}^{n}\operatorname{lcm}(i,n)=\frac n2\left(1+\sum_{d\mid n}d\varphi(d)\right)$
+
+前缀和递推（$\Phi(0)=W(0)=0$）：\nopagebreak[4]
+
+$\Phi(n)=\displaystyle\sum_{i=1}^{n}\varphi(i)=\frac{n(n+1)}2-\sum_{d=2}^{n}\Phi\left(\left\lfloor\frac nd\right\rfloor\right)$
+
+$W(n)=\displaystyle\sum_{i=1}^{n}i\varphi(i)=\frac{n(n+1)(2n+1)}6-\sum_{d=2}^{n}dW\left(\left\lfloor\frac nd\right\rfloor\right)$
+
+循环计数（长度为 $n$，每位有 $q$ 种取值，只将旋转视为等价）：\nopagebreak[4]
+
+$\text{旋转等价类数}=\dfrac1n\displaystyle\sum_{d\mid n}\varphi(d)q^{n/d}$

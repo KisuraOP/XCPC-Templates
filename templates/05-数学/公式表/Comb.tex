@@ -1,0 +1,79 @@
+基本计数：\nopagebreak[4]
+
+$x^{\underline r}=\displaystyle\prod_{i=0}^{r-1}(x-i),\qquad x^{\overline r}=\prod_{i=0}^{r-1}(x+i)$
+
+$\binom nr=\dfrac{n!}{r!(n-r)!}\ (0\le r\le n),\qquad n^{\underline r}=r!\binom nr$
+
+$\text{从 $n$ 个不同元素中有序选取 $r$ 个}=n^{\underline r},\quad 0\le r\le n$
+
+$\text{$n$ 个不同元素的圆排列数}=(n-1)!,\quad n\ge1$
+
+圆排列只将旋转视为等价。多重集排列中，$n_1+\cdots+n_r=n$，$r\ge1$。
+
+$\binom{n}{n_1,\dots,n_r}=\dfrac{n!}{n_1!\cdots n_r!}$
+
+$\text{从 $n$ 种元素中可重复地无序选取 $r$ 个}=\binom{n+r-1}{r},\quad n\ge1$
+
+组合恒等式：\nopagebreak[4]
+
+$\binom nr=\binom n{n-r},\qquad\binom nr=\binom{n-1}r+\binom{n-1}{r-1}\ (n\ge1)$
+
+$r\binom nr=n\binom{n-1}{r-1},\quad n\ge1$
+
+$\binom nr\binom rk=\binom nk\binom{n-k}{r-k},\quad0\le k\le r\le n$
+
+$\displaystyle\sum_{r=0}^{n}\binom nr=2^n,\qquad\sum_{r=0}^{n}(-1)^r\binom nr=[n=0]$
+
+$\displaystyle\sum_{r=0}^{n}r^{\underline k}\binom nr=n^{\underline k}2^{n-k},\quad0\le k\le n$
+
+$\displaystyle\sum_{r=0}^{n}r^2\binom nr=n(n+1)2^{n-2},\quad n\ge1$
+
+$\displaystyle\sum_{j=r}^{n}\binom jr=\binom{n+1}{r+1},\quad0\le r\le n$
+
+$\displaystyle\sum_{k=0}^{r}\binom nk\binom m{r-k}=\binom{n+m}r$
+
+$\displaystyle\sum_{k=0}^{\min(n,m)}\binom nk\binom mk=\binom{n+m}n,\qquad\sum_{k=0}^{n}\binom nk^2=\binom{2n}n$
+
+$\displaystyle\sum_{k=0}^{r}(-1)^k\binom nk=(-1)^r\binom{n-1}r,\quad n\ge1,\ 0\le r\le n$
+
+$\displaystyle\sum_{k=0}^{n}(-1)^{n-k}\binom nk k^r=n!S(r,n)$
+
+其中 $S(n,k)$ 为第二类斯特林数。二项式反演的等式对所有 $n$ 成立。
+
+$b_n=\displaystyle\sum_{k=0}^{n}\binom nk a_k\iff a_n=\sum_{k=0}^{n}(-1)^{n-k}\binom nk b_k$
+
+生成函数：\nopagebreak[4]
+
+$(1+x)^n=\displaystyle\sum_{r=0}^{n}\binom nr x^r$
+
+$(1-x)^{-r}=\displaystyle\sum_{n\ge0}\binom{n+r-1}{r-1}x^n,\quad r\ge1$
+
+$(x_1+\cdots+x_r)^n=\displaystyle\sum_{n_1+\cdots+n_r=n}\binom{n}{n_1,\dots,n_r}\prod_{i=1}^{r}x_i^{n_i},\quad r\ge1$
+
+隔板法与容斥（以下 $r\ge1$，各变量均取整数）：\nopagebreak[4]
+
+$\#\{x_1+\cdots+x_r=n:\ x_i\ge0\}=\binom{n+r-1}{r-1}$
+
+$\#\{x_1+\cdots+x_r=n:\ x_i\ge1\}=\binom{n-1}{r-1}$
+
+$\#\{x_1+\cdots+x_r=n:\ 0\le x_i\le u\}=\displaystyle\sum_{j=0}^{r}(-1)^j\binom rj\binom{n-j(u+1)+r-1}{r-1},\quad u\ge0$
+
+$\#\{x_1+\cdots+x_r=n:\ 0\le x_i\le u_i\}=\displaystyle\sum_{A\subseteq\{1,\dots,r\}}(-1)^{|A|}\binom{n-\sum_{i\in A}(u_i+1)+r-1}{r-1},\quad u_i\ge0$
+
+$\text{$n$ 个不同元素到 $r$ 个不同元素的满射数}=r!S(n,r)=\displaystyle\sum_{j=0}^{r}(-1)^j\binom rj(r-j)^n$
+
+错排与位置选择：\nopagebreak[4]
+
+$D_0=1,\quad D_1=0,\quad D_n=n!\displaystyle\sum_{k=0}^{n}\frac{(-1)^k}{k!}$
+
+$D_n=(n-1)(D_{n-1}+D_{n-2}),\quad n\ge2$
+
+$\text{$n$ 元排列中恰有 $r$ 个不动点的排列数}=\binom nr D_{n-r},\quad0\le r\le n$
+
+$\text{从 $n$ 个线性排列的位置中选 $r$ 个互不相邻的位置}=\binom{n-r+1}r$
+
+路径计数（有 $a$ 次 $+1$、$b$ 次 $-1$，$a\ge b\ge0$）：\nopagebreak[4]
+
+$\text{所有前缀和非负的排列数}=\binom{a+b}b-\binom{a+b}{b-1}=\dfrac{a-b+1}{a+1}\binom{a+b}b$
+
+$\text{所有非空前缀和为正的排列数}=\dfrac{a-b}{a+b}\binom{a+b}b,\quad a>b$

@@ -6,7 +6,7 @@
 \usepackage{fontspec}
 \usepackage{geometry}
 \usepackage{xcolor, listings, multicol, fancyhdr, titlesec, tocloft, graphicx}
-\usepackage{enumitem}
+\usepackage{enumitem, etoolbox}
 \usepackage[
     colorlinks,
     linkcolor=Accent,
@@ -268,6 +268,18 @@
 \cftsetindents{paragraph}{1.8em}{3.6em}
 
 \makeatletter
+% 平衡后的栏放不进当前页时，改用正常分页。
+\patchcmd{\balance@columns}{\process@cols\mult@rightbox}{%
+    \if@boxedmulticols\else
+        \ifdim\ht\mult@gfirstbox>\@colroom
+            \too@badtrue
+        \fi
+    \fi
+    \iftoo@bad\else
+    \process@cols\mult@rightbox
+}{}{\errmessage{Cannot patch multicol balancing}}
+\apptocmd{\balance@columns}{\fi}{}{\errmessage{Cannot patch multicol balancing}}
+
 \newenvironment{widecontent}{%
     \par
     \begingroup

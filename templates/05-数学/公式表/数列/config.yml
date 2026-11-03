@@ -1,0 +1,7 @@
+contents:
+  - name: 公式与应用
+    code-pre: Seq.tex
+    columns: 2
+  - name: 前 10 项
+    code-pre: Seq_Table.tex
+    columns: 1

@@ -1,0 +1,97 @@
+以下群均有限，$m,n,q$ 为正整数，单位元为 $e$，元素 $g$ 的阶记为 $o(g)$。$C_m$ 表示 $m$ 阶循环群；$S_n$ 表示 $n$ 元对称群。
+
+群的阶与元素的阶：\nopagebreak[4]
+
+$o(g)=\min\{r\ge1:\ g^r=e\},\qquad|H|\mid|G|,\quad[G:H]=\dfrac{|G|}{|H|}\ (H\le G)$
+
+$o(g)\mid|G|,\qquad g^a=e\iff o(g)\mid a$
+
+$g^a=g^b\iff a\equiv b\pmod{o(g)}$
+
+$o(g^k)=\dfrac{o(g)}{\gcd(o(g),k)},\quad k\in\mathbb Z$
+
+$ab=ba\implies o(ab)\mid\operatorname{lcm}(o(a),o(b))$
+
+$ab=ba,\ \gcd(o(a),o(b))=1\implies o(ab)=o(a)o(b)$
+
+$o((g_1,\dots,g_r))=\operatorname{lcm}(o(g_1),\dots,o(g_r))\quad\text{（直积群）}$
+
+$\exp(G)=\operatorname{lcm}_{g\in G}o(g),\qquad\exp(G)\mid|G|$
+
+置换分解成不相交的循环，循环长度为 $\ell_1,\dots,\ell_r$。\nopagebreak[4]
+
+$o(\sigma)=\operatorname{lcm}(\ell_1,\dots,\ell_r)$
+
+循环群与幂方程（$m,n,k\ge1$）：\nopagebreak[4]
+
+$C_m=\langle g\rangle,\qquad|\langle g^t\rangle|=\dfrac m{\gcd(m,t)},\quad t\in\mathbb Z$
+
+$g^t\text{ 生成 }C_m\iff\gcd(m,t)=1,\qquad\#\text{生成元}=\varphi(m)$
+
+$d\mid m\implies H_d=\langle g^{m/d}\rangle\text{ 是唯一的 $d$ 阶子群}$
+
+$\#\{x\in C_m:\ o(x)=d\}=\begin{cases}\varphi(d),&d\mid m,\\0,&d\nmid m.\end{cases}$
+
+$H_d\cap H_s=H_{\gcd(d,s)},\qquad\langle H_d,H_s\rangle=H_{\operatorname{lcm}(d,s)},\quad d,s\mid m$
+
+$C_m\times C_n\text{ 为循环群}\iff\gcd(m,n)=1$
+
+$C_m\times C_n\cong C_{\gcd(m,n)}\times C_{\operatorname{lcm}(m,n)}$
+
+$\#\operatorname{Hom}(C_m,C_n)=\gcd(m,n),\qquad\#\operatorname{Aut}(C_m)=\varphi(m)$
+
+$\#\text{单射同态 }C_m\to C_n=\begin{cases}\varphi(m),&m\mid n,\\0,&m\nmid n,\end{cases}\quad\#\text{满射同态 }C_m\to C_n=\begin{cases}\varphi(n),&n\mid m,\\0,&n\nmid m.\end{cases}$
+
+$\#\{x\in C_m:\ x^k=g^t\}=d[d\mid t],\qquad d=\gcd(k,m),\quad t\in\mathbb Z$
+
+模 $m$ 的加法群中，元素 $a$ 的阶为 $m/\gcd(a,m)$。若 $m\ge2$ 且 $\gcd(a,m)=1$，则 $a$ 在单位群中的阶整除 $\varphi(m)$。
+
+$p\text{ 为质数}\implies\mathbb F_p^*\cong C_{p-1},\qquad\#\text{模 $p$ 的原根}=\varphi(p-1)$
+
+$\#\{x\in\mathbb F_p^*:\ x^k=1\}=\gcd(k,p-1),\quad k\ge1$
+
+群作用与 Burnside 引理：\nopagebreak[4]
+
+设 $G$ 作用在有限集合 $X$ 上，$G_x=\{g\in G:\ gx=x\}$，$X^g=\{x\in X:\ gx=x\}$。\nopagebreak[4]
+
+$|G\cdot x|=\dfrac{|G|}{|G_x|},\qquad\#(X/G)=\dfrac1{|G|}\displaystyle\sum_{g\in G}|X^g|$
+
+将 $n$ 个位置染成 $q$ 种有标号的颜色。群只置换位置，$c_j(g)$ 为长度 $j$ 的循环数，$c(g)=\sum_jc_j(g)$。\nopagebreak[4]
+
+$\displaystyle\sum_{j=1}^{n}jc_j(g)=n,\qquad|X^g|=q^{c(g)},\qquad\#\text{染色等价类}=\frac1{|G|}\sum_{g\in G}q^{c(g)}$
+
+P\'olya 计数与循环指标：\nopagebreak[4]
+
+$Z_G(x_1,\dots,x_n)=\dfrac1{|G|}\displaystyle\sum_{g\in G}\prod_{j=1}^{n}x_j^{c_j(g)},\qquad\#\text{$q$ 色染色等价类}=Z_G(q,\dots,q)$
+
+用 $y_i$ 记录颜色 $i$ 出现的次数，$a_i\ge0$、$\sum_i a_i=n$。\nopagebreak[4]
+
+$\text{染色等价类的生成函数}=Z_G\left(\sum_{i=1}^{q}y_i,\sum_{i=1}^{q}y_i^2,\dots,\sum_{i=1}^{q}y_i^n\right)$
+
+$\text{各颜色恰出现 $a_i$ 次的等价类数}=[y_1^{a_1}\cdots y_q^{a_q}]Z_G\left(\sum_i y_i,\sum_i y_i^2,\dots,\sum_i y_i^n\right)$
+
+圆环旋转（$n,q\ge1$）：\nopagebreak[4]
+
+$Z_{C_n}=\dfrac1n\displaystyle\sum_{d\mid n}\varphi(d)x_d^{n/d},\qquad N_n(q)=\frac1n\sum_{d\mid n}\varphi(d)q^{n/d}$
+
+$\text{最小循环周期为 $n$ 的染色数}=P_n(q)=\displaystyle\sum_{d\mid n}\mu(d)q^{n/d},\qquad\text{对应旋转等价类数}=\frac{P_n(q)}n$
+
+指定颜色出现次数时，令 $h=\gcd(a_1,\dots,a_q)$，$\sum_i a_i=n\ge1$。\nopagebreak[4]
+
+$\text{旋转等价类数}=\dfrac1n\displaystyle\sum_{d\mid h}\varphi(d)\binom{n/d}{a_1/d,\dots,a_q/d}$
+
+$\text{最小循环周期为 $n$ 的旋转等价类数}=\dfrac1n\displaystyle\sum_{d\mid h}\mu(d)\binom{n/d}{a_1/d,\dots,a_q/d}$
+
+圆环旋转与翻转（$D_n$ 的阶为 $2n$，$n\ge3$）：\nopagebreak[4]
+
+$Z_{D_n}=\dfrac12Z_{C_n}+\begin{cases}\dfrac12x_1x_2^{(n-1)/2},&n\text{ 为奇数},\\\dfrac14\left(x_1^2x_2^{(n-2)/2}+x_2^{n/2}\right),&n\text{ 为偶数}.\end{cases}$
+
+$\text{$q$ 色旋转与翻转等价类数}=\dfrac12N_n(q)+\begin{cases}\dfrac12q^{(n+1)/2},&n\text{ 为奇数},\\\dfrac14\left(q^{n/2+1}+q^{n/2}\right),&n\text{ 为偶数}.\end{cases}$
+
+所有位置可任意置换：\nopagebreak[4]
+
+$\#\{\sigma\in S_n:\ c_j(\sigma)=a_j\}=\dfrac{n!}{\prod_{j=1}^{n}j^{a_j}a_j!},\quad\sum_{j=1}^{n}ja_j=n$
+
+$Z_{S_n}=\displaystyle\sum_{a_1+2a_2+\cdots+na_n=n}\prod_{j=1}^{n}\frac{x_j^{a_j}}{j^{a_j}a_j!},\qquad Z_{S_n}(q,\dots,q)=\binom{n+q-1}{q-1}$
+
+模 $M$ 计算 Burnside 平均时，$\gcd(|G|,M)=1$ 才能直接乘 $|G|$ 的逆元。否则先求分子模 $M|G|$ 的余数，再整除 $|G|$，即可得到答案模 $M$ 的值。

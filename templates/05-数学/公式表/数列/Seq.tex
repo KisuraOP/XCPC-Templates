@@ -1,0 +1,148 @@
+以下 $n\ge0$，生成函数按形式幂级数理解，$0^0=1$，空乘积为 $1$。第一类斯特林数采用无符号版本；伯努利数采用 $B_1=-\tfrac12$。
+
+1. 卡特兰数 $C_n$：\nopagebreak[4]
+
+$C_0=1,\qquad C_n=\dfrac1{n+1}\binom{2n}n=\binom{2n}n-\binom{2n}{n+1}$
+
+$C_n=\dfrac{4n-2}{n+1}C_{n-1},\quad n\ge1$
+
+$C_{n+1}=\displaystyle\sum_{i=0}^{n}C_iC_{n-i}$
+
+$C(x)=\displaystyle\sum_{n\ge0}C_nx^n=1+xC(x)^2=\dfrac{1-\sqrt{1-4x}}{2x}$
+
+$\text{半长为 $n$、恰有 $k$ 个峰的 Dyck 路径数}=\dfrac1n\binom nk\binom n{k-1},\quad1\le k\le n$
+
+以下对象均由 $C_n$ 计数，树不带标号：
+\begin{itemize}
+\item 含 $n$ 对括号的合法括号序列。
+\item 含 $n$ 次上升和 $n$ 次下降、始终不低于起点的 Dyck 路径。
+\item 凸 $(n+2)$ 边形的三角剖分，$n\ge1$。
+\item 有 $n$ 条边的有序根树。
+\item 有 $n$ 个内部结点，且每个内部结点恰有两个孩子的有序二叉树。
+\item 对固定顺序的 $n+1$ 个因子作完全二元括号化。
+\item $n$ 个不同元素在固定入栈顺序下经单个栈能够产生的出栈排列。
+\item 圆周上固定的 $2n$ 个点的非交叉完美匹配。
+\item 规避 $231$ 模式的 $n$ 元排列。
+\end{itemize}
+
+2. 斐波那契数 $F_n$：\nopagebreak[4]
+
+$F_0=0,\quad F_1=1,\quad F_n=F_{n-1}+F_{n-2}\ (n\ge2)$
+
+$\displaystyle\sum_{n\ge0}F_nx^n=\dfrac{x}{1-x-x^2},\qquad F_n=\dfrac{\alpha^n-\beta^n}{\sqrt5},\quad\alpha=\dfrac{1+\sqrt5}2,\ \beta=\dfrac{1-\sqrt5}2$
+
+$F_{n+m}=F_nF_{m+1}+F_{n-1}F_m,\quad n\ge1,\ m\ge0$
+
+$F_{2n}=F_n(2F_{n+1}-F_n),\qquad F_{2n+1}=F_n^2+F_{n+1}^2$
+
+$F_{n+1}F_{n-1}-F_n^2=(-1)^n,\quad n\ge1$
+
+$\gcd(F_n,F_m)=F_{\gcd(n,m)},\quad n,m\ge1$
+
+$\displaystyle\sum_{i=0}^{n}F_i=F_{n+2}-1,\qquad\sum_{i=0}^{n}F_i^2=F_nF_{n+1}$
+
+$F_{n+1}=\displaystyle\sum_{k=0}^{\lfloor n/2\rfloor}\binom{n-k}k$
+
+$\text{用长度 $1,2$ 的砖铺满长 $n$ 的线段的方案数}=F_{n+1}$
+
+$\text{不含相邻两个 $1$ 的长 $n$ 的 $01$ 串数}=F_{n+2}$
+
+3. 斯特林数 $c(n,k),S(n,k)$：\nopagebreak[4]
+
+$c(0,0)=S(0,0)=1$；当 $n\ge1$ 时，$c(n,0)=S(n,0)=0$；当 $k<0$ 或 $k>n$ 时，两者均为 $0$。
+
+$c(n,k)=c(n-1,k-1)+(n-1)c(n-1,k),\quad n\ge1$
+
+$S(n,k)=S(n-1,k-1)+kS(n-1,k),\quad n\ge1$
+
+$x^{\overline n}=\displaystyle\sum_{k=0}^{n}c(n,k)x^k,\qquad x^{\underline n}=\sum_{k=0}^{n}(-1)^{n-k}c(n,k)x^k$
+
+$x^n=\displaystyle\sum_{k=0}^{n}S(n,k)x^{\underline k}$
+
+$S(n,k)=\dfrac1{k!}\displaystyle\sum_{j=0}^{k}(-1)^{k-j}\binom kj j^n,\quad k\ge0$
+
+$c(n,1)=(n-1)!,\quad S(n,1)=1,\quad S(n,2)=2^{n-1}-1,\quad n\ge1$
+
+$c(n,n)=S(n,n)=1,\qquad c(n,n-1)=S(n,n-1)=\binom n2\ (n\ge1)$
+
+$\displaystyle\sum_{n\ge k}c(n,k)\frac{x^n}{n!}=\frac{(-\log(1-x))^k}{k!},\qquad\sum_{n\ge k}S(n,k)\frac{x^n}{n!}=\frac{(e^x-1)^k}{k!},\quad k\ge0$
+
+$\displaystyle\sum_{n\ge k}S(n,k)x^n=\dfrac{x^k}{\prod_{j=1}^{k}(1-jx)},\quad k\ge0$
+
+以下反演的等式对所有 $n$ 成立。\nopagebreak[4]
+
+$g_n=\displaystyle\sum_{k=0}^{n}S(n,k)f_k\iff f_n=\sum_{k=0}^{n}(-1)^{n-k}c(n,k)g_k$
+
+$c(n,k)$ 计数 $n$ 元排列中恰有 $k$ 个循环的排列；$S(n,k)$ 计数将 $n$ 个不同元素划分成 $k$ 个非空、无区别集合的方案。
+
+$\text{向 $m$ 个有标号盒子放入 $n$ 个不同球，恰用 $k$ 个盒子的方案数}=\binom mk k!S(n,k),\quad0\le k\le m$
+
+4. 伯努利数 $B_n$：\nopagebreak[4]
+
+$\dfrac{x}{e^x-1}=\displaystyle\sum_{n\ge0}B_n\frac{x^n}{n!},\quad B_0=1,\quad B_1=-\frac12$
+
+$B_n=-\dfrac1{n+1}\displaystyle\sum_{k=0}^{n-1}\binom{n+1}k B_k,\quad n\ge1$
+
+$B_{2k+1}=0,\quad k\ge1$
+
+$\displaystyle\sum_{i=1}^{n}i^r=\dfrac1{r+1}\sum_{k=0}^{r}(-1)^k\binom{r+1}k B_kn^{r+1-k},\quad r\ge0$
+
+伯努利多项式用于幂和及等差数列的幂和。\nopagebreak[4]
+
+$B_n(x)=\displaystyle\sum_{k=0}^{n}\binom nk B_kx^{n-k}$
+
+$B_n(x+1)-B_n(x)=nx^{n-1},\quad B_n'(x)=nB_{n-1}(x),\quad n\ge1$
+
+$B_n(1-x)=(-1)^nB_n(x)$
+
+$\displaystyle\sum_{i=0}^{n-1}(a+di)^r=\dfrac{d^r}{r+1}\left(B_{r+1}\left(\frac ad+n\right)-B_{r+1}\left(\frac ad\right)\right),\quad r\ge0,\ d\ne0$
+
+5. 贝尔数 $b_n$：\nopagebreak[4]
+
+$b_0=1,\qquad b_n=\displaystyle\sum_{k=0}^{n}S(n,k),\qquad b_{n+1}=\sum_{k=0}^{n}\binom nk b_k$
+
+$\displaystyle\sum_{n\ge0}b_n\frac{x^n}{n!}=e^{e^x-1},\qquad b_n=\frac1e\sum_{j\ge0}\frac{j^n}{j!}$
+
+$b_n$ 计数 $n$ 个不同元素的集合划分，也计数该集合上的等价关系。
+
+$\text{划分成至多 $r$ 个非空组的方案数}=\displaystyle\sum_{k=0}^{\min(n,r)}S(n,k),\quad r\ge0$
+
+6. 分拆数 $p(n)$：\nopagebreak[4]
+
+$p(n)$ 计数将 $n$ 无序地分拆成若干正整数的方案；约定 $p(0)=1$，$p(n)=0$（$n<0$）。
+
+$\displaystyle\sum_{n\ge0}p(n)x^n=\prod_{j\ge1}\frac1{1-x^j}$
+
+$p(n)=\displaystyle\sum_{k\ge1}(-1)^{k-1}\left(p\left(n-\frac{k(3k-1)}2\right)+p\left(n-\frac{k(3k+1)}2\right)\right),\quad n\ge1$
+
+$\displaystyle\prod_{j\ge1}(1-x^j)=1+\sum_{k\ge1}(-1)^k\left(x^{k(3k-1)/2}+x^{k(3k+1)/2}\right)$
+
+令 $p(n,k)$ 计数恰有 $k$ 个部分的分拆。$p(0,0)=1$；$n>0$ 时 $p(n,0)=0$；$k>n$ 或参数为负时取 $0$。
+
+$p(n,k)=p(n-1,k-1)+p(n-k,k),\quad n,k\ge1$
+
+$\displaystyle\sum_{n\ge0}p(n,k)x^n=\frac{x^k}{\prod_{j=1}^{k}(1-x^j)},\quad k\ge0$
+
+$\text{至多 $k$ 个部分的分拆数}=\text{每个部分不超过 $k$ 的分拆数}=[x^n]\displaystyle\prod_{j=1}^{k}\frac1{1-x^j},\quad k\ge0$
+
+$\text{部分互异的分拆数}=\text{各部分均为奇数的分拆数}=[x^n]\displaystyle\prod_{j\ge1}(1+x^j)$
+
+应用包括将无区别对象分成无区别的非空组，以及限制组数或组大小的计数。
+
+7. Eulerian number $A(n,k)$（欧拉数）：\nopagebreak[4]
+
+$A(n,k)$ 计数 $n$ 元排列中恰有 $k$ 个下降位置的排列。下降位置满足 $\pi_i>\pi_{i+1}$。$A(0,0)=1$，$A(0,k)=0$（$k\ne0$）；$n\ge1$ 时范围为 $0\le k<n$，范围外取 $0$。
+
+$A(n,k)=(k+1)A(n-1,k)+(n-k)A(n-1,k-1),\quad n\ge1$
+
+$A(n,k)=\displaystyle\sum_{j=0}^{k+1}(-1)^j\binom{n+1}j(k+1-j)^n,\quad n\ge1,\ 0\le k<n$
+
+$A(n,k)=A(n,n-1-k),\quad\displaystyle\sum_{k=0}^{n-1}A(n,k)=n!,\quad n\ge1$
+
+令 $A_0(x)=1$，$A_n(x)=\sum_{k=0}^{n-1}A(n,k)x^k$（$n\ge1$）。\nopagebreak[4]
+
+$\displaystyle\sum_{m\ge0}(m+1)^nx^m=\frac{A_n(x)}{(1-x)^{n+1}}$
+
+$x^n=\displaystyle\sum_{k=0}^{n-1}A(n,k)\binom{x+k}n,\quad n\ge1,\ x\in\mathbb Z_{\ge0}$
+
+应用包括按下降次数计数排列、按极大连续递增段数计数排列，以及把幂函数展开为二项式基底。对非空排列，恰有 $k$ 个下降位置等价于恰有 $k+1$ 个极大连续递增段。

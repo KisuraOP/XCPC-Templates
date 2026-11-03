@@ -1,0 +1,93 @@
+以下整数参数未注明时均为正，$p$ 表示质数，$\omega(n)$ 表示不同质因子的个数。
+
+定义与性质：\nopagebreak[4]
+
+$\mu(n)=\begin{cases}1,&n=1,\\0,&\exists p:\ p^2\mid n,\\(-1)^{\omega(n)},&\text{其余情况}.\end{cases}$
+
+$\gcd(n,m)=1\implies\mu(nm)=\mu(n)\mu(m)$
+
+$\mu(np)=\begin{cases}0,&p\mid n,\\-\mu(n),&p\nmid n.\end{cases}$
+
+$\displaystyle\sum_{d\mid n}\mu(d)=[n=1],\qquad\sum_{d\mid n}\mu(d)^2=2^{\omega(n)}$
+
+$\displaystyle\sum_{d\mid n}\frac{\mu(d)}d=\frac{\varphi(n)}n,\qquad\sum_{d\mid n}d\mu(d)=\prod_{p\mid n}(1-p)$
+
+$\mu(n)^2=\displaystyle\sum_{d^2\mid n}\mu(d)$
+
+$\#\{1\le i\le N:\ i\text{ 无平方因子}\}=\displaystyle\sum_{d=1}^{\lfloor\sqrt N\rfloor}\mu(d)\left\lfloor\frac{N}{d^2}\right\rfloor$
+
+狄利克雷卷积：\nopagebreak[4]
+
+令 $\boldsymbol1(n)=1$，$\varepsilon(n)=[n=1]$，$\mathrm{id}(n)=n$，$\tau(n)$ 为约数个数，$\sigma(n)$ 为约数和。\nopagebreak[4]
+
+$(f*g)(n)=\displaystyle\sum_{d\mid n}f(d)g\left(\frac nd\right),\quad f*g=g*f,\quad(f*g)*h=f*(g*h)$
+
+$f*\varepsilon=f,\quad\mu*\boldsymbol1=\varepsilon,\quad\varphi*\boldsymbol1=\mathrm{id},\quad\mu*\mathrm{id}=\varphi$
+
+$\boldsymbol1*\boldsymbol1=\tau,\qquad\boldsymbol1*\mathrm{id}=\sigma$
+
+莫比乌斯反演（$f,g$ 为数论函数，等价式对所有 $n$ 成立）：\nopagebreak[4]
+
+$g(n)=\displaystyle\sum_{d\mid n}f(d)\iff f(n)=\sum_{d\mid n}\mu(d)g\left(\frac nd\right)$
+
+倍数形式（固定上界 $L$，$1\le n\le L$）：\nopagebreak[4]
+
+$g(n)=\displaystyle\sum_{j=1}^{\lfloor L/n\rfloor}f(jn)\iff f(n)=\sum_{j=1}^{\lfloor L/n\rfloor}\mu(j)g(jn)$
+
+整除取整形式：\nopagebreak[4]
+
+$g(n)=\displaystyle\sum_{d=1}^{n}f\left(\left\lfloor\frac nd\right\rfloor\right)\iff f(n)=\sum_{d=1}^{n}\mu(d)g\left(\left\lfloor\frac nd\right\rfloor\right)$
+
+乘积形式（各项均可逆）：\nopagebreak[4]
+
+$g(n)=\displaystyle\prod_{d\mid n}f(d)\iff f(n)=\prod_{d\mid n}g\left(\frac nd\right)^{\mu(d)}$
+
+互质计数：\nopagebreak[4]
+
+$[\gcd(a_1,\dots,a_k)=1]=\displaystyle\sum_{\substack{d\mid a_1,\dots,d\mid a_k}}\mu(d)$
+
+$\displaystyle\sum_{i=1}^{N}[\gcd(i,n)=1]=\sum_{d\mid n}\mu(d)\left\lfloor\frac Nd\right\rfloor$
+
+令 $C(N,M)=\sum_{i=1}^{N}\sum_{j=1}^{M}[\gcd(i,j)=1]$，这里允许 $N,M\ge0$。\nopagebreak[4]
+
+$C(N,M)=\displaystyle\sum_{d=1}^{\min(N,M)}\mu(d)\left\lfloor\frac Nd\right\rfloor\left\lfloor\frac Md\right\rfloor$
+
+$\displaystyle\sum_{i=1}^{N}\sum_{j=1}^{M}[\gcd(i,j)=g]=C\left(\left\lfloor\frac Ng\right\rfloor,\left\lfloor\frac Mg\right\rfloor\right)$
+
+$C(N,N)=2\displaystyle\sum_{i=1}^{N}\varphi(i)-1,\quad N\ge1$
+
+$\displaystyle\sum_{a_1=1}^{N_1}\cdots\sum_{a_k=1}^{N_k}[\gcd(a_1,\dots,a_k)=1]=\sum_{d=1}^{\min_iN_i}\mu(d)\prod_{i=1}^{k}\left\lfloor\frac{N_i}{d}\right\rfloor$
+
+给定正整数序列 $a_1,\dots,a_N$，令 $c_d=\sum_{i=1}^{N}[d\mid a_i]$，$L=\max_i a_i$。子集按下标区分，约定 $\binom xr=0$（$0\le x<r$）。\nopagebreak[4]
+
+$\#\{i<j:\ \gcd(a_i,a_j)=1\}=\displaystyle\sum_{d=1}^{L}\mu(d)\binom{c_d}{2}$
+
+$\text{gcd 为 $1$ 的 $r$ 元子集数}=\displaystyle\sum_{d=1}^{L}\mu(d)\binom{c_d}{r}$
+
+$\text{gcd 为 $1$ 的非空子集数}=\displaystyle\sum_{d=1}^{L}\mu(d)(2^{c_d}-1)$
+
+gcd 权值与 lcm 求和：\nopagebreak[4]
+
+令 $h=f*\mu$，则 $f(n)=\sum_{d\mid n}h(d)$。\nopagebreak[4]
+
+$\displaystyle\sum_{i=1}^{N}\sum_{j=1}^{M}f(\gcd(i,j))=\sum_{d=1}^{\min(N,M)}h(d)\left\lfloor\frac Nd\right\rfloor\left\lfloor\frac Md\right\rfloor$
+
+$J_k(n)=\displaystyle\sum_{d\mid n}\mu(d)\left(\frac nd\right)^k=n^k\prod_{p\mid n}\left(1-\frac1{p^k}\right),\quad\sum_{d\mid n}J_k(d)=n^k$
+
+$\displaystyle\sum_{i=1}^{N}\sum_{j=1}^{M}\gcd(i,j)^k=\sum_{d=1}^{\min(N,M)}J_k(d)\left\lfloor\frac Nd\right\rfloor\left\lfloor\frac Md\right\rfloor$
+
+令 $T(n)=n(n+1)/2$，$H(d)=\sum_{e\mid d}e\mu(e)=\prod_{p\mid d}(1-p)$。\nopagebreak[4]
+
+$\displaystyle\sum_{i=1}^{N}\sum_{j=1}^{M}\operatorname{lcm}(i,j)=\sum_{d=1}^{\min(N,M)}dH(d)T\left(\left\lfloor\frac Nd\right\rfloor\right)T\left(\left\lfloor\frac Md\right\rfloor\right)$
+
+前缀和递推（$\mathcal M(0)=0$）：\nopagebreak[4]
+
+$\displaystyle\sum_{d=1}^{n}\mu(d)\left\lfloor\frac nd\right\rfloor=1$
+
+$\mathcal M(n)=\displaystyle\sum_{i=1}^{n}\mu(i)=1-\sum_{d=2}^{n}\mathcal M\left(\left\lfloor\frac nd\right\rfloor\right)$
+
+循环计数（长度为 $n$，每位有 $q$ 种取值）：\nopagebreak[4]
+
+$\text{最小循环周期为 $n$ 的串数}=P(n)=\displaystyle\sum_{d\mid n}\mu(d)q^{n/d}$
+
+$\text{这类串的旋转等价类数}=P(n)/n$
