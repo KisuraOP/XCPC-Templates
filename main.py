@@ -90,7 +90,7 @@ def generate_latex_for_item(directory, item, depth, prefix=""):
         latex_parts.append("\\end{minipage}\n")
         if keep < len(source):
             latex_parts.append(
-                f"\\lstinputlisting[caption={{{caption}}},firstline={keep + 1},firstnumber={keep + 1},aboveskip=0pt]{{{file_path}}}\n"
+                f"\\lstinputlisting[caption={{{caption}}},resume=true,firstline={keep + 1},firstnumber={keep + 1},aboveskip=0pt]{{{file_path}}}\n"
             )
         if "code-post" in item:
             latex_parts.append(read_file(posixpath.join(directory, item["code-post"])))

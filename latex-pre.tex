@@ -18,6 +18,7 @@
 \definecolor{Accent}{HTML}{3B4B5D}
 \definecolor{Ink}{HTML}{20262D}
 \definecolor{Muted}{HTML}{5B6875}
+\definecolor{Comment}{HTML}{4B5865}
 \definecolor{Rule}{HTML}{C9D1D8}
 \definecolor{Soft}{HTML}{F6F7F8}
 \definecolor{Keyword}{HTML}{3B4B5D}
@@ -27,6 +28,7 @@
     \definecolor{Accent}{HTML}{161616}
     \definecolor{Ink}{HTML}{111111}
     \definecolor{Muted}{HTML}{565656}
+    \definecolor{Comment}{HTML}{444444}
     \definecolor{Rule}{HTML}{B3B3B3}
     \definecolor{Soft}{HTML}{F5F5F5}
     \definecolor{Keyword}{HTML}{111111}
@@ -174,7 +176,7 @@
     language=C++,
     basicstyle=\ttfamily\linespread{1}\fontsize{8.0}{8.0}\selectfont,
     keywordstyle=\color{Keyword}\bfseries,
-    commentstyle=\color{Muted},
+    commentstyle=\color{Comment},
     stringstyle=\color{String},
     numbers=left,
     numberstyle=\ttfamily\fontsize{5.6}{7}\selectfont\color{Muted},
@@ -228,6 +230,24 @@
 \def\lst@@discretionary{%
     \lst@ifdropinput\else
         \lst@break
+    \fi
+}
+
+% 分段代码接续上一段的语法状态。
+\lst@Key{resume}{false}[true]{\lstKV@SetIf{#1}\lst@ifresume}
+\lst@AddToHook{EOL}{%
+    \ifnum\lst@lineno=\lst@lastline
+        \global\let\lst@savedmodes\lst@entermodes
+    \fi
+}
+\let\lst@skipfirst\lst@MSkipToFirst
+\def\lst@MSkipToFirst{%
+    \lst@skipfirst
+    \ifnum\lst@lineno=\lst@firstline
+        \lst@ifresume
+            \lst@LeaveAllModes
+            \lst@savedmodes
+        \fi
     \fi
 }
 \makeatother
