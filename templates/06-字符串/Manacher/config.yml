@@ -1,0 +1,5 @@
+contents:
+  - name: Manacher
+    code: Manacher.cpp
+  - name: 区间判回文
+    code: Manacher_Query.cpp

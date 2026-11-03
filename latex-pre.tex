@@ -6,7 +6,7 @@
 \usepackage{fontspec}
 \usepackage{geometry}
 \usepackage{xcolor, listings, multicol, fancyhdr, titlesec, tocloft, graphicx}
-\usepackage{enumitem, needspace}
+\usepackage{enumitem}
 \usepackage[
     colorlinks,
     linkcolor=Accent,
@@ -150,9 +150,14 @@
     {\sffamily\bfseries\fontsize{8.7}{10.5}\selectfont\color{Ink}}
     {\thesubsubsection}{.5em}{}
 
+\titleformat{\paragraph}[block]
+    {\sffamily\bfseries\fontsize{8.2}{10}\selectfont\color{Ink}}
+    {\theparagraph}{.5em}{}
+
 \titlespacing*{\section}{0pt}{8pt plus 2pt}{6pt}
 \titlespacing*{\subsection}{0pt}{7pt plus 1pt}{4pt}
 \titlespacing*{\subsubsection}{0pt}{6pt plus 1pt}{3pt}
+\titlespacing*{\paragraph}{0pt}{5pt plus 1pt}{2.5pt}
 
 % 换行箭头只排版一次，后续直接复制。
 \newsavebox{\BreakMark}
@@ -221,15 +226,18 @@
 
 % 目录与通栏正文
 \renewcommand{\contentsname}{{PLACEHOLDER:CONTENTS}}
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
 \renewcommand{\cftsecfont}{\sffamily\bfseries\color{Accent}}
 \renewcommand{\cftsecpagefont}{\bfseries\color{Accent}}
 \setlength{\cftbeforesecskip}{7pt}
 \setlength{\cftbeforesubsecskip}{1.5pt}
 \setlength{\cftbeforesubsubsecskip}{.5pt}
+\setlength{\cftbeforeparaskip}{.5pt}
 \cftsetindents{section}{0em}{1.3em}
 \cftsetindents{subsection}{.6em}{2em}
 \cftsetindents{subsubsection}{1.2em}{2.7em}
+\cftsetindents{paragraph}{1.8em}{3.6em}
 
 \makeatletter
 \newenvironment{widecontent}{%
@@ -241,7 +249,12 @@
     \par
     \endgroup
 }
-\newcommand{\CompactContents}{\@starttoc{toc}}
+\newcommand{\CompactContents}{%
+    \begingroup
+    \@secpenalty=0
+    \@starttoc{toc}%
+    \endgroup
+}
 \makeatother
 \setcounter{collectmore}{-1}
 
@@ -339,10 +352,11 @@
     \color{Accent}{PLACEHOLDER:CONTENTS}\par
 }
 \vspace{3mm}
-\begin{multicols}{3}
+\begin{multicols*}{3}
+    \raggedcolumns
     \fontsize{7.7}{9.7}\selectfont
     \CompactContents
-\end{multicols}
+\end{multicols*}
 \clearpage
 
 % 正文

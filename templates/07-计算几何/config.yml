@@ -1,10 +1,10 @@
 ﻿contents:
   - name: Geometry_Rabbit
-    code: Geometry_Rabbit.cpp
+    directory: Geometry_Rabbit
   - name: Geometry_Jiangly
-    code: Geometry_Jiangly.cpp
+    directory: Geometry_Jiangly
   - name: 三维计算几何
-    code: 3D_Geometry.cpp
+    directory: 3D_Geometry
   - name: 分数点类
     code: Point_Fraction.cpp
   - name: 三角剖分

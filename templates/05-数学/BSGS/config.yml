@@ -1,0 +1,7 @@
+contents:
+  - name: 最小非负解（底数与模数互质）
+    code: BSGS.cpp
+  - name: 最小非负解（允许不互质）
+    code: BSGS_Ex.cpp
+  - name: 最小正整数解
+    code: BSGS_Pos.cpp

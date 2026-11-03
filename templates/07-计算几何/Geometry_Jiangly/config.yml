@@ -1,0 +1,15 @@
+contents:
+  - name: 点、直线与距离
+    code: Geometry_Jiangly_Base.cpp
+  - name: 点在多边形内
+    code: Geometry_Jiangly_Point_In_Polygon.cpp
+  - name: 线段求交
+    code: Geometry_Jiangly_Segment_Inter.cpp
+  - name: 线段包含于多边形
+    code: Geometry_Jiangly_Seg_In_Poly.cpp
+  - name: 半平面交
+    code: Geometry_Jiangly_Halfplane.cpp
+  - name: 凸包
+    code: Geometry_Jiangly_Hull.cpp
+  - name: 多边形面积
+    code: Geometry_Jiangly_Area.cpp

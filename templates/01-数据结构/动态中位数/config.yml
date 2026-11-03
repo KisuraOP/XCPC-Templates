@@ -1,0 +1,5 @@
+contents:
+  - name: 仅插入
+    code: Dynamic_Median_Insert.cpp
+  - name: 插入+删除
+    code: Dynamic_Median_Erase.cpp

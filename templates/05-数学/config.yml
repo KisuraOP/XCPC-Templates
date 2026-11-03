@@ -18,8 +18,8 @@
   - name: Exgcd
     code: Exgcd.cpp
   - name: BSGS
-    code: BSGS.cpp
     code-pre: BSGS-pre.tex
+    directory: BSGS
   - name: ExCRT
     code: ExCRT.cpp
     code-pre: ExCRT-pre.tex
@@ -37,6 +37,6 @@
   - name: Pollard_Rho
     code: Pollard_Rho.cpp
   - name: 位运算卷积
-    code: Bit_operation_conv.cpp
+    directory: 位运算卷积
   - name: 反射容斥
     code: Reflection_Principle.cpp

@@ -1,0 +1,7 @@
+contents:
+  - name: OR 卷积
+    code: Bit_operation_conv_OR.cpp
+  - name: AND 卷积
+    code: Bit_operation_conv_AND.cpp
+  - name: XOR 卷积
+    code: Bit_operation_conv_XOR.cpp

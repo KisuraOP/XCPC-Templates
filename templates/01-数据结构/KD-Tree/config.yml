@@ -1,0 +1,15 @@
+contents:
+  - name: KD-Tree
+    code: KDT.cpp
+  - name: 区域加，区域和
+    code: KDT_Add_Sum.cpp
+  - name: 区域加，区域极值
+    code: KDT_Add_MinMax.cpp
+  - name: 区域赋值，区域和
+    code: KDT_Assign_Sum.cpp
+  - name: 区域赋值，区域极值
+    code: KDT_Assign_Max.cpp
+  - name: 区域乘加，区域和
+    code: KDT_Affine_Sum.cpp
+  - name: 区域异或，区域和
+    code: KDT_Xor_Sum.cpp

@@ -1,0 +1,11 @@
+contents:
+  - name: 线段树合并
+    code: SegTree_Merge.cpp
+  - name: 单点修改，单点极值
+    code: SegTree_Merge_Point.cpp
+  - name: 区间加，区间查
+    code: SegTree_Merge_Add.cpp
+  - name: 区间赋值，区间查
+    code: SegTree_Merge_Assign.cpp
+  - name: 区间乘 + 加
+    code: SegTree_Merge_Affine.cpp

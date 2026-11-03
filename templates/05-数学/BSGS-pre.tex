@@ -1,6 +1,6 @@
 求解满足 $a^x\equiv b \pmod{p}$ 的最小自然数 $x$。
 
-BSGS 需保证 $p$ 为质数，扩展 BSGS 则不需要。
+普通 BSGS 要求 $\gcd(a,p)=1$，扩展版本允许不互质。
 
 求最小正整数解时，调用 \texttt{BSGS1(a,b,p)}。
 

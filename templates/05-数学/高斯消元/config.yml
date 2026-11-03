@@ -1,5 +1,9 @@
 ﻿contents:
-  - name: 普通高斯消元
-    code: Gauss.cpp
+  - name: 浮点数
+    code: Gauss_Float.cpp
+  - name: 模意义
+    code: Gauss_Mod.cpp
+  - name: 矩阵求逆
+    code: Gauss_Inverse.cpp
   - name: GF(2)+bitset
     code: Gauss_GF(2).cpp

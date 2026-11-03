@@ -1,0 +1,7 @@
+contents:
+  - name: 后缀自动机
+    code: SAM.cpp
+  - name: 例一：出现次数统计
+    code: SAM_Example_1.cpp
+  - name: 例二：最长公共子串
+    code: SAM_Example_2.cpp

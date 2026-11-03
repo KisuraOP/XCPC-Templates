@@ -13,8 +13,8 @@
     directory: 可并堆
   - name: 笛卡尔树
     code: Cartesian_Tree.cpp
-  - name: 动态中位数（对顶堆）
-    code: Dynamic_Median.cpp
+  - name: 动态中位数
+    directory: 动态中位数
   - name: 状压 RMQ
     code: Fast_RMQ.cpp
   - name: 重链剖分
@@ -32,4 +32,4 @@
   - name: 三维偏序
     code: CDQ.cpp
   - name: KD-Tree
-    code: KD_Tree.cpp
+    directory: KD-Tree

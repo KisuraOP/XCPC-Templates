@@ -1,0 +1,14 @@
+contents:
+  - name: 多项式前置
+    code: Stirling_Number_Base.cpp
+    code-pre: Stirling_Number.tex
+  - name: 多项式平移
+    code: Stirling_Number_Shift.cpp
+  - name: 第二类斯特林数：同一行
+    code: Stirling_Number_2_Row.cpp
+  - name: 第二类斯特林数：同一列
+    code: Stirling_Number_2_Col.cpp
+  - name: 无符号第一类斯特林数：同一行
+    code: Stirling_Number_1_Row.cpp
+  - name: 无符号第一类斯特林数：同一列
+    code: Stirling_Number_1_Col.cpp

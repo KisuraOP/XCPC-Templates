@@ -1,0 +1,7 @@
+contents:
+  - name: 回文自动机
+    code: PAM.cpp
+  - name: 例一：出现次数统计
+    code: PAM_Example_1.cpp
+  - name: 例二：在线回文后缀计数
+    code: PAM_Example_2.cpp

@@ -1,5 +1,9 @@
 ﻿contents:
-  - name: 静态区间第k小
+  - name: 主席树
     code: Static_Kth_Number.cpp
-  - name: 区间不同的数个数
+  - name: 例一：区间第 k 小
+    code: Static_Kth_Number_Query.cpp
+  - name: 例二：区间前 k 小之和
+    code: Static_Kth_Number_Sum.cpp
+  - name: 例三：区间不同的数个数
     code: Range_Diff_Count.cpp

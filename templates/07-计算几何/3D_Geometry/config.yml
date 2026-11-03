@@ -1,0 +1,13 @@
+contents:
+  - name: 公共部分
+    code: 3D_Geometry_Base.cpp
+  - name: 共线、共面与位置判断
+    code: 3D_Geometry_Position.cpp
+  - name: 平行与垂直
+    code: 3D_Geometry_Relation.cpp
+  - name: 相交判定
+    code: 3D_Geometry_Intersect.cpp
+  - name: 求交点与交线
+    code: 3D_Geometry_Intersection.cpp
+  - name: 距离与夹角
+    code: 3D_Geometry_Distance.cpp

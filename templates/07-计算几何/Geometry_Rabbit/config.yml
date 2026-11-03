@@ -1,0 +1,29 @@
+contents:
+  - name: 点、直线、线段与射线
+    code: Geometry_Rabbit_Base.cpp
+  - name: 多边形与凸多边形
+    code: Geometry_Rabbit_Polygon.cpp
+  - name: 圆
+    code: Geometry_Rabbit_Circle.cpp
+  - name: 圆与多边形面积交
+    code: Geometry_Rabbit_Circle_Polygon.cpp
+  - name: 凸包
+    code: Geometry_Rabbit_Hull.cpp
+  - name: 半平面交
+    code: Geometry_Rabbit_Halfplane.cpp
+  - name: 最小与最大三角形
+    code: Geometry_Rabbit_Triangle_Ext.cpp
+  - name: 最近点对
+    code: Geometry_Rabbit_Closest_Pair.cpp
+  - name: 线段相交扫描
+    code: Geometry_Rabbit_Segment_Scan.cpp
+  - name: 多边形面积并
+    code: Geometry_Rabbit_Polygon_Union.cpp
+  - name: 圆面积并
+    code: Geometry_Rabbit_Circle_Union.cpp
+  - name: 射线求交
+    code: Geometry_Rabbit_Ray_Inter.cpp
+  - name: 线段包含于多边形
+    code: Geometry_Rabbit_Seg_In_Poly.cpp
+  - name: 三角形严格相交
+    code: Geometry_Rabbit_Triangle_Inter.cpp

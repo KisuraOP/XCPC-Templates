@@ -55,23 +55,67 @@ def get_config(directory):
 
 
 # 生成代码块 LaTeX 内容
-def generate_latex_for_item(directory, item, depth):
-    latex_parts = []
-
+def generate_latex_for_item(directory, item, depth, prefix=""):
     if "name" not in item:
         raise ValueError(f"目录 {directory} 配置文件有误（未配置 name）")
 
     name = escape_latex_special_chars(item.get('name'))
 
     if depth == 0:
-        latex_parts.append(f"\\section{{{name}}}\n")
+        heading = f"\\section{{{name}}}\n"
     elif depth == 1:
-        latex_parts.append(f"\\subsection{{{name}}}\n")
+        heading = f"\\subsection{{{name}}}\n"
     elif depth == 2:
-        latex_parts.append(f"\\subsubsection{{{name}}}\n")
+        heading = f"\\subsubsection{{{name}}}\n"
+    elif depth == 3:
+        heading = f"\\paragraph{{{name}}}\n"
     else:
         raise ValueError(f"目录 {directory} 配置过深")
 
+    if "code" in item and "code-pre" not in item:
+        file_path = posixpath.join(directory, item["code"])
+        if not posixpath.isfile(file_path):
+            raise FileNotFoundError(f"code 文件不存在：{file_path}")
+        caption = escape_latex_special_chars(item.get("caption", ""))
+        source = read_file(file_path).splitlines()
+        nonempty = [i + 1 for i, line in enumerate(source) if line.strip()]
+        keep = nonempty[2] if len(nonempty) >= 3 else len(source)
+        latex_parts = ["\\begin{minipage}{\\linewidth}\n", prefix, heading]
+        if keep == len(source):
+            latex_parts.append(f"\\lstinputlisting[caption={{{caption}}}]{{{file_path}}}\n")
+        else:
+            latex_parts.append(
+                f"\\lstinputlisting[caption={{}},lastline={keep},belowskip=0pt]{{{file_path}}}\n"
+            )
+        latex_parts.append("\\end{minipage}\n")
+        if keep < len(source):
+            latex_parts.append(
+                f"\\lstinputlisting[caption={{{caption}}},firstline={keep + 1},firstnumber={keep + 1},aboveskip=0pt]{{{file_path}}}\n"
+            )
+        if "code-post" in item:
+            latex_parts.append(read_file(posixpath.join(directory, item["code-post"])))
+            latex_parts.append("\n")
+        return "\n".join(latex_parts)
+
+    if "code-pre" in item:
+        pre_path = posixpath.join(directory, item["code-pre"])
+        contents = read_file(pre_path)
+        first, separator, rest = contents.partition("\n\n")
+        latex_parts = ["\\begin{minipage}{\\linewidth}\n", prefix, heading, first,
+                       "\n\\end{minipage}\n"]
+        if separator:
+            latex_parts.extend([rest, "\n"])
+        if "code" in item:
+            file_path = posixpath.join(directory, item["code"])
+            if not posixpath.isfile(file_path):
+                raise FileNotFoundError(f"code 文件不存在：{file_path}")
+            caption = escape_latex_special_chars(item.get("caption", ""))
+            latex_parts.append(f"\\lstinputlisting[caption={{{caption}}}]{{{file_path}}}\n")
+        if "code-post" in item:
+            latex_parts.extend([read_file(posixpath.join(directory, item["code-post"])), "\n"])
+        return "\n".join(latex_parts)
+
+    latex_parts = [prefix, heading]
     for code_type in ["code-pre", "code", "code-post"]:
         if code_type not in item:
             continue
@@ -105,27 +149,34 @@ def generate_latex_from_config(directory, columns=1):
     parts = []
     headings = []
     current = None
-    for directory, item, depth in entries(directory):
+    current_env = None
+    records = list(entries(directory))
+    leaf_columns = [(i, item.get("columns", columns))
+                    for i, (_, item, _) in enumerate(records) if "directory" not in item]
+    final_columns = leaf_columns[-1][1]
+    final_start = max((i for i, count in leaf_columns if count != final_columns), default=-1)
+    for index, (directory, item, depth) in enumerate(records):
         if "directory" in item:
             headings.append(generate_latex_for_item(directory, item, depth))
             continue
         count = item.get("columns", columns)
         if count != current:
             if current is not None and current > 1:
-                parts.append("\\end{multicols}\n\\par\n\\vspace{3mm}\n")
+                parts.append(f"\\end{{{current_env}}}\n\\par\n\\vspace{{3mm}}\n")
             elif current == 1:
                 parts.append("\\end{widecontent}\n\\par\n\\vspace{3mm}\n")
             if count > 1:
-                parts.append(f"\\begin{{multicols}}{{{count}}}\n")
+                current_env = "multicols*" if index > final_start else "multicols"
+                parts.append(f"\\begin{{{current_env}}}{{{count}}}\n")
             else:
                 parts.append("\\begin{widecontent}\n")
+                current_env = "widecontent"
             current = count
-        parts.append(f"\\needspace{{{60 + 20 * len(headings)}pt}}\n")
-        parts.extend(headings)
+        prefix = "\n".join(headings)
         headings.clear()
-        parts.append(generate_latex_for_item(directory, item, depth))
+        parts.append(generate_latex_for_item(directory, item, depth, prefix))
     if current is not None and current > 1:
-        parts.append("\\end{multicols}\n")
+        parts.append(f"\\end{{{current_env}}}\n")
     elif current == 1:
         parts.append("\\end{widecontent}\n")
     return "\n".join(parts)

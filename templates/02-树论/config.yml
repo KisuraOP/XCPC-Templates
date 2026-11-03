@@ -8,7 +8,7 @@
   - name: 树上k级祖先
     code: Level_Ancestor.cpp
   - name: 树哈希
-    code: Tree_Hash.cpp
+    directory: 树哈希
   - name: 虚树
     code: Virtual_Tree.cpp
   - name: treeMaxPath

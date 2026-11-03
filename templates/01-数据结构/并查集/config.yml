@@ -1,6 +1,8 @@
 ﻿contents:
   - name: 普通并查集
     code: DSU.cpp
+  - name: 万用撤销模板
+    code: Undo_Template.cpp
   - name: 可撤销并查集
     code: Presistent_DSU.cpp
   - name: XOR_circle

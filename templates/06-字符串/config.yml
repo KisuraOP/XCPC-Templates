@@ -4,14 +4,14 @@
   - name: 二维字符串哈希
     code: Hash_2D.cpp
   - name: KMP
-    code: KMP.cpp
+    directory: KMP
   - name: Z-函数
     code: Z_Algorithm.cpp
   - name: Manacher
-    code: Manacher.cpp
+    directory: Manacher
   - name: AC自动机
     code: AC_Automaton.cpp
   - name: 后缀自动机
-    code: SAM.cpp
+    directory: 后缀自动机
   - name: 回文自动机
-    code: PAM.cpp
+    directory: 回文自动机

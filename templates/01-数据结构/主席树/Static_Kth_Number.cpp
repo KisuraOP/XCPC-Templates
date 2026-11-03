@@ -60,24 +60,3 @@ int kth_sum(int lst, int now, int k, int l = -1e9, int r = 1e9) {
 	}
 }
 
-void solve() {
-	int n, m;
-	cin >> n >> m;
-	vector<int> a(n + 1);
-	for (int i = 1; i <= n; i++) {
-		cin >> a[i];
-	}
-	vector<int> rt(n + 1);
-	for (int i = 1; i <= n; i++) {
-		rt[i] = ++tot;
-		update(rt[i - 1], rt[i], a[i], 1);
-	}
-	while (m--) {
-		int l, r, k;
-		cin >> l >> r >> k;
-		// 区间第 k 小的数
-		cout << kth(rt[l - 1], rt[r], k) << "\n";
-		// 区间前 k 小的数的和
-		cout << kth_sum(rt[l - 1], rt[r], k) << "\n";
-	}
-}
