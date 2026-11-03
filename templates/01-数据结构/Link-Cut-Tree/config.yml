@@ -1,0 +1,5 @@
+contents:
+  - name: 简易版
+    code: Link_Cut_Tree_Basic.cpp
+  - name: 完整版
+    code: Link_Cut_Tree_Full.cpp

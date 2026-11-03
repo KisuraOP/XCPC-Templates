@@ -33,3 +33,5 @@
     code: CDQ.cpp
   - name: KD-Tree
     directory: KD-Tree
+  - name: Link-Cut Tree
+    directory: Link-Cut-Tree
