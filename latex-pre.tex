@@ -222,6 +222,14 @@
         \lst@bgblock{#1}{#2}{#3}{#4}%
     \fi
 }
+
+% 跳过代码行时不插入断行节点，避免中文注释撑出空白段落。
+\let\lst@break\lst@@discretionary
+\def\lst@@discretionary{%
+    \lst@ifdropinput\else
+        \lst@break
+    \fi
+}
 \makeatother
 
 % 目录与通栏正文
