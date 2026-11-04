@@ -3,7 +3,7 @@ contents:
     code: Treap.cpp
   - name: 序列
     code: Treap_Seq.cpp
-  - name: 示例：按值批量加分
+  - name: 示例：大于等于 x 的数加 v
     code: Treap_Add.cpp
   - name: 示例：序列剪切、翻转、求和
     code: Treap_Move.cpp
