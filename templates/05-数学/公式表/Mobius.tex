@@ -14,7 +14,7 @@ $\displaystyle\sum_{d\mid n}\frac{\mu(d)}d=\frac{\varphi(n)}n,\qquad\sum_{d\mid 
 
 $\mu(n)^2=\displaystyle\sum_{d^2\mid n}\mu(d)$
 
-$\#\{1\le i\le N:\ i\text{ 无平方因子}\}=\displaystyle\sum_{d=1}^{\lfloor\sqrt N\rfloor}\mu(d)\left\lfloor\frac{N}{d^2}\right\rfloor$
+$\#\{1\le i\le N:\ i\text{ 不被任何质数的平方整除}\}=\displaystyle\sum_{d=1}^{\lfloor\sqrt N\rfloor}\mu(d)\left\lfloor\frac{N}{d^2}\right\rfloor$
 
 狄利克雷卷积：\nopagebreak[4]
 
@@ -34,11 +34,11 @@ $g(n)=\displaystyle\sum_{d\mid n}f(d)\iff f(n)=\sum_{d\mid n}\mu(d)g\left(\frac 
 
 $g(n)=\displaystyle\sum_{j=1}^{\lfloor L/n\rfloor}f(jn)\iff f(n)=\sum_{j=1}^{\lfloor L/n\rfloor}\mu(j)g(jn)$
 
-整除取整形式：\nopagebreak[4]
+含 $\lfloor n/d\rfloor$ 的反演：\nopagebreak[4]
 
 $g(n)=\displaystyle\sum_{d=1}^{n}f\left(\left\lfloor\frac nd\right\rfloor\right)\iff f(n)=\sum_{d=1}^{n}\mu(d)g\left(\left\lfloor\frac nd\right\rfloor\right)$
 
-乘积形式（各项均可逆）：\nopagebreak[4]
+乘积形式（各项均有乘法逆元）：\nopagebreak[4]
 
 $g(n)=\displaystyle\prod_{d\mid n}f(d)\iff f(n)=\prod_{d\mid n}g\left(\frac nd\right)^{\mu(d)}$
 
@@ -66,7 +66,7 @@ $\text{gcd 为 $1$ 的 $r$ 元子集数}=\displaystyle\sum_{d=1}^{L}\mu(d)\binom
 
 $\text{gcd 为 $1$ 的非空子集数}=\displaystyle\sum_{d=1}^{L}\mu(d)(2^{c_d}-1)$
 
-gcd 权值与 lcm 求和：\nopagebreak[4]
+关于 gcd 的函数求和与 lcm 求和：\nopagebreak[4]
 
 令 $h=f*\mu$，则 $f(n)=\sum_{d\mid n}h(d)$。\nopagebreak[4]
 
@@ -86,7 +86,9 @@ $\displaystyle\sum_{d=1}^{n}\mu(d)\left\lfloor\frac nd\right\rfloor=1$
 
 $\mathcal M(n)=\displaystyle\sum_{i=1}^{n}\mu(i)=1-\sum_{d=2}^{n}\mathcal M\left(\left\lfloor\frac nd\right\rfloor\right)$
 
-循环计数（长度为 $n$，每位有 $q$ 种取值）：\nopagebreak[4]
+循环串计数（长度为 $n$，每位有 $q$ 种取值）：\nopagebreak[4]
+
+将串循环移动 $d$ 位后不变的最小正整数 $d$ 称为最小循环周期。旋转后相同的串属于同一个旋转等价类。
 
 $\text{最小循环周期为 $n$ 的串数}=P(n)=\displaystyle\sum_{d\mid n}\mu(d)q^{n/d}$
 

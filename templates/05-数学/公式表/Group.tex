@@ -2,6 +2,8 @@
 
 群的阶与元素的阶：\nopagebreak[4]
 
+群的阶是群中元素的个数，$[G:H]$ 表示子群 $H$ 的陪集个数。
+
 $o(g)=\min\{r\ge1:\ g^r=e\},\qquad|H|\mid|G|,\quad[G:H]=\dfrac{|G|}{|H|}\ (H\le G)$
 
 $o(g)\mid|G|,\qquad g^a=e\iff o(g)\mid a$
@@ -15,6 +17,8 @@ $ab=ba\implies o(ab)\mid\operatorname{lcm}(o(a),o(b))$
 $ab=ba,\ \gcd(o(a),o(b))=1\implies o(ab)=o(a)o(b)$
 
 $o((g_1,\dots,g_r))=\operatorname{lcm}(o(g_1),\dots,o(g_r))\quad\text{（直积群）}$
+
+群的指数 $\exp(G)$ 是使所有 $g\in G$ 都满足 $g^r=e$ 的最小正整数 $r$。\nopagebreak[4]
 
 $\exp(G)=\operatorname{lcm}_{g\in G}o(g),\qquad\exp(G)\mid|G|$
 
@@ -38,13 +42,15 @@ $C_m\times C_n\text{ 为循环群}\iff\gcd(m,n)=1$
 
 $C_m\times C_n\cong C_{\gcd(m,n)}\times C_{\operatorname{lcm}(m,n)}$
 
+$\operatorname{Hom}(C_m,C_n)$ 是从 $C_m$ 到 $C_n$ 的群同态集合，$\operatorname{Aut}(C_m)$ 是从 $C_m$ 到 $C_m$ 的双射同态集合。\nopagebreak[4]
+
 $\#\operatorname{Hom}(C_m,C_n)=\gcd(m,n),\qquad\#\operatorname{Aut}(C_m)=\varphi(m)$
 
 $\#\text{单射同态 }C_m\to C_n=\begin{cases}\varphi(m),&m\mid n,\\0,&m\nmid n,\end{cases}\quad\#\text{满射同态 }C_m\to C_n=\begin{cases}\varphi(n),&n\mid m,\\0,&n\nmid m.\end{cases}$
 
 $\#\{x\in C_m:\ x^k=g^t\}=d[d\mid t],\qquad d=\gcd(k,m),\quad t\in\mathbb Z$
 
-模 $m$ 的加法群中，元素 $a$ 的阶为 $m/\gcd(a,m)$。若 $m\ge2$ 且 $\gcd(a,m)=1$，则 $a$ 在单位群中的阶整除 $\varphi(m)$。
+模 $m$ 的加法群中，元素 $a$ 的阶为 $m/\gcd(a,m)$。若 $m\ge2$ 且 $\gcd(a,m)=1$，则 $a$ 在模 $m$ 的可逆剩余类组成的乘法群中的阶整除 $\varphi(m)$。
 
 $p\text{ 为质数}\implies\mathbb F_p^*\cong C_{p-1},\qquad\#\text{模 $p$ 的原根}=\varphi(p-1)$
 
@@ -54,9 +60,11 @@ $\#\{x\in\mathbb F_p^*:\ x^k=1\}=\gcd(k,p-1),\quad k\ge1$
 
 设 $G$ 作用在有限集合 $X$ 上，$G_x=\{g\in G:\ gx=x\}$，$X^g=\{x\in X:\ gx=x\}$。\nopagebreak[4]
 
+能够通过 $G$ 中的元素相互变换的对象视为等价。$G\cdot x$ 是 $x$ 所在的等价类，$X/G$ 是所有等价类的集合。\nopagebreak[4]
+
 $|G\cdot x|=\dfrac{|G|}{|G_x|},\qquad\#(X/G)=\dfrac1{|G|}\displaystyle\sum_{g\in G}|X^g|$
 
-将 $n$ 个位置染成 $q$ 种有标号的颜色。群只置换位置，$c_j(g)$ 为长度 $j$ 的循环数，$c(g)=\sum_jc_j(g)$。\nopagebreak[4]
+用 $q$ 种不同颜色对 $n$ 个位置染色，群只置换位置。将 $g$ 对位置的置换分解成不相交循环，$c_j(g)$ 为长度 $j$ 的循环数，$c(g)=\sum_jc_j(g)$。\nopagebreak[4]
 
 $\displaystyle\sum_{j=1}^{n}jc_j(g)=n,\qquad|X^g|=q^{c(g)},\qquad\#\text{染色等价类}=\frac1{|G|}\sum_{g\in G}q^{c(g)}$
 
@@ -64,7 +72,7 @@ P\'olya 计数与循环指标：\nopagebreak[4]
 
 $Z_G(x_1,\dots,x_n)=\dfrac1{|G|}\displaystyle\sum_{g\in G}\prod_{j=1}^{n}x_j^{c_j(g)},\qquad\#\text{$q$ 色染色等价类}=Z_G(q,\dots,q)$
 
-用 $y_i$ 记录颜色 $i$ 出现的次数，$a_i\ge0$、$\sum_i a_i=n$。\nopagebreak[4]
+在生成函数中，用 $y_i$ 的指数记录颜色 $i$ 的出现次数，$a_i$ 表示指定的次数，$a_i\ge0$、$\sum_i a_i=n$。\nopagebreak[4]
 
 $\text{染色等价类的生成函数}=Z_G\left(\sum_{i=1}^{q}y_i,\sum_{i=1}^{q}y_i^2,\dots,\sum_{i=1}^{q}y_i^n\right)$
 
@@ -72,11 +80,13 @@ $\text{各颜色恰出现 $a_i$ 次的等价类数}=[y_1^{a_1}\cdots y_q^{a_q}]Z
 
 圆环旋转（$n,q\ge1$）：\nopagebreak[4]
 
+$N_n(q)$ 为只将旋转后相同的染色视为等价时的等价类数。将染色沿圆环旋转 $d$ 个位置后不变的最小正整数 $d$ 称为最小循环周期。\nopagebreak[4]
+
 $Z_{C_n}=\dfrac1n\displaystyle\sum_{d\mid n}\varphi(d)x_d^{n/d},\qquad N_n(q)=\frac1n\sum_{d\mid n}\varphi(d)q^{n/d}$
 
 $\text{最小循环周期为 $n$ 的染色数}=P_n(q)=\displaystyle\sum_{d\mid n}\mu(d)q^{n/d},\qquad\text{对应旋转等价类数}=\frac{P_n(q)}n$
 
-指定颜色出现次数时，令 $h=\gcd(a_1,\dots,a_q)$，$\sum_i a_i=n\ge1$。\nopagebreak[4]
+指定各颜色出现次数为 $a_1,\dots,a_q$ 时，令 $h=\gcd(a_1,\dots,a_q)$，$\sum_i a_i=n\ge1$。\nopagebreak[4]
 
 $\text{旋转等价类数}=\dfrac1n\displaystyle\sum_{d\mid h}\varphi(d)\binom{n/d}{a_1/d,\dots,a_q/d}$
 

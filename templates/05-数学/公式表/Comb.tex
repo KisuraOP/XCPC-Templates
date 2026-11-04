@@ -8,7 +8,7 @@ $\text{从 $n$ 个不同元素中有序选取 $r$ 个}=n^{\underline r},\quad 0\
 
 $\text{$n$ 个不同元素的圆排列数}=(n-1)!,\quad n\ge1$
 
-圆排列只将旋转视为等价。多重集排列中，$n_1+\cdots+n_r=n$，$r\ge1$。
+圆排列中，旋转后相同的排列视为同一种。多重集排列中，第 $i$ 种元素有 $n_i$ 个，同种元素不作区分，$n_1+\cdots+n_r=n$，$r\ge1$。
 
 $\binom{n}{n_1,\dots,n_r}=\dfrac{n!}{n_1!\cdots n_r!}$
 
@@ -64,6 +64,8 @@ $\text{$n$ 个不同元素到 $r$ 个不同元素的满射数}=r!S(n,r)=\display
 
 错排与位置选择：\nopagebreak[4]
 
+$D_n$ 是 $n$ 个不同元素的错排数，即每个元素都不在原位置的排列数。不动点是排列中仍处于原位置的元素。
+
 $D_0=1,\quad D_1=0,\quad D_n=n!\displaystyle\sum_{k=0}^{n}\frac{(-1)^k}{k!}$
 
 $D_n=(n-1)(D_{n-1}+D_{n-2}),\quad n\ge2$
@@ -72,7 +74,7 @@ $\text{$n$ 元排列中恰有 $r$ 个不动点的排列数}=\binom nr D_{n-r},\q
 
 $\text{从 $n$ 个线性排列的位置中选 $r$ 个互不相邻的位置}=\binom{n-r+1}r$
 
-路径计数（有 $a$ 次 $+1$、$b$ 次 $-1$，$a\ge b\ge0$）：\nopagebreak[4]
+路径计数（排列由 $a$ 个 $+1$ 和 $b$ 个 $-1$ 组成，$a\ge b\ge0$）：\nopagebreak[4]
 
 $\text{所有前缀和非负的排列数}=\binom{a+b}b-\binom{a+b}{b-1}=\dfrac{a-b+1}{a+1}\binom{a+b}b$
 

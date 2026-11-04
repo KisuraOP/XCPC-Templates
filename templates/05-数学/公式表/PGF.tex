@@ -1,5 +1,7 @@
 设离散型随机变量 $X\in\{0,1,2,\dots\}$，则 $G_X(z)=\sum_{n\ge0}P(X=n)z^n$。
 
+记 $[z^n]G_X(z)$ 为 $G_X(z)$ 中 $z^n$ 的系数，$G_X^{(k)}$ 为 $k$ 阶导数，$X^{\underline k}=X(X-1)\cdots(X-k+1)$（$k=0$ 时为 $1$）。$\begin{Bmatrix}k\\i\end{Bmatrix}$ 是第二类斯特林数。
+
 基本结论：
 
 $P(X=n)=[z^n]G_X(z)$
@@ -14,17 +16,17 @@ $\operatorname{Var}(X)=G_X''(1)+G_X'(1)-G_X'(1)^2$
 
 独立变量：
 
-若 $S=X_1+\cdots+X_n$ 且相互独立，则 $G_S(z)=\prod_{i=1}^nG_{X_i}(z)$。
+若 $X_1,\dots,X_n$ 相互独立，且 $S=X_1+\cdots+X_n$，则 $G_S(z)=\prod_{i=1}^nG_{X_i}(z)$。
 
-若 $X_i$ 独立同分布，则 $G_S(z)=G_X(z)^n$。
+若各 $X_i$ 与 $X$ 同分布且相互独立，则 $G_S(z)=G_X(z)^n$。
 
 随机次数求和：
 
-若 $S=X_1+\cdots+X_N$，且 $N$ 与 $X_i$ 独立、$X_i$ 独立同分布，则 $G_S(z)=G_N(G_X(z))$。
+若各 $X_i$ 与 $X$ 同分布且相互独立，$N$ 与整个序列 $(X_i)$ 独立，令 $S=X_1+\cdots+X_N$，则 $G_S(z)=G_N(G_X(z))$。
 
 常见离散分布的 PGF：
 
-以下约定 $q=1-p$，$k\ge0$。其中几何分布取 “成功前失败次数” 作为随机变量，负二项分布取 “第 $r$ 次成功前失败次数” 作为随机变量。
+以下约定 $q=1-p$，$k\ge0$。几何分布与负二项分布均基于成功概率为 $p$ 的独立重复试验：前者记录首次成功前的失败次数，后者记录第 $r$ 次成功前的失败次数。
 
 
 1. 伯努利分布
@@ -88,6 +90,8 @@ $G'(z)=\dfrac1{m+1}\displaystyle\sum_{j=1}^{m} jz^{j-1}$
 $G^{(k)}(z)=\dfrac1{m+1}\displaystyle\sum_{j=k}^{m} j^{\underline{k}}z^{j-k}$
 
 7. 超几何分布
+
+总体有 $N$ 个物品，其中 $K$ 个为目标物品。从中不放回地等概率抽取 $n$ 个，$X$ 表示抽到的目标物品数。
 
 设 $k_{\min}=\max(0,n-(N-K)),\qquad k_{\max}=\min(K,n)$
 
