@@ -1,0 +1,9 @@
+contents:
+  - name: 点分治
+    code: Centroid.cpp
+  - name: 点分树
+    code: Centroid_Tree.cpp
+  - name: 示例：距离不超过 K 的点对数
+    code: Centroid_Pairs.cpp
+  - name: 示例：动态点权的距离和
+    code: Centroid_Sum.cpp

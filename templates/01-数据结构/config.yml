@@ -35,3 +35,5 @@
     directory: KD-Tree
   - name: Link-Cut Tree
     directory: Link-Cut-Tree
+  - name: 点分树
+    directory: 点分树

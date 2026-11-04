@@ -1,5 +1,4 @@
 // 时间复杂度: 插入摊还 O(log^2 n), 修改、查询 O(log^2 n + n^{1 - 1 / k})
-// 空间复杂度: 严格 O(n)
 
 template <class Info, typename T = int>
 struct Pt {
