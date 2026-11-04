@@ -21,8 +21,8 @@
     code: HLD.cpp
   - name: 莫队
     code: Mo_Algorithm.cpp
-  - name: pbds 平衡树
-    code: Balanced_Tree(with pbds).cpp
+  - name: 平衡树
+    directory: 平衡树
   - name: 线段树优化建图
     code: Add_Edge_with_SegTree.cpp
   - name: set 维护区间并
