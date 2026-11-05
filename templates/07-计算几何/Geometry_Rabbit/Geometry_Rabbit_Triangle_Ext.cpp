@@ -6,21 +6,21 @@
 pair<T,T> minmax_triangle(const vector<Point> &vec)
 {
     if (vec.size()<=2) return {0,0};
-    vector<pair<int,int>> evt;
+    vector<array<int,2>> evt;
     evt.reserve(vec.size()*vec.size());
     T maxans=0,minans=INF;
-    for (size_t i=0;i<vec.size();i++)
+    for (int i=0;i<vec.size();i++)
     {
-        for (size_t j=0;j<vec.size();j++)
+        for (int j=0;j<vec.size();j++)
         {
             if (i==j) continue;
             if (vec[i].x==vec[j].x && vec[i].y==vec[j].y) minans=0;
             else evt.push_back({i,j});
         }
     }
-    sort(evt.begin(),evt.end(),[&](const pair<int,int> &u,const pair<int,int> &v)
+    sort(evt.begin(),evt.end(),[&](const array<int,2> &u,const array<int,2> &v)
     {
-        const Point du=vec[u.second]-vec[u.first],dv=vec[v.second]-vec[v.first];
+        const Point du=vec[u[1]]-vec[u[0]],dv=vec[v[1]]-vec[v[0]];
         if ((du^dv)==0 && du.quad()==dv.quad()) return du.x?abs(du.x)>abs(dv.x):abs(du.y)>abs(dv.y);
         return Argcmp()({du.y,-du.x},{dv.y,-dv.x});
     });

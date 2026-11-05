@@ -4,7 +4,7 @@ auto dijkstra = [&] (int S) {
 	dis.assign(n + 1, inf);
 	vis.assign(n + 1, false);
 
-	#define P pair<int, int>
+	using P = array<int, 2>;
 	priority_queue<P, vector<P>, greater<P>> Q;
 	Q.push({0, S});
 	dis[S] = 0;

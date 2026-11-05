@@ -91,7 +91,7 @@ struct Dinic {
 	bool dijkstra(int S, int T) {
 		dis.assign(n + 1, inf);
 		pre.assign(n + 1, -1);
-		#define Pair pair<int, int>
+		using Pair = array<int, 2>;
 		priority_queue<Pair, vector<Pair>, greater<Pair>> q;
 		dis[S] = 0;
 		q.push({0, S});

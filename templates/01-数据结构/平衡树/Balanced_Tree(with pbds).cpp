@@ -3,7 +3,7 @@
 using namespace __gnu_pbds; 
 struct node {
 	int cnt;
-	tree<pair<int, int>, null_type, less<pair<int, int>>,  
+	tree<array<int, 2>, null_type, less<array<int, 2>>,
 		 rb_tree_tag, tree_order_statistics_node_update> t; 
 	node() : cnt(0) {}
 
@@ -24,16 +24,16 @@ struct node {
 
 	// 第 k 小的数
 	int kth(int k) {
-		return t.find_by_order(k - 1)->first;
+		return (*t.find_by_order(k - 1))[0];
 	}
 
 	// 最大的严格小于 x 的数
 	int getpre(int x) {
-		return (--t.lower_bound({x, 1}))->first;
+		return (*--t.lower_bound({x, 1}))[0];
 	}
 
 	// 最小的严格大于 x 的数
 	int getnxt(int x) {
-		return t.upper_bound({x, inf})->first;
+		return (*t.upper_bound({x, inf}))[0];
 	}
 };
