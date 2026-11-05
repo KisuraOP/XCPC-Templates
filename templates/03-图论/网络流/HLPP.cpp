@@ -138,7 +138,7 @@ class HLPP {
 					maxh = max(maxh, h[e.to]);
 				}
 			}
-			for ( ; maxh; maxh--) {
+			for ( ; maxh > 0; maxh--) {
 				while (~ovlist[maxh]) {
 					int u = ovlist[maxh];
 					ovlist[maxh] = ovnex[u];

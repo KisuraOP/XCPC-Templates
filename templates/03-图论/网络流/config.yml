@@ -1,8 +1,16 @@
 ﻿contents:
   - name: 最大流
     code: maxFlow.cpp
+  - name: 最大流（扩展版）
+    code: maxFlow_Ext.cpp
   - name: 最小费用最大流
     code: maxFlow_minCost.cpp
+  - name: 最小费用最大流（扩展版）
+    code: maxFlow_minCost_Ext.cpp
+  - name: 修改边费用后的最小费用流
+    code: maxFlow_minCost_Cancel.cpp
+  - name: 示例：凸费用流
+    code: maxFlow_minCost_Convex.cpp
   - name: 最高标号预流推进
     code: HLPP.cpp
   - name: 全局最小割(Stoer_Wagner)
