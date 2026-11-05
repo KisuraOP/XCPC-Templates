@@ -8,12 +8,12 @@ ml[x] 表示第 x 个左部点匹配的右部点编号，0 表示未匹配。
 mr[y] 表示第 y 个右部点匹配的左部点编号，0 表示未匹配。
 */
 struct HK {
-	vector<pair<int, int>> adj, ed;
+	vector<array<int, 2>> adj, ed;
 	vector<int> e, ml, mr, dis, cur, q, vs;
 	HK(int n, int m) : adj(n + 1), ml(n + 1), mr(m + 1),
 	dis(n + 1), cur(n + 1), q(n) {}
 	void add(int x, int y) {
-		if (!adj[x].second++) {
+		if (!adj[x][1]++) {
 			vs.push_back(x);
 		}
 		ed.push_back({x, y});
@@ -23,7 +23,7 @@ struct HK {
 		for (auto i : vs) {
 			dis[i] = ml[i] ? -1 : aug ? i : 0;
 			if (!ml[i]) {
-				cur[i] = aug ? 0 : adj[i].first;
+				cur[i] = aug ? 0 : adj[i][0];
 				q[r++] = i;
 			}
 		}
@@ -32,7 +32,7 @@ struct HK {
 			if (aug && ml[dis[x]]) {
 				continue;
 			}
-			for (int i = adj[x].first; i < adj[x].second; i++) {
+			for (int i = adj[x][0]; i < adj[x][1]; i++) {
 				int y = e[i], z = mr[y];
 				if (!z) {
 					cnt++;
@@ -46,7 +46,7 @@ struct HK {
 					}
 				} else if (dis[z] == -1) {
 					dis[z] = dis[x] + !aug;
-					cur[z] = aug ? x : adj[z].first;
+					cur[z] = aug ? x : adj[z][0];
 					q[r++] = z;
 				}
 			}
@@ -58,7 +58,7 @@ struct HK {
 		q[r++] = x;
 		while (r) {
 			x = q[r - 1];
-			if (cur[x] == adj[x].second) {
+			if (cur[x] == adj[x][1]) {
 				dis[x] = -1;
 				r--;
 				continue;
@@ -84,7 +84,7 @@ struct HK {
 		e.resize(ed.size());
 		for (auto x : vs) {
 			cur[x] = cnt;
-			cnt += adj[x].second;
+			cnt += adj[x][1];
 			adj[x] = {cur[x], cnt};
 		}
 		for (auto [x, y] : ed) {
