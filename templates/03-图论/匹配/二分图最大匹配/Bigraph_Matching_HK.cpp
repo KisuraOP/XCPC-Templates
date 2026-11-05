@@ -3,71 +3,98 @@
 HK G(n, m); n 是左部点数，m 是右部点数。
 G.add(x, y); 连接第 x 个左部点和第 y 个右部点。
 int ans = G.solve();
+
+ml[x] 表示第 x 个左部点匹配的右部点编号，0 表示未匹配。
+mr[y] 表示第 y 个右部点匹配的左部点编号，0 表示未匹配。
 */
 struct HK {
-	vector<vector<int>> adj;
-	vector<int> ml, mr, dis, cur, q, vs;
+	vector<pair<int, int>> adj, ed;
+	vector<int> e, ml, mr, dis, cur, q, vs;
 	HK(int n, int m) : adj(n + 1), ml(n + 1), mr(m + 1),
 	dis(n + 1), cur(n + 1), q(n) {}
 	void add(int x, int y) {
-		if (adj[x].empty()) {
+		if (!adj[x].second++) {
 			vs.push_back(x);
 		}
-		adj[x].push_back(y);
+		ed.push_back({x, y});
 	}
-	int bfs() {
-		int l = 0, r = 0;
-		dis[0] = -1;
+	int bfs(bool aug = false) {
+		int l = 0, r = 0, cnt = 0;
 		for (auto i : vs) {
-			cur[i] = 0;
-			dis[i] = ml[i] ? -1 : 0;
+			dis[i] = ml[i] ? -1 : aug ? i : 0;
 			if (!ml[i]) {
+				cur[i] = aug ? 0 : adj[i].first;
 				q[r++] = i;
 			}
 		}
 		while (l < r) {
 			int x = q[l++];
-			if (dis[0] != -1 && dis[x] >= dis[0]) {
+			if (aug && ml[dis[x]]) {
 				continue;
 			}
-			for (auto y : adj[x]) {
-				int z = mr[y];
-				if (dis[z] == -1) {
-					dis[z] = dis[x] + 1;
-					if (z) {
-						q[r++] = z;
+			for (int i = adj[x].first; i < adj[x].second; i++) {
+				int y = e[i], z = mr[y];
+				if (!z) {
+					cnt++;
+					if (aug) {
+						while (y) {
+							mr[y] = x;
+							swap(ml[x], y);
+							x = cur[x];
+						}
+						break;
 					}
+				} else if (dis[z] == -1) {
+					dis[z] = dis[x] + !aug;
+					cur[z] = aug ? x : adj[z].first;
+					q[r++] = z;
 				}
 			}
 		}
-		return dis[0] != -1;
+		return cnt;
 	}
 	int dfs(int x) {
-		for (int &i = cur[x]; i < adj[x].size(); i++) {
-			int y = adj[x][i];
-			int z = mr[y];
-			if (dis[z] == dis[x] + 1 && (!z || dfs(z))) {
-				ml[x] = y;
-				mr[y] = x;
+		int r = 0;
+		q[r++] = x;
+		while (r) {
+			x = q[r - 1];
+			if (cur[x] == adj[x].second) {
+				dis[x] = -1;
+				r--;
+				continue;
+			}
+			int y = e[cur[x]++], z = mr[y];
+			if (!z) {
+				while (r) {
+					x = q[--r];
+					mr[y] = x;
+					swap(ml[x], y);
+					dis[x] = -1;
+				}
 				return true;
 			}
+			if (dis[z] == dis[x] + 1) {
+				q[r++] = z;
+			}
 		}
-		dis[x] = -1;
 		return false;
 	}
 	int solve() {
-		int ans = 0;
+		int ans = 0, cnt = 0, d = 1;
+		e.resize(ed.size());
 		for (auto x : vs) {
-			for (auto y : adj[x]) {
-				if (!mr[y]) {
-					ml[x] = y;
-					mr[y] = x;
-					ans++;
-					break;
-				}
-			}
+			cur[x] = cnt;
+			cnt += adj[x].second;
+			adj[x] = {cur[x], cnt};
 		}
-		while (bfs()) {
+		for (auto [x, y] : ed) {
+			e[cur[x]++] = y;
+		}
+		for (int i = 0; d && i * i < vs.size(); i++) {
+			d = bfs(true);
+			ans += d;
+		}
+		while (d && bfs()) {
 			for (auto i : vs) {
 				if (!ml[i]) {
 					ans += dfs(i);
