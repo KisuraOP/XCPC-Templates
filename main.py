@@ -1,6 +1,8 @@
 from datetime import date
+import os
 import posixpath
 import re
+import subprocess
 
 import yaml
 
@@ -182,6 +184,19 @@ def generate_latex_from_config(directory, columns=1):
     return "\n".join(parts)
 
 
+def git_tag(directory):
+    if os.environ.get("GITHUB_REF_TYPE") == "tag":
+        return os.environ.get("GITHUB_REF_NAME", "")
+    try:
+        result = subprocess.run(
+            ["git", "describe", "--tags", "--exact-match", "HEAD"],
+            cwd=directory, capture_output=True, text=True,
+        )
+    except FileNotFoundError:
+        return ""
+    return result.stdout.strip() if result.returncode == 0 else ""
+
+
 def generate_latex(root_dir):
     config = get_config(root_dir)
 
@@ -201,6 +216,9 @@ def generate_latex(root_dir):
         val = "" if val is None else str(val)
         if key == "date":
             val = date.today().strftime(val)
+        if key == "version" and "{tag}" in val:
+            tag = git_tag(root_dir)
+            val = val.replace("{tag}", tag) if tag else ""
         return escape_latex_special_chars(val)
 
     latex_pre = re.sub(r"\{PLACEHOLDER:([A-Z-]+)\}", repl, latex_pre)

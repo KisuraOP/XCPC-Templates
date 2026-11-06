@@ -10,9 +10,10 @@ environment: templates/Environment.tex
 text:
   subtitle: 算法竞赛模板
   env-title: 编写环境
-  layout: 三栏 8 pt /
+  layout: 三栏 8pt /
   color: 彩色版
   mono: 黑白打印版
+  version: " / {tag}"
   date: "%Y年%m月%d日"
   header: UESTC / EndlessEmbrace
   footer: XCPC TEMPLATES
