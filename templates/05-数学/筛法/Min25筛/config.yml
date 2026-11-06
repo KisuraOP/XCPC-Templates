@@ -1,0 +1,8 @@
+contents:
+  - name: Min_25 筛
+    code: Min25.cpp
+    code-pre: Min25-pre.tex
+  - name: 示例：欧拉函数平方的前缀和
+    code: Min25_Example.cpp
+  - name: 示例：质数平方的前缀和
+    code: Min25_Prime.cpp

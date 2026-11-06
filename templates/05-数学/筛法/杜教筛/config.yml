@@ -1,0 +1,6 @@
+contents:
+  - name: 杜教筛
+    code: Du.cpp
+    code-pre: Du-pre.tex
+  - name: 示例：欧拉函数、莫比乌斯函数前缀和
+    code: Du_Example.cpp

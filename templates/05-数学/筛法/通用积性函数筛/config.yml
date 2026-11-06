@@ -1,0 +1,5 @@
+contents:
+  - name: 通用积性函数筛
+    code: Sieve.cpp
+  - name: 示例：欧拉函数，莫比乌斯函数，约数个数，约数和
+    code: Sieve_Example.cpp

@@ -3,3 +3,9 @@
     code: Prime_Minp_Phi_Mu.cpp
   - name: 约数个数，约数和
     code: Divisor_Count.cpp
+  - name: 通用积性函数筛
+    directory: 通用积性函数筛
+  - name: 杜教筛
+    directory: 杜教筛
+  - name: Min_25 筛
+    directory: Min25筛

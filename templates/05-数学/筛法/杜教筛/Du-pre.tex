@@ -1,0 +1,7 @@
+求 $S(n)=\sum_{i\le n}f(i)$。选取 $g(1)=1$ 的辅助函数，记 $G,H$ 分别为 $g,f*g$ 的前缀和，则
+\[
+S(n)=H(n)-\sum_{i=2}^{n}g(i)S(\lfloor n/i\rfloor).
+\]
+对相同的 $\lfloor n/i\rfloor$ 分块，用 $G(r)-G(l-1)$ 求出该段系数，并记忆化 $S$。
+
+若 $G,H$ 的求值及缓存查询均按 $O(1)$ 计，预处理前 $B\ge\sqrt n$ 项前缀和的时间为 $O(B)$，则一次查询连同预处理为 $O(B+n/\sqrt B)$；取 $B\asymp n^{2/3}$ 时为 $O(n^{2/3})$。
