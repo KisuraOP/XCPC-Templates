@@ -10,7 +10,7 @@
   - name: 圆方树
     code: Block_Tree.cpp
   - name: 基环树
-    code: Pseudo_Tree.cpp
+    directory: 基环树
   - name: 2-SAT
     code: Two_Sat.cpp
   - name: 网格图转对偶图
