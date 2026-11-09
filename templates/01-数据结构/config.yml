@@ -9,6 +9,8 @@
     directory: 主席树
   - name: 李超树
     directory: 李超树
+  - name: 凸包优化（Convex Hull Trick）
+    directory: CHT
   - name: 可并堆
     directory: 可并堆
   - name: 笛卡尔树

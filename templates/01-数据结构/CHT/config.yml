@@ -1,0 +1,9 @@
+contents:
+  - name: 单调斜率
+    code: CHT.cpp
+    code-pre: CHT-pre.tex
+  - name: 任意斜率
+    code: CHT_Dynamic.cpp
+  - name: 示例：平方代价 DP
+    code: CHT_Example.cpp
+    code-pre: CHT_Example-pre.tex
