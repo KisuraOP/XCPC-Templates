@@ -11,7 +11,7 @@
   - name: 日期计算
     code: Day_Calc.cpp
   - name: 分数类
-    code: Fraction.cpp
+    directory: 分数类
   - name: De_Bruijn序列生成
     code: De_Bruijn.cpp
   - name: 火车头
