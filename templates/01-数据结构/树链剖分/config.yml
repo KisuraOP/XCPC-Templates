@@ -1,0 +1,14 @@
+contents:
+  - name: 重链剖分
+    code: HLD.cpp
+  - name: 重链剖分扩展
+    code: HLD_Ext.cpp
+  - name: 示例：路径与子树加、求和
+    code: HLD_Sum.cpp
+  - name: 示例：路径函数复合
+    code: HLD_Order.cpp
+  - name: 长链剖分
+    code: LLD.cpp
+  - name: 示例：子树中节点数最多的深度
+    code: LLD_DP.cpp
+    code-pre: LLD_DP-pre.tex

@@ -1,3 +1,19 @@
+/*
+HLD h(adj, rt);
+
+h.LCA(x, y) 返回最近公共祖先。
+h.jump(x, k) 返回 x 的 k 级祖先，若不存在则返回 0。
+
+h.path(x, y, f) 将路径上的点分成若干闭区间，逐段调用 f(l, r)。
+各段不保证按从 x 到 y 的顺序调用。
+需要按路径顺序处理时，使用 HLD_Ext.cpp 中的 walk。
+h.path(x, y, f, true) 用于边权，边权存到较深端点。
+
+dfn[x] 是 x 的 DFS 序，rev[i] 是第 i 个访问的点。
+x 的子树对应 [dfn[x], dfn[x] + sz[x] - 1]。
+
+预处理 O(n)，LCA、jump 和路径分段 O(log n)，不含回调开销。
+*/
 struct HLD {
 	int n, tim;
 	vector<vector<int>> adj;
@@ -49,34 +65,30 @@ struct HLD {
 		} 
 		return (dep[x] < dep[y] ? x : y);
 	}
-	void path_add(LazySegmentTree<Info, Tag> &seg, 
-				  int x, int y, const Tag &w) {
-		while (top[x] != top[y]) {
-			if (dep[top[x]] < dep[top[y]]) {
-				swap(x, y);
-			}
-			seg.modify(dfn[top[x]], dfn[x], {w});
+	int jump(int x, int k) {
+		if (k >= dep[x]) {
+			return 0;
+		}
+		int d = dep[x] - k;
+		while (dep[top[x]] > d) {
 			x = fa[top[x]];
 		}
-		if (dep[x] > dep[y]) {
-			swap(x, y);
-		}
-		seg.modify(dfn[x], dfn[y], {w});
+		return rev[dfn[x] - dep[x] + d];
 	}
-	Z path_query(LazySegmentTree<Info, Tag> &seg, 
-				 int x, int y) {
-		Z res = 0;
+	template<class F>
+	void path(int x, int y, F &&f, bool edge = false) {
 		while (top[x] != top[y]) {
 			if (dep[top[x]] < dep[top[y]]) {
 				swap(x, y);
 			}
-			res += seg.query(dfn[top[x]], dfn[x]).sum;
+			f(dfn[top[x]], dfn[x]);
 			x = fa[top[x]];
 		}
 		if (dep[x] > dep[y]) {
 			swap(x, y);
 		}
-		res += seg.query(dfn[x], dfn[y]).sum;
-		return res;
+		if (dfn[x] + edge <= dfn[y]) {
+			f(dfn[x] + edge, dfn[y]);
+		}
 	}
 };

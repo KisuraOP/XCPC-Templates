@@ -19,8 +19,8 @@
     directory: 动态中位数
   - name: 状压 RMQ
     code: Fast_RMQ.cpp
-  - name: 重链剖分
-    code: HLD.cpp
+  - name: 树链剖分
+    directory: 树链剖分
   - name: 莫队
     code: Mo_Algorithm.cpp
   - name: 平衡树
