@@ -6,12 +6,6 @@ pairs(t, k);
 加完边后直接调用 pairs，不要先调用 t.build。
 
 时间复杂度 O(n log^2 n)。
-
-示例：
-Centroid t(3);
-t.add(1, 2, 2);
-t.add(2, 3, 3);
-cout << pairs(t, 3); // 2
 */
 int pairs(Centroid &t, int k) {
 	auto calc = [&](vector<int> &a) {

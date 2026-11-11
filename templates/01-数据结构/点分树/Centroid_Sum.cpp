@@ -11,19 +11,6 @@ t.ask(x);
 将每个点的权值乘以该点到 x 的距离，返回总和。
 
 修改、查询的时间复杂度均为 O(log n)。
-
-示例：
-CSum t(3);
-t.add(1, 2, 2);
-t.add(2, 3, 3);
-t.build();
-
-t.inc(1, 4);
-t.inc(3, 1);
-cout << t.ask(2); // 11
-
-t.inc(1, -4);
-cout << t.ask(2); // 3
 */
 struct CSum : CTree {
 	vector<int> cnt, sum, cs, ds;

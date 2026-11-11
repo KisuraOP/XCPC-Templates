@@ -65,7 +65,6 @@ struct LiChao {
     	if (xl > xr) {
     		return ;
     	} 
-    	assert(xl >= L && xr <= R);
         insert(1, L, R, xl, xr, x);
     }
     int query(int p, int l, int r, int x) {
