@@ -1,0 +1,15 @@
+设点权为 $a_x$，边权为 $w_{xy}$。先以 $rt$ 为根，在子树内计算
+\[
+\begin{aligned}
+s_x&=a_x+\sum_{y\text{ 为 }x\text{ 的孩子}}s_y,\\
+\mathrm{ans}_x&=\sum_{y\text{ 为 }x\text{ 的孩子}}(\mathrm{ans}_y+w_{xy}s_y).
+\end{aligned}
+\]
+此时 $\mathrm{ans}_{rt}$ 就是根到所有点的加权距离和。
+
+已知以 $x$ 为根的答案，沿权重为 $w$ 的边换根到孩子 $y$：$y$ 子树内各点的距离减少 $w$，子树外增加 $w$。记 $S=s_{rt}$，则
+\[
+\mathrm{ans}_y=\mathrm{ans}_x-ws_y+w(S-s_y)
+=\mathrm{ans}_x+w(S-2s_y).
+\]
+总时间复杂度 $O(n)$。

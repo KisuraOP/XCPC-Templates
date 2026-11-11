@@ -1,0 +1,13 @@
+contents:
+  - name: 点权距离和
+    code: Reroot_Sum.cpp
+    code-pre: Reroot_Sum-pre.tex
+  - name: 最远点（前三大）
+    code: Reroot_Max.cpp
+    code-pre: Reroot_Max-pre.tex
+  - name: 连通子树计数
+    code: Reroot_Count.cpp
+    code-pre: Reroot_Count-pre.tex
+  - name: 强制选点的最大权独立集
+    code: Reroot_Indep.cpp
+    code-pre: Reroot_Indep-pre.tex
