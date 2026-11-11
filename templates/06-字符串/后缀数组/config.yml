@@ -1,0 +1,9 @@
+contents:
+  - name: 倍增
+    code: SA.cpp
+  - name: SA-IS
+    code: SA_IS.cpp
+  - name: height 与 LCP 查询
+    code: SA_LCP.cpp
+  - name: 子串比较与不同子串计数
+    code: SA_Example.cpp

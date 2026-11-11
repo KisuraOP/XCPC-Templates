@@ -7,11 +7,23 @@
     directory: KMP
   - name: Z-函数
     code: Z_Algorithm.cpp
+  - name: 最小表示法
+    code: Min_Rep.cpp
+  - name: Lyndon 分解
+    code: Lyndon.cpp
+    code-pre: Lyndon-pre.tex
   - name: Manacher
     directory: Manacher
+  - name: 子序列自动机
+    code: Subseq.cpp
   - name: AC自动机
     code: AC_Automaton.cpp
+  - name: 后缀数组
+    directory: 后缀数组
   - name: 后缀自动机
     directory: 后缀自动机
   - name: 回文自动机
     directory: 回文自动机
+  - name: Runs（极大重复子串）
+    code: Runs.cpp
+    code-pre: Runs-pre.tex
