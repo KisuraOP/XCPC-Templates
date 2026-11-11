@@ -1,7 +1,7 @@
 /*
 int ans = half(w, v, m);
 每件物品至多选一次，返回总重量不超过 m 的最大价值。
-适合物品数较少、容量很大的情形，时间复杂度 O(n 2^(n/2))。
+时间复杂度 O(n 2^(n/2))。
 */
 int half(const vector<int> &w, const vector<int> &v, int m) {
     int n = w.size() - 1;

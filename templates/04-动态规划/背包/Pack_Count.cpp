@@ -5,8 +5,8 @@ del01(f, w); 删除一件重量 w 的物品。
 addall(f, w); 插入一种重量 w、数量不限的物品。
 delall(f, w); 删除一种重量 w、数量不限的物品。
 
-count(f, w, c); 插入一种重量 w、至多 c 件的物品，c >= 0。
-以上操作均为 O(m)，需要定义 mod。
+count(f, w, c); 插入一种重量为 w、数量上限为 c 的物品。
+以上操作均为 O(m)。
 */
 void add01(vector<int> &f, int w) {
     for (int j = f.size() - 1; j >= w; j--) {

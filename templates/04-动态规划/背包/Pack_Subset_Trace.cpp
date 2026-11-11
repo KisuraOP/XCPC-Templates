@@ -1,7 +1,7 @@
 /*
 auto a = subset(w, s);
 返回凑出重量 s 的一组物品编号，每件至多选一次。
-若无解则返回 {-1}；s = 0 时返回空数组。
+若无解则返回 {-1}。
 */
 vector<int> subset(const vector<int> &w, int s) {
     bitset<N> f(1);

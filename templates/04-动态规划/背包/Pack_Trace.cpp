@@ -1,7 +1,7 @@
 /*
 auto res = trace(w, v, m);
-每件物品至多选一次，res.first 为总重量不超过 m 的最大价值，
-res.second 为对应的一组物品编号，时间复杂度 O(nm)。
+res.first 为总重量不超过 m 的最大价值，res.second 为所选物品编号。
+每件物品至多选一次，时间复杂度 O(nm)。
 */
 pair<int, vector<int>> trace(const vector<int> &w, const vector<int> &v, int m) {
     int n = w.size() - 1;

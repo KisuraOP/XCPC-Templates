@@ -2,7 +2,7 @@
 依赖 Pack.cpp 的 zero，与单调队列版二选一。
 
 multi(f, w, v, c);
-加入重量 w、价值 v、至多 c 件的物品，c >= 0。
+加入至多 c 件重量为 w、价值为 v 的物品。
 时间复杂度 O(m log c)。
 */
 void multi(vector<int> &f, int w, int v, int c) {
