@@ -29,51 +29,40 @@ walk 从邻居 y 出发遍历这棵子树，传给函数的 s 是 z 到重心 x 
 */
 struct Centroid {
 	vector<vector<array<int, 2>>> adj;
-	vector<int> sz, fa, del;
-	Centroid(int n) : adj(n + 1), sz(n + 1), fa(n + 1), del(n + 1) {}
+	vector<int> sz, del;
+	Centroid(int n) : adj(n + 1), sz(n + 1), del(n + 1) {}
 	void add(int x, int y, int w = 1) {
 		adj[x].push_back({y, w});
 		adj[y].push_back({x, w});
 	}
+	void dfs1(int x, int p) {
+		sz[x] = 1;
+		for (auto [y, w] : adj[x]) {
+			if (y != p && !del[y]) {
+				dfs1(y, x);
+				sz[x] += sz[y];
+			}
+		}
+	}
+	int dfs2(int x, int p, int n) {
+		for (auto [y, w] : adj[x]) {
+			if (y != p && !del[y] && sz[y] * 2 > n) {
+				return dfs2(y, x, n);
+			}
+		}
+		return x;
+	}
 	int root(int x) {
-		vector<int> v{x};
-		fa[x] = 0;
-		for (int i = 0; i < v.size(); i++) {
-			int u = v[i];
-			for (auto [y, w] : adj[u]) {
-				if (y != fa[u] && !del[y]) {
-					fa[y] = u;
-					v.push_back(y);
-				}
-			}
-		}
-		int n = v.size(), rt = x;
-		for (int i = n - 1; i >= 0; i--) {
-			int u = v[i], mx = 0;
-			sz[u] = 1;
-			for (auto [y, w] : adj[u]) {
-				if (y != fa[u] && !del[y]) {
-					sz[u] += sz[y];
-					mx = max(mx, sz[y]);
-				}
-			}
-			if (max(mx, n - sz[u]) * 2 <= n) {
-				rt = u;
-			}
-		}
-		return rt;
+		dfs1(x, 0);
+		return dfs2(x, 0, sz[x]);
 	}
 	template<class F>
 	void walk(int x, int p, int d, F &&f) {
-		vector<array<int, 3>> st{{x, p, d}};
-		while (!st.empty()) {
-			auto [x, p, d] = st.back();
-			st.pop_back();
-			f(x, d);
-			for (auto [y, w] : adj[x]) {
-				if (y != p && !del[y]) {
-					st.push_back({y, x, d + w});
-				}
+		f(x, d);
+		for (int i = adj[x].size() - 1; i >= 0; i--) {
+			auto [y, w] = adj[x][i];
+			if (y != p && !del[y]) {
+				walk(y, x, d + w, f);
 			}
 		}
 	}
