@@ -1,0 +1,25 @@
+contents:
+  - name: 01、完全与分组背包
+    code: Pack.cpp
+    code-pre: Pack-pre.tex
+  - name: 多重背包：二进制拆分
+    code: Pack_Binary.cpp
+  - name: 多重背包：单调队列
+    code: Pack_Queue.cpp
+  - name: 计数背包与物品增删
+    code: Pack_Count.cpp
+    code-pre: Pack_Count-pre.tex
+  - name: 子集和
+    code: Pack_Subset.cpp
+  - name: 子集和：方案恢复
+    code: Pack_Subset_Trace.cpp
+  - name: 以价值为状态
+    code: Pack_Value.cpp
+  - name: 折半搜索
+    code: Pack_Half.cpp
+  - name: 树形依赖背包
+    code: Pack_Tree.cpp
+  - name: 01 背包：方案恢复
+    code: Pack_Trace.cpp
+  - name: 示例：混合背包与二维费用
+    code: Pack_Example.cpp

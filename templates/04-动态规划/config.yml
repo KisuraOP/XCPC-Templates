@@ -3,3 +3,5 @@
     code: Longest_Common_Seq.cpp
   - name: 最长不下降子序列
     code: Longest_Non_Decreasing_Seq.cpp
+  - name: 背包
+    directory: 背包

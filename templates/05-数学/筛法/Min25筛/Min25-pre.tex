@@ -7,4 +7,4 @@ F(x)\mathrel{+}=\sum_{\substack{k\ge1\\p^{k+1}\le x}}
 \]
 此时右侧的 $F$ 只包含质数及最小质因子大于 $p$ 的合数贡献。最终答案为 $F(n)+1$。
 
-每次回调为 $O(1)$ 时，\texttt{prime} 和迭代 \texttt{sum} 的时间复杂度均为 $O(n^{3/4}/\log n)$；组合 $d$ 项时，总时间为 $O((d+1)n^{3/4}/\log n)$。
+每次回调为 $O(1)$ 时，\texttt{prime} 和迭代 \texttt{sum} 的时间复杂度均为 $O(n^{3/4}/\log n)$；组合 $d$ 项时，总时间为 $O(dn^{3/4}/\log n)$。
