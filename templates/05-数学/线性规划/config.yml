@@ -1,0 +1,13 @@
+contents:
+  - name: 基本形式
+    code-pre: LP.tex
+    columns: 2
+  - name: 对偶
+    code-pre: LP_Dual.tex
+    columns: 2
+  - name: 示例：二分图最大权匹配
+    code-pre: LP_Match.tex
+    columns: 2
+  - name: 单纯形法
+    code: LP_Simplex.cpp
+    code-pre: LP_Simplex-pre.tex

@@ -1,0 +1,61 @@
+每条原约束对应一个对偶变量，每个原变量对应一条对偶约束。对偶的对偶是原问题。
+\[
+\begin{aligned}
+(P)\quad&\max c^Tx,& Ax&\le b,&x&\ge0,\\
+(D)\quad&\min b^Ty,& A^Ty&\ge c,&y&\ge0.
+\end{aligned}
+\]
+
+以下对应关系以原问题最大化、对偶问题最小化为前提：
+\[
+\begin{array}{c|c}
+\text{原约束}&\text{对偶变量}\\\hline
+A_i x\le b_i&y_i\ge0\\
+A_i x\ge b_i&y_i\le0\\
+A_i x=b_i&y_i\text{ 自由}
+\end{array}
+\qquad
+\begin{array}{c|c}
+\text{原变量}&\text{对偶约束}\\\hline
+x_j\ge0&(A^Ty)_j\ge c_j\\
+x_j\le0&(A^Ty)_j\le c_j\\
+x_j\text{ 自由}&(A^Ty)_j=c_j
+\end{array}
+\]
+
+\textbf{弱对偶。}对上述 $(P)$、$(D)$ 的任意可行解 $x,y$，有
+\[
+c^Tx\le x^TA^Ty=y^TAx\le b^Ty.
+\]
+原问题的可行解给出可达到的目标值，对偶问题的可行解给出上界；若二者相等，则都是最优解。
+
+\textbf{强对偶。}若任一问题有有限最优值，则另一问题也有有限最优值，且二者相等。若一方目标无界，则另一方无解；两者也可能同时无解。
+
+\textbf{互补松弛。}若 $x,y$ 分别为 $(P)$、$(D)$ 的可行解，则二者均最优，当且仅当
+\[
+\begin{aligned}
+y_i\bigl(b_i-(Ax)_i\bigr)&=0\quad(1\le i\le m),\\
+x_j\bigl((A^Ty)_j-c_j\bigr)&=0\quad(1\le j\le n).
+\end{aligned}
+\]
+因为
+\[
+b^Ty-c^Tx=y^T(b-Ax)+x^T(A^Ty-c),
+\]
+右侧各项非负，目标值相等恰好要求各项均为零。因此，变量为正时，对应约束必须取等号；约束取等号时，对应变量仍可能为零。
+
+例如最大化 $3x_1+2x_2$，约束为
+\[
+x_1+x_2\le4,\quad x_1\le2,\quad x_2\le3,\quad x\ge0.
+\]
+对偶是最小化 $4y_1+2y_2+3y_3$，约束为
+\[
+y_1+y_2\ge3,\qquad y_1+y_3\ge2,\qquad y\ge0.
+\]
+取 $x=(2,2)$、$y=(2,1,0)$，双方可行且目标值均为 $10$，因此均最优。第三条原约束未取等号，对应 $y_3=0$。
+
+若使用本节的最大化求解器求对偶，将对偶写为
+\[
+\max(-b)^Ty,\qquad -A^Ty\le-c,\quad y\ge0.
+\]
+得到有限最优值后取负，即为对偶的最小值。

@@ -9,6 +9,8 @@
     directory: 线性基
   - name: 高斯消元
     directory: 高斯消元
+  - name: 线性规划
+    directory: 线性规划
   - name: 组合数
     directory: 组合数
   - name: 公式表

@@ -1,6 +1,8 @@
 ﻿contents:
   - name: 最大流
     code: maxFlow.cpp
+  - name: 最大流 O(nm log U)
+    code: maxFlow_Scaling.cpp
   - name: 最大流（扩展版）
     code: maxFlow_Ext.cpp
   - name: 最小费用最大流
