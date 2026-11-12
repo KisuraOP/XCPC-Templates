@@ -1,10 +1,24 @@
-// 区间最大异或和。
+/*
+区间最大异或和，支持单点赋值。B 为位数。
+建树 O(nB log B)，修改、查询 O(B^2 log n)。
+
+build(1, 1, n, a);
+用 a 建树。
+
+modify(1, 1, n, x, v);
+将 a[x] 改为 v。
+
+Node res = query(1, 1, n, l, r);
+返回区间 [l,r] 的线性基，求最大异或和的示例见 solve。
+*/
+
+constexpr int B = 22;
 constexpr int N = 1e5 + 10;
 
 struct Node {
-	int p[22] {};
+	int p[B] {};
 	void add(int x) {
-		for (int i = 21; i >= 0; i--) {
+		for (int i = B - 1; i >= 0; i--) {
 			if (!(x >> i & 1)) {
 				continue;
 			}
@@ -17,7 +31,7 @@ struct Node {
 	}
 	Node operator+(const Node &a) const {
 		Node res = a;
-		for (int i = 21; i >= 0; i--) {
+		for (int i = B - 1; i >= 0; i--) {
 			if (p[i]) {
 				res.add(p[i]);
 			}
@@ -41,6 +55,19 @@ void build(int p, int l, int r, vector<int> &a) {
 	}
 	build(ls, l, mid, a);
 	build(rs, mid + 1, r, a);
+	pushup(p);
+}
+void modify(int p, int l, int r, int x, int v) {
+	if (l == r) {
+		tr[p] = Node();
+		tr[p].add(v);
+		return ;
+	}
+	if (x <= mid) {
+		modify(ls, l, mid, x, v);
+	} else {
+		modify(rs, mid + 1, r, x, v);
+	}
 	pushup(p);
 }
 Node query(int p, int l, int r, int ql, int qr) {
@@ -73,7 +100,7 @@ void solve() {
 		cin >> l >> r;
 		Node res = query(1, 1, n, l, r);
 		int ans = 0;
-		for (int i = 21; i >= 0; i--) {
+		for (int i = B - 1; i >= 0; i--) {
 			if ((ans ^ res.p[i]) > ans) {
 				ans ^= res.p[i];
 			}

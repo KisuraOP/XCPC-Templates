@@ -1,10 +1,15 @@
 ﻿contents:
+  - name: 基础知识
+    code-pre: Basis_Space.tex
+    columns: 2
   - name: 最大异或和
     code: Basis.cpp
+  - name: 可撤销线性基
+    code: Basis_Undo.cpp
   - name: 线性表出，方案数
     code: Basis_Count.cpp
   - name: 区间线性基
-    code: Basis_Range_Count.cpp
+    directory: 区间线性基
   - name: GF(3)
     code: Basis_GF(3).cpp
   - name: 互质基

@@ -1,0 +1,112 @@
+\textbf{线性空间与子空间。}$\mathbb F_2=\{0,1\}$，加法和乘法都模 $2$ 计算。所有 $m$ 维二进制向量构成线性空间（也称向量空间）$V=\mathbb F_2^m$：加法逐坐标计算，数乘只有 $0x=0$ 和 $1x=x$。将向量编码成整数后，向量加法对应异或。下文向量之间的 $+$ 表示异或；由于 $x+x=0$，还有 $-x=x$。
+
+非空集合 $U\subseteq V$ 是\textbf{子空间}，当且仅当它对加法和数乘封闭。在 $\mathbb F_2$ 上，只需检验加法封闭：取 $x=y$ 即得 $0\in U$，而乘以 $0$ 或 $1$ 自动仍在 $U$ 中。因此，非空的异或封闭集合恰好就是子空间。
+
+包含集合 $S$ 的最小子空间称为 $S$ 的\textbf{张成空间}，记为 $\langle S\rangle$。若 $S=\{a_1,\ldots,a_k\}$，则
+\[
+\langle S\rangle=\left\{\sum_{i=1}^k c_i a_i:\ c_i\in\mathbb F_2\right\}.
+\]
+式中的 $\sum c_i a_i$ 称为\textbf{线性组合}。若 $x\in\langle S\rangle$，就称 $x$ 可由 $S$ \textbf{线性表出}。因此，$\langle S\rangle$ 恰由所有子集的异或和构成，包括空选集得到的 $0$。若 $S\subseteq T$，则 $\langle S\rangle\subseteq\langle T\rangle$；若 $S$ 已是子空间，则 $\langle S\rangle=S$。
+
+\textbf{基、秩与维数。}向量组 $a_1,\ldots,a_k$ \textbf{线性无关}，是指对任意 $c_i\in\mathbb F_2$，有
+\[
+\sum_{i=1}^k c_i a_i=0\quad\Longrightarrow\quad c_1=\cdots=c_k=0.
+\]
+在 $\mathbb F_2$ 上，这等价于不存在非空下标集合，使对应向量的异或和为 $0$。否则称为线性相关。
+
+既线性无关又能张成 $U$ 的向量组称为 $U$ 的一组\textbf{基}。所有基的向量个数相同，称为\textbf{维数} $\dim U$；向量组的\textbf{秩}是其张成空间的维数。子空间 $\{0\}$ 的基为空向量组，维数为 $0$。竞赛中的线性基结构维护的正是这样一组基。
+
+有限维空间中，任意线性无关向量组都能补成一组基，任意能张成该空间的向量组都包含一组基。可以从已有的线性无关向量出发，逐次加入尚不能由它们线性表出的向量，直到张成整个空间。
+
+例如 $\langle\{5,6\}\rangle=\{0,3,5,6\}$，$\{5,6\}$ 和 $\{3,5\}$ 都是这个二维空间的基。基不唯一，消元后保存的基向量也不必出现在原输入中。
+
+若 $\dim U=r$，每个向量都能唯一地表示为固定一组基的线性组合，因此
+\[
+|U|=2^r.
+\]
+集合大小为 $2$ 的幂只是子空间的必要条件，例如 $\{0,1,2,4\}$ 有 $4$ 个元素，却不包含 $1+2=3$。
+
+若 $U$ 是 $W$ 的真子空间，则 $\dim U\le\dim W-1$，从而 $|U|\le|W|/2$。因此，对任意 $A\subseteq W$，
+\[
+|A|>\frac{|W|}{2}\quad\Longrightarrow\quad\langle A\rangle=W.
+\]
+否则 $A$ 会包含在一个大小不超过 $|W|/2$ 的真子空间中，产生矛盾。
+
+\textbf{子空间的交、和与并。}若 $U,W$ 均为 $V$ 的子空间，则 $U\cap W$ 也是子空间。它们的\textbf{和}定义为
+\[
+U+W=\{u+w:\ u\in U,\ w\in W\}=\langle U\cup W\rangle.
+\]
+这是包含 $U$ 和 $W$ 的最小子空间，并满足
+\[
+\begin{aligned}
+\dim(U+W)&=\dim U+\dim W-\dim(U\cap W),\\
+|U+W|&=\frac{|U|\,|W|}{|U\cap W|}.
+\end{aligned}
+\]
+取 $U\cap W$ 的一组基，分别补成 $U$、$W$ 的基，再将两组基合并，公共部分只保留一次，即得到 $U+W$ 的一组基。
+
+对每个 $z\in U+W$，固定一组分解 $z=u_0+w_0$，其中 $u_0\in U,w_0\in W$。满足 $u\in U,w\in W,u+w=z$ 的有序对恰为
+\[
+(u,w)=(u_0+t,w_0+t),\qquad t\in U\cap W,
+\]
+所以共有 $|U\cap W|$ 种。若 $U\cap W=\{0\}$，则称 $U+W$ 为\textbf{直和}，此时分解唯一。
+
+并集通常不对加法封闭。两个子空间满足
+\[
+U\cup W\text{ 是子空间}\quad\Longleftrightarrow\quad
+U\subseteq W\text{ 或 }W\subseteq U.
+\]
+若互不包含，取 $u\in U\setminus W$、$w\in W\setminus U$，则 $u+w$ 既不在 $U$ 中，也不在 $W$ 中，所以并集不封闭。
+
+例如 $U=\{0,1\}$、$W=\{0,2\}$ 时，$U\cup W=\{0,1,2\}$，而 $U+W=\{0,1,2,3\}$。合并两组线性基得到的是 $U+W$ 的基。
+
+\textbf{陪集与商空间。}对 $x\in V$，集合
+\[
+x+U=\{x+u:\ u\in U\}
+\]
+称为 $U$ 的一个\textbf{陪集}。它是 $U$ 平移后得到的\textbf{仿射子空间}，大小仍为 $|U|$，并且
+\[
+x+U=y+U\quad\Longleftrightarrow\quad x+y\in U.
+\]
+同一子空间的两个陪集要么相同，要么不交；$U$ 的不同陪集构成 $V$ 的一个划分。若 $x\in U$，则 $x+U=U$；否则陪集不含 $0$，不是线性子空间。例如 $U=\{0,3\}$ 时，$1+U=\{1,2\}$。
+
+这也说明了加入一个新向量的效果。若 $x\in U$，则张成空间不变；若 $x\notin U$，则
+\[
+U+\langle x\rangle=U\cup(x+U),
+\]
+右侧两部分不交，因此维数增加 $1$，元素个数翻倍。
+
+\textbf{商空间} $V/U$ 以 $U$ 的各个陪集为元素，将相差一个 $U$ 中向量的两个向量视为同一个元素。运算定义为
+\[
+(x+U)+(y+U)=(x+y)+U,\qquad c(x+U)=cx+U.
+\]
+商空间的零向量是陪集 $U$。给 $U$ 的基补上若干向量，得到 $V$ 的基；新增向量对应的陪集构成 $V/U$ 的一组基。因此
+\[
+\dim(V/U)=\dim V-\dim U,\qquad |V/U|=2^{\dim V-\dim U}.
+\]
+
+\textbf{线性映射与线性表出。}映射 $f:V\to W$ 若保持加法和数乘，称为\textbf{线性映射}。它的\textbf{核}与\textbf{像}分别为
+\[
+\ker f=\{x\in V:f(x)=0\},\qquad
+\operatorname{im}f=\{f(x):x\in V\},
+\]
+二者分别是 $V$ 和 $W$ 的子空间。把核的一组基补成 $V$ 的基，新增基向量的像构成 $\operatorname{im}f$ 的一组基，因此
+\[
+\dim V=\dim\ker f+\dim\operatorname{im}f.
+\]
+若方程 $f(x)=b$ 有一个解 $x_0$，则全部解恰为陪集 $x_0+\ker f$；若 $b\notin\operatorname{im}f$，则无解。
+
+现在考虑 $k$ 个向量 $a_1,\ldots,a_k$，设其秩为 $r$。将选择系数映到异或结果，得到线性映射
+\[
+f:\mathbb F_2^k\to V,\qquad f(c_1,\ldots,c_k)=\sum_{i=1}^k c_i a_i.
+\]
+像的维数为 $r$，核的维数为 $k-r$，所以
+\[
+\#\{c:f(c)=b\}=\begin{cases}
+2^{k-r},&b\in\langle a_1,\ldots,a_k\rangle,\\
+0,&\text{否则}.
+\end{cases}
+\]
+不同下标视为不同选择，即使其取值相同；这里包含空选集，若只计非空方案，目标为 $0$ 时再减 $1$。例如向量组 $1,2,3$ 的秩为 $2$，每个可达结果均有两种选法，结果 $0$ 对应空选集与全选。
+
+在 $\mathbb F_p$（$p$ 为素数）上，同样的计数方法给出：$r$ 维空间有 $p^r$ 个向量；对秩为 $r$ 的 $k$ 个向量，每个可达目标对应 $p^{k-r}$ 组系数。此时坐标运算按 $p$ 取模，系数可取 $0,\ldots,p-1$。
