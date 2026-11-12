@@ -5,5 +5,11 @@ contents:
     code: Centroid_Tree.cpp
   - name: 示例：距离不超过 K 的点对数
     code: Centroid_Pairs.cpp
+  - name: 示例：路径权值和为 K 的最少边数
+    code: Centroid_Min_Edges.cpp
+    code-pre: Centroid_Min_Edges-pre.tex
   - name: 示例：动态点权的距离和
     code: Centroid_Sum.cpp
+  - name: 示例：动态最近标记点
+    code: Centroid_Near.cpp
+    code-pre: Centroid_Near-pre.tex
