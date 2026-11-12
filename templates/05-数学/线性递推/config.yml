@@ -1,0 +1,6 @@
+contents:
+  - name: 第 n 项
+    code: Linear_Rec.cpp
+    code-pre: Linear_Rec-pre.tex
+  - name: Berlekamp–Massey
+    code: Linear_Rec_BM.cpp

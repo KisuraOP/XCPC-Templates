@@ -3,6 +3,8 @@
     directory: 最短路
   - name: 连通性
     directory: 连通性
+  - name: 欧拉路
+    code-pre: Euler-pre.tex
   - name: 网络流
     directory: 网络流
   - name: 匹配

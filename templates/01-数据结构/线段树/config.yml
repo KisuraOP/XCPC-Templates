@@ -11,3 +11,6 @@
     code: SegTree_Beat.cpp
   - name: 线段树合并
     directory: 线段树合并
+  - name: 线段树分治
+    code: SegTree_Divide.cpp
+    code-pre: SegTree_Divide-pre.tex

@@ -5,6 +5,8 @@ contents:
     code: Geometry_Rabbit_Polygon.cpp
   - name: 圆
     code: Geometry_Rabbit_Circle.cpp
+  - name: 最小圆覆盖
+    code: Geometry_Rabbit_Min_Circle.cpp
   - name: 圆与多边形面积交
     code: Geometry_Rabbit_Circle_Polygon.cpp
   - name: 凸包
@@ -17,6 +19,8 @@ contents:
     code: Geometry_Rabbit_Closest_Pair.cpp
   - name: 线段相交扫描
     code: Geometry_Rabbit_Segment_Scan.cpp
+  - name: 矩形面积并
+    code: Geometry_Rabbit_Rect_Union.cpp
   - name: 多边形面积并
     code: Geometry_Rabbit_Polygon_Union.cpp
   - name: 圆面积并

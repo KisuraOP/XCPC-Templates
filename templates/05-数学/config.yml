@@ -5,6 +5,8 @@
     directory: 数论函数
   - name: 多项式
     directory: 多项式
+  - name: 线性递推
+    directory: 线性递推
   - name: 线性基
     directory: 线性基
   - name: 高斯消元
