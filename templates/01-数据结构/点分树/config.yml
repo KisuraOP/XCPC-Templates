@@ -10,6 +10,7 @@ contents:
     code-pre: Centroid_Min_Edges-pre.tex
   - name: 示例：动态点权的距离和
     code: Centroid_Sum.cpp
+    code-pre: Centroid_Sum-pre.tex
   - name: 示例：动态最近标记点
     code: Centroid_Near.cpp
     code-pre: Centroid_Near-pre.tex

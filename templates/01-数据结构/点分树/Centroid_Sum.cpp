@@ -13,14 +13,13 @@ t.ask(x);
 修改、查询的时间复杂度均为 O(log n)。
 */
 struct CSum : CTree {
-	vector<int> cnt, sum, cs, ds;
-	CSum(int n) : CTree(n), cnt(n + 1), sum(n + 1), cs(n + 1), ds(n + 1) {}
+	vector<int> cnt, sum, ds;
+	CSum(int n) : CTree(n), cnt(n + 1), sum(n + 1), ds(n + 1) {}
 	void inc(int x, int v) {
 		path(x, [&](int p, int d, int q) {
 			cnt[p] += v;
 			sum[p] += v * d;
 			if (q) {
-				cs[q] += v;
 				ds[q] += v * d;
 			}
 		});
@@ -30,7 +29,7 @@ struct CSum : CTree {
 		path(x, [&](int p, int d, int q) {
 			res += sum[p] + cnt[p] * d;
 			if (q) {
-				res -= ds[q] + cs[q] * d;
+				res -= ds[q] + cnt[q] * d;
 			}
 		});
 		return res;
