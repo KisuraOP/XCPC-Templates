@@ -1,7 +1,6 @@
 ﻿contents:
   - name: 基础知识
     code-pre: Basis_Space.tex
-    columns: 2
   - name: 最大异或和
     code: Basis.cpp
   - name: 可撤销线性基

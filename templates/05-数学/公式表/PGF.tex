@@ -2,7 +2,7 @@
 
 记 $[z^n]G_X(z)$ 为 $G_X(z)$ 中 $z^n$ 的系数，$G_X^{(k)}$ 为 $k$ 阶导数，$X^{\underline k}=X(X-1)\cdots(X-k+1)$（$k=0$ 时为 $1$）。$\begin{Bmatrix}k\\i\end{Bmatrix}$ 是第二类斯特林数。
 
-基本结论：
+\textbf{基本结论}：
 
 $P(X=n)=[z^n]G_X(z)$
 
@@ -14,17 +14,17 @@ $E[X^k]=\sum_{i=0}^k\begin{Bmatrix}k\\i\end{Bmatrix}G_X^{(i)}(1)$
 
 $\operatorname{Var}(X)=G_X''(1)+G_X'(1)-G_X'(1)^2$
 
-独立变量：
+\textbf{独立变量}：
 
 若 $X_1,\dots,X_n$ 相互独立，且 $S=X_1+\cdots+X_n$，则 $G_S(z)=\prod_{i=1}^nG_{X_i}(z)$。
 
 若各 $X_i$ 与 $X$ 同分布且相互独立，则 $G_S(z)=G_X(z)^n$。
 
-随机次数求和：
+\textbf{随机次数求和}：
 
 若各 $X_i$ 与 $X$ 同分布且相互独立，$N$ 与整个序列 $(X_i)$ 独立，令 $S=X_1+\cdots+X_N$，则 $G_S(z)=G_N(G_X(z))$。
 
-常见离散分布的 PGF：
+\textbf{常见离散分布的 PGF}：
 
 以下约定 $q=1-p$，$k\ge0$。几何分布与负二项分布均基于成功概率为 $p$ 的独立重复试验：前者记录首次成功前的失败次数，后者记录第 $r$ 次成功前的失败次数。
 
