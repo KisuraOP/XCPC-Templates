@@ -1,12 +1,10 @@
 /*
-先在这里完整抄写 Dinic (maxFlow.cpp)
-唯一修改如下。
+依赖 maxFlow.cpp，将 Dinic 的 add 替换为以下版本，使两个方向的初始容量均为 cap。
 
 void add(int x, int y, int cap) {
 	adj[x].push_back(e.size());
 	e.push_back({y, cap});
 	adj[y].push_back(e.size());
-	// 【唯一修改】 注意下面这一行
 	e.push_back({x, cap});
 }
 */
@@ -55,7 +53,7 @@ struct MinCutTree {
 			tr[p[i]].push_back({i, w[i]});
 		}
 	}
-	// 返回最小割。 O(n)
+	// 返回两点之间的最小割容量，O(n)。
 	int min_cut(int u, int v) {
 		int ans = inf;
 		auto dfs = [&] (auto self, int x, int p) -> bool {

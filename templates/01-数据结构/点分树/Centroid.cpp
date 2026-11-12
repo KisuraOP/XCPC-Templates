@@ -1,6 +1,5 @@
 /*
 Centroid t(n);
-1-index。
 
 t.add(x, y, w);
 连一条边权为 w 的无向边。

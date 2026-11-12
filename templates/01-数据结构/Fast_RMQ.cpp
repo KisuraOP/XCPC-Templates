@@ -1,9 +1,9 @@
 /*
 RMQ G(arr);
-arr 为原始数组，1-index。
+arr 为原数组。
 
 int maxval = G(l, r);
-查询 [l, r] 内的区间最大值。
+返回 [l, r] 内的最大值。
 若查询最小值，则将第一行 greater<T> 修改为 less<T>。
 */
 

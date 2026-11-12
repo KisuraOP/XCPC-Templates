@@ -1,5 +1,5 @@
 /*
-依赖 Pack.cpp 的 zero，与单调队列版二选一。
+依赖 Pack.cpp 的 zero。
 
 multi(f, w, v, c);
 加入至多 c 件重量为 w、价值为 v 的物品。

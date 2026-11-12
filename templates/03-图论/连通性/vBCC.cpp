@@ -2,18 +2,18 @@
 vBCC G(n);
 
 G.addEdge(x, y);
-连一条 x -> y 的无向边。
+在 x、y 之间连一条无向边。
 
 G.work_Node();
 
 其中：
-点双联通分量个数为 cnt, 编号 1~cnt。
+点双连通分量个数为 cnt, 编号 1~cnt。
 邻接表 adj 第二维存储该条边的编号 eid。
-scc[x] 存储编号为 x 的点双里的点的编号。
-c[x] 存储编号为 x 的点所在的点双编号。
-ebel[eid] 存储编号为 eid 的边所在的点双编号。
-edges[eid] 存储编号为 eid 的边的两个端点。
-iscut[x] = 0/1 存储编号为 x 的点是否是割点。
+scc[x] 存储第 x 个点双连通分量中的顶点。
+c[x] 存储点 x 所属的各个点双连通分量编号。
+ebel[eid] 为边 eid 所属的点双连通分量编号。
+edges[eid] 为边 eid 的两个端点。
+iscut[x] 表示 x 是否为割点。
 */
 struct vBCC {
 	int n;

@@ -2,7 +2,6 @@
 单次连出的边数为 O(log n)。
 
 SegEdge seg(n);
-初始化。
 
 seg.PtoP(x, y, w);
 连一条点 x 向点 y 的单向边。

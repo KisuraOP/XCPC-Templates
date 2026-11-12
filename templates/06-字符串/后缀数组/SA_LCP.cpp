@@ -1,8 +1,8 @@
 // 依赖 SA.cpp 或 SA_IS.cpp。
 /*
 LCP q(s); 或 LCP q(a, m);
-总预处理 O(n log n + m)，其中 rk、ht 的计算为 O(n)。
-rk[i] 为后缀 i 的排名，ht[i] 为后缀 sa[i - 1] 与 sa[i] 的 LCP。
+预处理 O(n log n + m)。
+rk[i] 为后缀 i 的排名，ht[i] 为相邻两个后缀 sa[i - 1]、sa[i] 的最长公共前缀长度。
 ht[1] = 0，参数约定同 suffix。
 
 q.lcp(i, j);

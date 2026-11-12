@@ -2,8 +2,8 @@
 LLD t(adj, rt);
 
 dep[x] 是 x 的深度，len[x] 是从 x 向下的最长链的节点数。
-son[x] 是长儿子，top[x] 是所在长链的链顶。
-dfn[x] 是优先遍历长儿子得到的 DFS 序，rev[i] 是第 i 个访问的点。
+son[x] 是 len 最大的儿子，top[x] 是所在长链的链顶。
+dfn[x] 是优先遍历 son[x] 得到的 DFS 序，rev[i] 是第 i 个访问的点。
 从 x 沿 son 向下的链对应 [dfn[x], dfn[x] + len[x] - 1]。
 
 k 级祖先查询见树论章节的 Level_Ancestor.cpp。

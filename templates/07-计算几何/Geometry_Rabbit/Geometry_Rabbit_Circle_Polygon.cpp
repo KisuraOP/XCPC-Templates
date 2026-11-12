@@ -1,5 +1,5 @@
 // 依赖 Geometry_Rabbit_Polygon.cpp、Geometry_Rabbit_Circle.cpp。
-// 圆与多边形面积交
+// 圆与多边形的相交面积
 T area_inter(const Circle &circ,const Polygon &poly)
 {
     const auto cal=[](const Circle &circ,const Point &a,const Point &b)

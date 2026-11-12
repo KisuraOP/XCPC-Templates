@@ -1,5 +1,4 @@
 /*
-相比 Dinic 做法拥有更小的常数。
 HK G(n, m); n 是左部点数，m 是右部点数。
 G.add(x, y); 连接第 x 个左部点和第 y 个右部点。
 int ans = G.solve();

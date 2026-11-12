@@ -1,5 +1,4 @@
 // 无向正权图全局最小割 O(n^3+m)
-// 传 1-index 邻接表
 int stoer_wagner(const vector<vector<array<int, 2>>> &adj) {
 	int n = adj.size() - 1;
 	vector g(n, vector<int>(n));

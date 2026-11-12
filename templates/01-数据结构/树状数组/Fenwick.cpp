@@ -1,6 +1,5 @@
 /*
 Fenwick fen(n);
-创建。
 
 fen.add(x, v);
 单点 x 的值 +v。

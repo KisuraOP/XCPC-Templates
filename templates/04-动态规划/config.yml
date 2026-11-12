@@ -7,3 +7,7 @@
     directory: 背包
   - name: 换根
     directory: 换根
+  - name: 区间 DP
+    directory: 区间DP
+  - name: 决策单调性优化
+    directory: 决策单调性优化

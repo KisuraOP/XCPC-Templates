@@ -4,7 +4,7 @@ sa[i] 为字典序第 i 小的后缀起点，O(n)。
 
 auto sa = suffix(a, m);
 a 为整数序列，取值在 [1, m]，O(n + m)。
-若先排序离散化，另计 O(n log n)。与 SA.cpp 选择一份使用。
+若先排序离散化，另计 O(n log n)。
 */
 vector<int> sais(const vector<int> &s, int m) {
     int n = s.size() - 1;

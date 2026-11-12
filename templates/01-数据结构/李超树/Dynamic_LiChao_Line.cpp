@@ -1,6 +1,6 @@
 /*
 LiChao G(L, R);
-其中 L, R 是自变量 x 的取值范围。
+x 的取值范围为 [L, R]。
 
 G.insert({k, b});
 插入直线 y = kx + b。
@@ -8,7 +8,7 @@ G.insert({k, b});
 int res = G.query(x);
 查询 max(kx + b)。
 
-若要查询 min(kx + b), 进行如下修改
+求最小值时，作以下修改：
 - Line 里 b(-inf) 改成 b(inf)
 - insert 里 
   lo.F(mid) < hi.F(mid), 
@@ -38,7 +38,6 @@ struct LiChao {
 	int L, R;
 	vector<Node> seg;
 	LiChao(int l, int r) : L(l), R(r) {
-		// 如果 runtime error, 尝试取消下面一行的注释
 		// seg.reserve(2e7);
 		seg.push_back({});
 		seg.push_back({});

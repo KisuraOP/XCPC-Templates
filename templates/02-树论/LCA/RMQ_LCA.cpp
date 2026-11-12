@@ -1,17 +1,13 @@
 /*
-时间复杂度 O(n log n) - O(1)
-
-RMQ_LCA G(adj, rt);
-adj 为邻接表。（默认带边权，若无边权可简单修改）
-rt 为根, 可以不指定, 默认为 1。
-
-以下操作时间复杂度均为 O(1)。
+rmqLCA G(adj, rt);
+边权包含在 adj 中，rt 为根。
+预处理 O(n log n)，以下查询均为 O(1)。
 
 int lca = G.LCA(x, y);
-返回 x 和 y 的 LCA。
+返回 x 和 y 的最近公共祖先。
 
 int dis = G.dist(x, y);
-返回 x 和 y 的树上距离（带权）。
+返回 x 到 y 路径上的边权和。
 */
 struct rmqLCA {
 	int n;

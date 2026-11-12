@@ -1,7 +1,7 @@
 /*
 insert(xl, xr, {k, b});
 插入定义域 [xl, xr] 的线段 y = kx + b。
-比无定义域版本多一个 log。
+插入比直线版多一个 log。
 */
 
 struct Line {
@@ -22,7 +22,6 @@ struct LiChao {
     int L, R;
     vector<Node> seg;
     LiChao(int l, int r) : L(l), R(r) {
-    	// 如果 runtime error, 尝试取消下面一行的注释
 		// seg.reserve(2e7);
 		seg.push_back({});
 		seg.push_back({});

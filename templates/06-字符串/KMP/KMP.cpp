@@ -1,8 +1,7 @@
 /*
 vector<int> nxt = KMP(a);
-nxt[i]: 一个字符串中长度为 i 的前缀的最长 border 长度。
-border: s 的一个非 s 本身的子串 t, 既是 s 的前缀又是 s 的后缀。
-字符串 1-index。
+nxt[i] 为 a 的前 i 个字符的最长 border 长度。
+border 指既是前缀又是后缀、且长度小于原串的子串。
 
 */
 

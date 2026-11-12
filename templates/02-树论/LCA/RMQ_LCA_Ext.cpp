@@ -1,17 +1,15 @@
 /*
-拓展版本。
+RMQ_LCA.cpp 的扩展版。
 
 int z = jump(x, k);
-找到 x 的 k 级祖先, O(log n)。
-若 x 没有 k 级祖先, 返回 -1。
-若需要 O(1), 参见 https://github.com/KisuraOP/XCPC-Templates/blob/main/templates/02-树论/Level_Ancestor.cpp
-我感觉集成进来不优雅就分开了。
+返回 x 的 k 级祖先，若不存在则返回 -1，O(log n)。
+O(1) 查询版本见树论章节的 Level_Ancestor.cpp。
 
 is_ancestor(x, y);
 判断 x 是否是 y 的祖先。
 
 int v = neighbor(x, y);
-求出 x -> y 路径上 x 的下一节点。
+返回 x 到 y 路径上紧邻 x 的下一个点。
 */
 using P = array<int, 2>;
 struct rmqLCA {

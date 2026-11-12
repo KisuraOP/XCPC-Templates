@@ -9,7 +9,7 @@ G.add(x, y, cap, cost);
 连一条 x -> y 容量为 cap，费用为 cost 的边。
 
 auto [flow, cost] = G.dinic(S, T);
-以 S 为源点，T 为汇点跑最小费用最大流。返回一个 [最大流量，最小费用] 的二元组。
+计算从 S 到 T 的最小费用最大流，返回 {最大流量, 最小费用}。
 */
 
 struct Dinic {

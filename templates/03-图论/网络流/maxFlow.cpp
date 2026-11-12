@@ -9,7 +9,7 @@ G.add(u, v, cap);
 连一条 u -> v 容量为 cap 的有向边。
 
 int flow = G.dinic(S, T);
-求解从源点 S 流向汇点 T 的最大流。
+返回从源点 S 到汇点 T 的最大流量。
 
 输出最小割方案：
 

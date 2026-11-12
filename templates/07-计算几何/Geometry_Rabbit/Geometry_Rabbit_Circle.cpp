@@ -92,7 +92,7 @@ struct Circle
         return r*r*cal(atan2l(h,x))+a.r*a.r*cal(atan2l(h,d-x));
     }
 
-    // 过圆外一点圆的切线
+    // 过圆外一点作圆的切线
     vector<Line> tangent(const Point &a) const
     {
         const int t=is_in(a);

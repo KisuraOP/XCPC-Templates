@@ -3,7 +3,7 @@ BlockTree G(n);
 n 为顶点数。
 
 G.add(x, y);
-连一条 x 和 y 间的双向边。
+在 x、y 之间连一条无向边。
 
 vector<vector<int>> adj = G.work();
 建立给定图的圆方树，返回相应邻接表。

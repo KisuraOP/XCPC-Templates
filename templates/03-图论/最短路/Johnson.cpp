@@ -2,13 +2,11 @@
 时间复杂度 O(n^2+nm\log m)
 
 Johnson G(adj);
-adj 为邻接表。
 
 vector<vector<int>> dis = G.work();
 返回一个二维数组 dis，dis[x][y] 代表 x -> y 的最短路长度。
 若图中存在负环，则 dis 中元素全为 -1。
-若 x 和 y 不连通（不存在 x -> y 的路径），则 dis[x][y] = inf。
-inf 需要宏定义。
+若从 x 无法到达 y，则 dis[x][y] = inf。
 */
 
 #define _node vector<vector<array<int, 2>>>

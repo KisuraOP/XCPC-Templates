@@ -155,8 +155,6 @@ struct KDT {
 		return u;
 	}
 
-	// ---------- 分割线 ----------
-
 	void insert(Pt& pt) { // 插入一个坐标是 pt.x, 权值是 pt.v 的点
 		buf.clear();
 		buf.push_back(pt);
@@ -169,14 +167,14 @@ struct KDT {
 			rt[i] = 0;
 		}
 	}
-	void add_all(Pt& A, Pt& B, const Tag& v) { // 区域点修改
+	void add_all(Pt& A, Pt& B, const Tag& v) { // 区域改
 		for (int i = 0; i < 35; i++) {
 			if (rt[i]) {
 				add(rt[i], A, B, v);
 			}
 		}
 	}
-	Info ask_all(Pt& A, Pt& B) { // 区域点查询
+	Info ask_all(Pt& A, Pt& B) { // 区域查
 		Info res;
 		for (int i = 0; i < 35; i++) {
 			if (rt[i]) {

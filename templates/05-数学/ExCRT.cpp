@@ -1,9 +1,8 @@
 /*
 CRT t;
-构建。
 
 t.add(a, m); 
-添加一条如上限制，即 x \equiv a \pmod{m}。
+加入同余条件 x \equiv a \pmod{m}。
 
 int ans = t.calc(); 
 返回答案。

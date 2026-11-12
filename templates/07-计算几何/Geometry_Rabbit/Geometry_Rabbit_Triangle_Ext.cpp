@@ -1,6 +1,5 @@
 // 依赖 Geometry_Rabbit_Base.cpp。
-// 返回三角形二倍面积的最小值和最大值。
-// 点集形成的最小最大三角形
+// 从点集中选三个点组成三角形，返回面积最小值和最大值的两倍。
 // 极角序扫描线，复杂度 O(n^2logn)
 // 最大三角形问题可以使用凸包与旋转卡壳做到 O(n^2)
 pair<T,T> minmax_triangle(const vector<Point> &vec)

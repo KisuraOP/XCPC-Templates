@@ -1,12 +1,13 @@
 /*
 DSU dsu(n);
-其中 n 为并查集大小。
 
-撤销操作：
-    (记录当前版本 v) int v = dsu.ver.size();
-    (回到版本 v) dsu.roll(v);
+int v = dsu.ver.size();
+记录当前版本。
 
-其余操作和普通并查集等同。
+dsu.roll(v);
+撤销版本 v 之后的操作。
+
+其余操作与普通并查集相同。
 */
 struct DSU {
 	vector<int> f, siz;

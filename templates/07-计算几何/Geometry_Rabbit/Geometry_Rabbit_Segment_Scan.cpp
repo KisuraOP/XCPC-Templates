@@ -4,7 +4,7 @@
 bool segs_inter(const vector<Segment> &segs)
 {
     if (segs.empty()) return false;
-    using seq_t=tuple<T,int,Segment>;  // x坐标 出入点 线段
+    using seq_t=tuple<T,int,Segment>;  // 横坐标、事件类型、线段
     const auto seqcmp=[](const seq_t &u, const seq_t &v)
     {
         const auto [u0,u1,u2]=u;

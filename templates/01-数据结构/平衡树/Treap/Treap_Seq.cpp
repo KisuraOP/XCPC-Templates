@@ -1,5 +1,5 @@
 /*
-TreapSeq t(n); n 是容量，1-index，闭区间。
+TreapSeq t(n); n 是容量。
 t.size(); 序列长度。
 t.insert(k, x); 在第 k 个元素后插入 x，k = 0 时插入开头。
 t.add(l, r, x); [l, r] 每个数加 x。
@@ -10,7 +10,7 @@ t.split(p, k, x, y); 按前 k 个和剩余元素分裂树 p，根编号分别为
 t.rt = t.merge(x, y); 将 y 接在 x 后面，返回根编号。
 以上操作期望 O(log n)。
 
-t.build(v); 用 v 重建序列，v[0] 留空。
+t.build(v); 用 v 重建序列。
 t.erase(l, r); 删除 [l, r]，期望 O(log n + r-l)。
 t.range(l, r, f); 用 f(p) 查询或修改 [l, r]，p 为区间子树的根编号。
 f 的参数为 int &p 时，可以更换子树根。

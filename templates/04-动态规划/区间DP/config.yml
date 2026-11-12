@@ -1,0 +1,8 @@
+contents:
+  - name: 石子合并
+    code: Interval_Merge.cpp
+    code-pre: Interval_Merge-pre.tex
+    code-post: Interval_Merge-post.tex
+  - name: 最长回文子序列
+    code: Interval_Pal.cpp
+    code-pre: Interval_Pal-pre.tex

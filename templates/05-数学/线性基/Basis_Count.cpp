@@ -1,11 +1,12 @@
 /*
-Node t;
+Node t(n);
+n 为最高二进制位的下标，最低位的下标为 0。
 
 bool ok = t.count(x);
-判断 x 是否能被插入线性基中的数表示出来。
+判断能否从已插入的数中选出若干个，使异或和为 x。
 
 int ways = t.getways(x);
-返回能表示出 x 的方案数量.
+返回异或和为 x 的选法数，对 modp 取模。
 */
 int qpow(int k, int n) {
 	int s = 1;

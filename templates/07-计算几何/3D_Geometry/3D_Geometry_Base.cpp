@@ -10,7 +10,7 @@ struct line3{point3 a,b;};
 struct plane3{point3 a,b,c;};  
 
 
-//计算cross product U x V  
+// 叉积 U × V
 point3 xmult(point3 u,point3 v){  
     point3 ret;  
     ret.x=u.y*v.z-v.y*u.z;  
@@ -19,7 +19,7 @@ point3 xmult(point3 u,point3 v){
     return ret;  
 }  
 
-//计算dot product U . V  
+// 点积 U · V
 double dmult(point3 u,point3 v){  
     return u.x*v.x+u.y*v.y+u.z*v.z;  
 }  

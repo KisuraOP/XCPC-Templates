@@ -1,4 +1,4 @@
-// f[i]/g[i] 以 i 结尾的 LIS 的长度/方案数。
+// f[i] 为以 a[i] 结尾的 LIS 长度，g[i] 为对应的方案数。
 
 using P = array<int, 2>;
 P merge(P x, P y) {

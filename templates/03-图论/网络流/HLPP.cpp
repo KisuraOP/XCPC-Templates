@@ -6,7 +6,7 @@ G.Add(u, v, cap);
 连一条 u -> v 容量为 cap 的有向边。
 
 int flow = G.GetMaxFlow();
-获取最大流
+返回最大流量。
 */
 
 class HLPP {

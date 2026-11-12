@@ -1,9 +1,9 @@
 /*
 期望时间复杂度: O(n^{1/4})
-fac(n) 获取 n 的质因子集合。
+fac(n) 返回 n 的不同质因子，按升序排列。
 */
 
-// 先在这里完整抄写上一篇的 Miller-Rabin
+// 依赖 Miller_Rabin.cpp。
 
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 int pollard_rho(int n) {

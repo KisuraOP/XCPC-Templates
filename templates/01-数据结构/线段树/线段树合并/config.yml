@@ -1,7 +1,7 @@
 contents:
   - name: 线段树合并
     code: SegTree_Merge.cpp
-  - name: 单点修改，单点极值
+  - name: 单点修改，区间最大值
     code: SegTree_Merge_Point.cpp
   - name: 区间加，区间查
     code: SegTree_Merge_Add.cpp

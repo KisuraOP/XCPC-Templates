@@ -2,7 +2,6 @@
 /*
 vector<int> ans = match(a, b);
 寻找字符串 b 在字符串 a 中的出现位置，储存在 ans 中。
-字符串 1-index。
 */
 
 vector<int> match(string a, string b) {

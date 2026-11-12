@@ -1,5 +1,4 @@
 // 依赖 KDT.cpp。
-// mod 按题目设置。
 // 区域点权乘法 + 加法，区域求和
 struct Tag {
 	int mul, add;

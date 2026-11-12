@@ -1,5 +1,5 @@
 // 依赖 SegTree_Merge.cpp。
-// 单点修改, 单点极值(记录下标)
+// 单点修改，区间最大值（记录下标）。
 struct Tag {
 	bool has_tag() const {
 		return false;

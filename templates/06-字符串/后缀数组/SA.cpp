@@ -4,7 +4,6 @@ sa[i] 为字典序第 i 小的后缀起点。
 
 auto sa = suffix(a, m);
 a 为整数序列，取值在 [1, m]。倍增构建 O(n log n + m)。
-与 SA_IS.cpp 选择一份使用。
 */
 vector<int> suffix(const vector<int> &s, int m) {
     int n = s.size() - 1;

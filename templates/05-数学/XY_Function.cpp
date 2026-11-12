@@ -1,7 +1,8 @@
 /*
 bool ok = func(a, b, c);
 ok 判断方程 ax + by = c 有无整数解。
-若有解，num_x 存储正整数解的数量，min_x 存储 x 的最小正整数解，max_x 存储 x 的最大正整数解，min_y 存储 y 的最小正整数解，max_y 存储 y 的最大正整数解。
+若有解，num_x 为正整数解的数量。
+min_x、max_x 为 x 的最小、最大正整数解；min_y、max_y 对应 y。
 */
 int max_x, max_y, min_x, min_y, num_x;
 bool func(int a, int b, int c) {

@@ -1,0 +1,13 @@
+contents:
+  - name: Knuth 优化
+    code: Knuth.cpp
+    code-pre: Knuth-pre.tex
+  - name: 示例：石子合并
+    code: Knuth_Merge.cpp
+    code-pre: Knuth_Merge-pre.tex
+  - name: 分治优化
+    code: Divide.cpp
+    code-pre: Divide-pre.tex
+  - name: 示例：邮局问题
+    code: Divide_Post.cpp
+    code-pre: Divide_Post-pre.tex

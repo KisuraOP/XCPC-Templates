@@ -1,12 +1,11 @@
 /*
 Fenwick fen(n, m);
-创建。
 
 fen.add(x1, y1, x2, y2, v);
 给左上角 (x1, y1) 右下角 (x2, y2) 围成的矩形 +v。
 
 int res = fen.sum(x1, y1, x2, y2);
-求左上角 (x1, y1) 右下角 (x2, y2) 围成的矩形内数的和。
+返回矩形 [x1, x2] × [y1, y2] 内的元素和。
 */
 
 struct Fenwick {

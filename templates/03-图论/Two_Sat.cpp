@@ -7,8 +7,8 @@ ts.addbind(x1, t1, x2, t2);
 
 bool ok = ts.work();
 判断这些限制能否同时满足。
-若能满足（ok = true），ans 数组会储存一组可行解，ans[i] = 0/1 即 xi = 0/1。
-在这 2n 个点构成的图中，点 i 与点 i + n 构成相对文字。
+若能满足，ts.ans[i] 为变量 xi 在一组可行解中的取值。
+图中点 i、i + n 分别表示 xi = 0、xi = 1。
 */
 
 struct TwoSat {

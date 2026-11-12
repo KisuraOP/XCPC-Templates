@@ -1,5 +1,5 @@
 /*
-GF(2)+bitset 高斯消元 O(n^3 / w)
+GF(2) 高斯消元，使用 bitset。
 
 x ^ y = 1
 x      = 0
@@ -10,7 +10,7 @@ vector<vector<int>> mat = {
 Node res = gauss(mat, 2); // 2 个变量
 */
 
-const int N = 1024; // 最大列数 (变量数+1)
+const int N = 1024;
 struct Node {
 	int rk; // 秩
 	int free; // 自由变元数，大于 0 -> 多解

@@ -1,9 +1,9 @@
 /*
 最短路：
-    spfa(s); // 以 s 为起点跑最短路，dis[x] 代表 s -> x 的最短距离。
+    spfa(s); // 计算从 s 出发的最短路，dis[x] 代表 s -> x 的最短距离。
 
 负环：
-    bool ok = spfa(s); // 若有环，则 ok = false。
+    bool ok = spfa(s); // 若存在从 s 可达的负环，则 ok = false。
 
 差分约束：
     1. 建一个超级源点 n + 1，从点 n + 1 向点 1 ~ n 都连一条边权为 0 的有向边。

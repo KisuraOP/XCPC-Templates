@@ -1,7 +1,5 @@
 /*
 依赖 Fraction.cpp，以下成员按需放入 F 内。
-
-不添加复合赋值时，可用 a = a + b 等写法。
 */
 F& operator += (F b) {
     return *this = *this + b;
