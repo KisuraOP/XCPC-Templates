@@ -3,6 +3,8 @@
     code: Longest_Common_Seq.cpp
   - name: 最长不下降子序列
     code: Longest_Non_Decreasing_Seq.cpp
+  - name: 最短哈密顿路径
+    code: Hamilton_Path.cpp
   - name: 背包
     directory: 背包
   - name: 换根

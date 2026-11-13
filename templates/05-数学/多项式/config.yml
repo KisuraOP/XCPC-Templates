@@ -10,6 +10,8 @@
   - name: 多项式插值O(n^2)
     code: Poly_Interpolate.cpp
     code-pre: Poly_Interpolate.tex
+  - name: 连续点插值 O(n)
+    code: Poly_Interpolate_Consecutive.cpp
   - name: 斯特林数
     directory: 斯特林数
   - name: 矩阵特征多项式

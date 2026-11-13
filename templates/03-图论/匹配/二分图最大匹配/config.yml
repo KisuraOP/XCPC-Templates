@@ -3,3 +3,7 @@ contents:
     code: Bigraph_Matching_Brute.cpp
   - name: Hopcroft-Karp O(E√V)
     code: Bigraph_Matching_HK.cpp
+  - name: 示例：最小点覆盖与最大独立集
+    code: Bigraph_Matching_Cover.cpp
+  - name: 示例：DAG 最小路径覆盖
+    code: Bigraph_Matching_Path.cpp

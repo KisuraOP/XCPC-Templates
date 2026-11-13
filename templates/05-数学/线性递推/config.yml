@@ -4,3 +4,8 @@ contents:
     code-pre: Linear_Rec-pre.tex
   - name: Berlekamp–Massey
     code: Linear_Rec_BM.cpp
+  - name: Bostan–Mori
+    code: Bostan_Mori.cpp
+    code-pre: Bostan_Mori-pre.tex
+  - name: 示例：线性递推第 n 项
+    code: Bostan_Mori_Rec.cpp
