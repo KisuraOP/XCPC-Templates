@@ -8,7 +8,7 @@
   \item \texttt{sum[p]}：该连通块内所有 $a_y\operatorname{dist}(p,y)$ 的和。
   \item \texttt{ds[q]}：分支 $q$ 内所有 $a_y\operatorname{dist}(p,y)$ 的和。
 \end{itemize}
-分支 $q$ 内的点恰好构成点分树中以 $q$ 为根的子树，因此其点权总和就是 \texttt{cnt[q]}。注意，\texttt{ds[q]} 虽然用 $q$ 作下标，存的却是到父重心 $p$ 的加权距离和。每个 $q$ 的父亲唯一，所以只用 $q$ 就能确定这一组统计量。
+分支 $q$ 内的点恰好构成点分树中以 $q$ 为根的子树，因此其点权总和就是 \texttt{cnt[q]}。注意，\texttt{ds[q]} 虽然用 $q$ 作下标，存的却是到父重心 $p$ 的加权距离和。
 
 修改点 $x$ 的权值时，只有它的点分树祖先所对应的连通块包含 $x$。沿 \texttt{path} 更新这些祖先的 \texttt{cnt}、\texttt{sum}，并在 $q\ne 0$ 时更新对应分支的 \texttt{ds} 即可。
 
