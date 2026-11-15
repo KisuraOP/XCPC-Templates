@@ -1,9 +1,0 @@
-依赖 \texttt{LLD.cpp}。对每个点 $x$，求一个距离 $d$，使其子树中到 $x$ 恰好有 $d$ 条边的节点最多；若有多个这样的距离，取最小值。
-
-处理 $x$ 时，用 $f[\mathrm{dfn}_x+d]$ 统计上述节点数。先递归处理儿子 $y=\mathrm{son}_x$。由于 $\mathrm{dfn}_y=\mathrm{dfn}_x+1$，它的 $f[\mathrm{dfn}_y+d]$ 就是 $f[\mathrm{dfn}_x+d+1]$，可以直接用于 $x$ 的统计。
-
-对于其余儿子 $y$，递归处理后，将 $f[\mathrm{dfn}_y+d]$ 加到 $f[\mathrm{dfn}_x+d+1]$。每次累加后更新 $\mathrm{ans}_x$。最后再考虑 $x$ 本身，即距离为 $0$ 的一个节点。
-
-除 $\mathrm{son}_x$ 外，每个儿子 $y$ 都是一条长链的链顶，合并它的结果需要遍历 $\mathrm{len}_y$ 项。各条长链互不相交，长度之和为 $n$，所以总时间复杂度为 $O(n)$。
-
-$f$ 会在处理祖先时被改写，最终答案应从 $\mathrm{ans}$ 读取。

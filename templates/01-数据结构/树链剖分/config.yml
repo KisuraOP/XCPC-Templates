@@ -11,4 +11,3 @@ contents:
     code: LLD.cpp
   - name: 示例：子树中节点数最多的深度
     code: LLD_DP.cpp
-    code-pre: LLD_DP-pre.tex
