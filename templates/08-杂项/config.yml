@@ -16,7 +16,7 @@
     code: De_Bruijn.cpp
   - name: 火车头
     code: GCC_Optimize.cpp
-  - name: 快速读入(fread)
+  - name: fread快速读入
     code: Fread.cpp
   - name: int128重载
     code: int128.cpp
