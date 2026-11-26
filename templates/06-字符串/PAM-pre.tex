@@ -1,0 +1,11 @@
+回文自动机（PAM，也叫回文树）除两个根以外，每个节点是一个本质不同的回文串；节点上存 \texttt{len}（回文长度）、\texttt{fail}（最长回文真后缀）和 \texttt{ch}（两端同时加一个字符的转移）。插入字符时，\texttt{lst} 是当前前缀的最长回文后缀。
+
+\begin{itemize}
+  \item \texttt{0} 号点长度为 $0$，用来接偶数长度的回文；\texttt{1} 号点长度为 $-1$，用来接奇数长度的回文；\texttt{fail(0)=1}，\texttt{fail(1)=0}。
+  \item 沿 \texttt{fail} 指针往上跳，依次得到这个回文串的所有回文后缀。
+  \item 出现次数：每插入一个字符就给当前 \texttt{lst} 的计数加一，再沿 \texttt{fail} 树向上累加。
+  \item 本质不同回文串数等于 \texttt{size()}$-1$。
+  \item 以 $i$ 结尾的回文串个数：\texttt{dep[lst]=dep[fail[lst]]+1}。
+  \item 所有时刻 \texttt{len[lst]} 的最大值就是最长回文子串长度。
+  \item 节点数不超过 $n+2$，总时间为 $O(n)$，空间为 $O(26n)$。
+\end{itemize}

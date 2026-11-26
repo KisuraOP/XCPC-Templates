@@ -1,0 +1,10 @@
+后缀自动机（SAM）能识别串 $s$ 的全部子串：从初始状态 \texttt{1} 出发，任意转移路径拼出的串都是 $s$ 的子串，并且每个子串唯一对应一条从 \texttt{1} 出发的路径。
+
+\begin{itemize}
+  \item 除 0 号节点外，每个状态 $x$ 对应一组 \texttt{endpos} 相同的子串；\texttt{len(x)} 是这组子串中最长的长度，这组子串恰好是这个最长串的后缀，且长度在 $(\texttt{len}(\texttt{link}(x)),\,\texttt{len}(x)]$ 内。
+  \item \texttt{link(x)} 指向 $x$ 的最长真后缀中、\texttt{endpos} 集合严格更大的那个状态；沿 \texttt{link} 指针往上跳，得到的都是后缀。
+  \item 构造时从 \texttt{1} 开始，对每个字符执行 \texttt{p=extend(p,c)}；状态数不超过 $2n-1$，构造时间 $O(n)$，空间 $O(26n)$。
+  \item 出现次数：给每个前缀对应的状态计数加一，再按 \texttt{len} 从大到小把计数加到 \texttt{link} 上，得到状态的 \texttt{endpos} 大小。
+  \item 本质不同子串数为 $\sum_{x\ne 0,1}(\texttt{len}(x)-\texttt{len}(\texttt{link}(x)))$。
+  \item 求最长公共子串时，让另一个串在 SAM 上走，失配就跳 \texttt{link}，答案取过程中的最大匹配长度。
+\end{itemize}

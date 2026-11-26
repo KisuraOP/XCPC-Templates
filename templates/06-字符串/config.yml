@@ -18,12 +18,15 @@
     code: Subseq.cpp
   - name: AC自动机
     code: AC_Automaton.cpp
+    code-pre: AC_Automaton-pre.tex
   - name: 后缀数组
     directory: 后缀数组
   - name: 后缀自动机
     directory: 后缀自动机
+    code-pre: SAM-pre.tex
   - name: 回文自动机
     directory: 回文自动机
+    code-pre: PAM-pre.tex
   - name: Runs（极大重复子串）
     code: Runs.cpp
     code-pre: Runs-pre.tex

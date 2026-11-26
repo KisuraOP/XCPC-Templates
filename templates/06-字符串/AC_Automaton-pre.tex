@@ -1,0 +1,7 @@
+AC 自动机把模式串建成 trie，并给每个非根节点加上 \texttt{fail} 指针，指向它对应串的最长真后缀所在的 trie 节点。
+
+\begin{itemize}
+  \item 沿 \texttt{fail} 指针往上跳，经过的节点都是这个串的后缀。
+  \item 统计出现次数时，扫描文本给经过的状态计数，再沿 \texttt{fail} 树向上累加。
+  \item 状态数不超过模式串总长加 $2$；记总长为 $m$，建自动机 $O(26m)$，匹配文本 $O(|T|)$，空间 $O(26m)$。
+\end{itemize}
