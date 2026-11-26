@@ -1,3 +1,15 @@
+/*
+DynamicCactus t(n, m);
+
+连边: t.link(u, v, w); 
+若连边后仍为沙漠, 返回 true; 否则撤销操作, 返回 false.
+
+断边: t.cut(u, v, w);
+若存在这样的边, 返回 true; 否则返回 false.
+
+最短路: t.query(u, v);
+若不连通返回 -1.
+*/
 struct DynamicCactus {
 	int n, m;
 	struct tree {
@@ -244,15 +256,3 @@ struct DynamicCactus {
 	}
 };
 
-/*
-定义: DynamicCactus t(n, m);
-
-连边: t.link(u, v, w); 
-若连边后仍为沙漠, 返回 true; 否则撤销操作, 返回 false.
-
-断边: t.cut(u, v, w);
-若存在这样的边, 返回 true; 否则返回 false.
-
-最短路: t.query(u, v);
-若不连通返回 -1.
-*/

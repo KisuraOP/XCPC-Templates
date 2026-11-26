@@ -13,7 +13,7 @@ contents:
     code: Pack_Subset.cpp
   - name: 子集和：方案恢复
     code: Pack_Subset_Trace.cpp
-  - name: 以价值为状态
+  - name: 用价值当状态
     code: Pack_Value.cpp
   - name: 折半搜索
     code: Pack_Half.cpp

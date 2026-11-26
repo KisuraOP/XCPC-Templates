@@ -1,9 +1,9 @@
 ﻿contents:
   - name: 普通线段树
     code: Segment_Tree.cpp
-  - name: 普通线段树-操作封装
+  - name: 普通线段树（封装）
     code: SegTree_Packaged.cpp
-  - name: 懒标记线段树-操作封装
+  - name: 懒标记线段树（封装）
     code: Lazy_SegTree_Packaged.cpp
   - name: 动态开点线段树
     code: Dynamic_SegTree.cpp
