@@ -140,7 +140,3 @@ Info operator+(const Info &a, const Info &b) {
 	c.len = a.len + b.len;
 	return c;
 }
-
-
-
-

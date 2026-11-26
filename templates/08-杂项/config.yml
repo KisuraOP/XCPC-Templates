@@ -12,7 +12,7 @@
     code: Day_Calc.cpp
   - name: 分数类
     directory: 分数类
-  - name: De_Bruijn序列生成
+  - name: De_Bruijn
     code: De_Bruijn.cpp
   - name: 火车头
     code: GCC_Optimize.cpp

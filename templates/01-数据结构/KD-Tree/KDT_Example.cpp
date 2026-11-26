@@ -172,8 +172,3 @@ struct Info {
 		return sum;
 	}
 };
-
-
-
-
-
