@@ -1,7 +1,9 @@
 /*
 int ans = linear(a, c, n);
 c[1..k] 为递推系数，a 至少包含前 k 项，返回第 n 项。
-时间复杂度 O(k^2 log n)。
+时间复杂度 O(k^2 log n)，模数可为合数。
+k 较大且模数为现有 NTT 的模数时，改用 Bostan_Mori_Rec.cpp 的 linrec，
+O(k log k log n)。
 */
 int linear(const vector<int> &a, const vector<int> &c, int n) {
 	if (n < a.size()) {
