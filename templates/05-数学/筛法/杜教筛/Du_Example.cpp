@@ -12,14 +12,14 @@ array<int, 2> du(int n, int b) {
 		return k == 1 ? -1 : 0;
 	});
 	for (int i = 1; i <= b; i++) {
-		phi[i] += phi[i - 1];
-		mu[i] += mu[i - 1];
+		phi[i] = (phi[i] + phi[i - 1]) % mod;
+		mu[i] = (mu[i] + mu[i - 1] + mod) % mod;
 	}
 	auto g = [](int x) {
-		return x;
+		return x % mod;
 	};
 	Du a(move(phi), g, [](int x) {
-		return x * (x + 1) / 2;
+		return (__int128)x * (x + 1) / 2 % mod;
 	});
 	Du c(move(mu), g, [](int x) {
 		return 1;

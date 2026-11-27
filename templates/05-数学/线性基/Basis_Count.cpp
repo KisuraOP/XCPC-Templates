@@ -6,13 +6,13 @@ bool ok = t.count(x);
 判断能否从已插入的数中选出若干个，使异或和为 x。
 
 int ways = t.getways(x);
-返回异或和为 x 的选法数，对 modp 取模。
+返回异或和为 x 的选法数，对 mod 取模。
 */
 int qpow(int k, int n) {
 	int s = 1;
-	for ( ; n; n >>= 1, k = k * k % modp) {
+	for ( ; n; n >>= 1, k = k * k % mod) {
 		if (n & 1) {
-			s = s * k % modp;
+			s = s * k % mod;
 		}
 	}
 	return s;
