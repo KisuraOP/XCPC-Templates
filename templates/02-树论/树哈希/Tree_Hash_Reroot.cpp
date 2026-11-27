@@ -16,5 +16,5 @@ auto dfs2 = [&] (auto self, int x, int fa) -> void {
 			self(self, y, x);
 		}
 	}
-}; 
+};
 dfs2(dfs2, 1, 0);

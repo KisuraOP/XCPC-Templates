@@ -6,22 +6,22 @@ auto ans = paths(adj);
 ans[i] 按顺序保存第 i 条路径的顶点，O(n+m sqrt n)。
 */
 vector<vector<int>> paths(const vector<vector<int>> &adj) {
-    int n = adj.size() - 1;
-    HK g(n, n);
-    for (int x = 1; x <= n; x++) {
-        for (int y : adj[x]) {
-            g.add(x, y);
-        }
-    }
-    g.solve();
-    vector<vector<int>> ans(1);
-    for (int x = 1; x <= n; x++) {
-        if (!g.mr[x]) {
-            ans.push_back(vector<int>(1));
-            for (int y = x; y; y = g.ml[y]) {
-                ans.back().push_back(y);
-            }
-        }
-    }
-    return ans;
+	int n = adj.size() - 1;
+	HK g(n, n);
+	for (int x = 1; x <= n; x++) {
+		for (int y : adj[x]) {
+			g.add(x, y);
+		}
+	}
+	g.solve();
+	vector<vector<int>> ans(1);
+	for (int x = 1; x <= n; x++) {
+		if (!g.mr[x]) {
+			ans.push_back(vector<int>(1));
+			for (int y = x; y; y = g.ml[y]) {
+				ans.back().push_back(y);
+			}
+		}
+	}
+	return ans;
 }

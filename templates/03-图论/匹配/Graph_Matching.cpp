@@ -7,7 +7,7 @@ struct graphMatching {
 	vector<int> mat, aux, lab, rt, p;
 	int tim;
 
-	graphMatching(int n) : n(n), adj(n + 1), mat(n + 1, -1), 
+	graphMatching(int n) : n(n), adj(n + 1), mat(n + 1, -1),
 	aux(n + 1, -1), lab(n + 1), rt(n + 1), p(n + 1, -1), tim(-1) {}
 	void add(int x, int y) {
 		adj[x].push_back(y);

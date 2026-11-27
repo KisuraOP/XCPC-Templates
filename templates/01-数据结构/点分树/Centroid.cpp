@@ -11,16 +11,16 @@ p 是上一层重心。
 
 例：在每个重心处，收集各子树内的点到重心的距离。
 t.build([&](int x, int p) {
-    for (auto [y, w] : t.adj[x]) {
-        if (t.del[y]) {
-            continue;
-        }
-        vector<int> d;
-        t.walk(y, x, w, [&](int z, int s) {
-            d.push_back(s);
-        });
-        // 用 d 中的距离统计当前子树的贡献。
-    }
+	for (auto [y, w] : t.adj[x]) {
+		if (t.del[y]) {
+			continue;
+		}
+		vector<int> d;
+		t.walk(y, x, w, [&](int z, int s) {
+			d.push_back(s);
+		});
+		// 用 d 中的距离统计当前子树的贡献。
+	}
 });
 walk 从邻居 y 出发遍历这棵子树，传给函数的 s 是 z 到重心 x 的距离。
 

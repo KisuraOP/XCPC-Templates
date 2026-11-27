@@ -62,5 +62,5 @@ struct BlockTree {
 			}
 		}
 		return Adj;
-	} 
+	}
 };

@@ -21,16 +21,16 @@ struct vBCC {
 	vector<vector<int>> scc, c;
 	vector<int> dfn, low;
 	int tim, cnt;
-	
+
 	vector<array<int, 2>> edges;
 	vector<int> ebel, estk;
-	
+
 	vector<int> mark;
 	int flag;
-	
+
 	vector<int> iscut;
-	
-	vBCC(int _n) : n(_n), adj(n + 1), dfn(n + 1), 
+
+	vBCC(int _n) : n(_n), adj(n + 1), dfn(n + 1),
 	low(n + 1), c(n + 1), mark(n + 1), iscut(n + 1) {
 		tim = cnt = 0;
 		flag = 1;
@@ -38,7 +38,7 @@ struct vBCC {
 		edges.push_back({0, 0});
 		ebel.push_back(0);
 	}
-	
+
 	void addEdge(int x, int y) {
 		edges.push_back({x, y});
 		ebel.push_back(0);
@@ -46,7 +46,7 @@ struct vBCC {
 		adj[x].push_back({y, eid});
 		adj[y].push_back({x, eid});
 	}
-	
+
 	void tarjan_Node(int x, int par) {
 		dfn[x] = low[x] = ++tim;
 		int son = 0;
@@ -54,21 +54,21 @@ struct vBCC {
 			if (!dfn[y]) {
 				son++;
 				estk.push_back(eid);
-				
+
 				tarjan_Node(y, eid);
 				low[x] = min(low[x], low[y]);
-				
+
 				if (low[y] >= dfn[x]) {
 					cnt++;
 					scc.push_back({});
-					
+
 					while (!estk.empty()) {
 						int e = estk.back();
 						estk.pop_back();
 						ebel[e] = cnt;
-						
+
 						auto [u, v] = edges[e];
-						
+
 						if (mark[u] != flag) {
 							scc[cnt].push_back(u);
 							c[u].push_back(cnt);

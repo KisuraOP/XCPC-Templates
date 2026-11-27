@@ -41,7 +41,7 @@ struct Node {
 		}
 		if (x == y) {
 			return x;
-		} 
+		}
 		for (int i = __lg(dep[x]); i >= 0; i--) {
 			if (fa[x][i] != fa[y][i]) {
 				x = fa[x][i];

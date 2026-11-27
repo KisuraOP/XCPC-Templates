@@ -61,7 +61,7 @@ struct VirtualTree {
 		}
 		if (x == y) {
 			return x;
-		} 
+		}
 		for (int i = __lg(depth[x]); i >= 0; i--) {
 			if (fa[x][i] != fa[y][i]) {
 				x = fa[x][i];
@@ -76,7 +76,7 @@ struct VirtualTree {
 	vector<int> b;
 	void Add(_node &Adj, int x, int y) {
 		int w = dist(x, y);
-		// cout << "Add (" << x << " -> " << y << ", " << w << ")\n"; 
+		// cout << "Add (" << x << " -> " << y << ", " << w << ")\n";
 		if (id[x] == 0) {
 			id[x] = ++tot;
 			b.push_back(x);

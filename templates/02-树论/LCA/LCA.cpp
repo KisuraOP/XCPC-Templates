@@ -21,7 +21,7 @@ auto LCA = [&] (int x, int y) {
 	}
 	if (x == y) {
 		return x;
-	} 
+	}
 	for (int i = __lg(dep[x]); i >= 0; i--) {
 		if (fa[i][x] != fa[i][y]) {
 			x = fa[i][x];

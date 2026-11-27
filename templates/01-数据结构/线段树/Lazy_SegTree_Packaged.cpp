@@ -132,7 +132,7 @@ struct LazySegmentTree {
 		return findLast(1, 1, n, ql, qr, pred);
 	}
 };
- 
+
 struct Tag {
 	Z mul = 1;
 	Z add = 0;
@@ -148,11 +148,11 @@ struct Tag {
 		add += t.add;
 	}
 };
- 
+
 struct Info {
 	Z sum = 0;
 	int len = 1;
-	
+
 	Info() {}
 	Info(Z A) {
 		sum = A;
@@ -162,7 +162,7 @@ struct Info {
 		sum += t.add * len;
 	}
 };
- 
+
 Info operator+(const Info &a, const Info &b) {
 	Info c;
 	c.sum = a.sum + b.sum;

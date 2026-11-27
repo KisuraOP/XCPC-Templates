@@ -1,4 +1,4 @@
-char buf[1 << 23], *p1 = buf, *p2 = buf, obuf[1 << 23], *O = obuf; 
+char buf[1 << 23], *p1 = buf, *p2 = buf, obuf[1 << 23], *O = obuf;
 #define getchar() (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, 1 << 21, stdin), p1 == p2) ? EOF : *p1++)
 
 inline long long read() {

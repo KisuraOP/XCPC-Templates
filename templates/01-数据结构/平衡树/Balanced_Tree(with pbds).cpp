@@ -1,10 +1,10 @@
 #include<ext/pb_ds/assoc_container.hpp>
 #include<ext/pb_ds/hash_policy.hpp>
-using namespace __gnu_pbds; 
+using namespace __gnu_pbds;
 struct node {
 	int cnt;
 	tree<array<int, 2>, null_type, less<array<int, 2>>,
-		 rb_tree_tag, tree_order_statistics_node_update> t; 
+		 rb_tree_tag, tree_order_statistics_node_update> t;
 	node() : cnt(0) {}
 
 	// 添加一个值为 x 的元素

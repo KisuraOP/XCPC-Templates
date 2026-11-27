@@ -10,45 +10,45 @@ auto c = bm(a); // {0, 1, 1}
 cout << linear(a, c, 10); // 55
 */
 vector<int> bm(const vector<int> &a) {
-    auto power = [&](int x, int n) {
-        int r = 1;
-        for (; n; n >>= 1, x = x * x % mod) {
-            if (n & 1) {
-                r = r * x % mod;
-            }
-        }
-        return r;
-    };
-    vector<int> c{1}, b{1};
-    int k = 0, d = 1, inv = 1;
-    for (int n = 1; n < a.size(); n++) {
-        int v = a[n];
-        for (int i = 1; i <= k; i++) {
-            v = (v + c[i] * a[n - i]) % mod;
-        }
-        if (!v) {
-            d++;
-            continue;
-        }
-        auto t = c;
-        int w = v * inv % mod;
-        c.resize(max<int>(c.size(), b.size() + d));
-        for (int i = 0; i < b.size(); i++) {
-            c[i + d] = (c[i + d] - w * b[i] % mod + mod) % mod;
-        }
-        if (2 * k < n) {
-            k = n - k;
-            b = t;
-            inv = power(v, mod - 2);
-            d = 1;
-        } else {
-            d++;
-        }
-    }
-    c.resize(k + 1);
-    for (auto &x : c) {
-        x = (mod - x) % mod;
-    }
-    c[0] = 0;
-    return c;
+	auto power = [&](int x, int n) {
+		int r = 1;
+		for (; n; n >>= 1, x = x * x % mod) {
+			if (n & 1) {
+				r = r * x % mod;
+			}
+		}
+		return r;
+	};
+	vector<int> c{1}, b{1};
+	int k = 0, d = 1, inv = 1;
+	for (int n = 1; n < a.size(); n++) {
+		int v = a[n];
+		for (int i = 1; i <= k; i++) {
+			v = (v + c[i] * a[n - i]) % mod;
+		}
+		if (!v) {
+			d++;
+			continue;
+		}
+		auto t = c;
+		int w = v * inv % mod;
+		c.resize(max<int>(c.size(), b.size() + d));
+		for (int i = 0; i < b.size(); i++) {
+			c[i + d] = (c[i + d] - w * b[i] % mod + mod) % mod;
+		}
+		if (2 * k < n) {
+			k = n - k;
+			b = t;
+			inv = power(v, mod - 2);
+			d = 1;
+		} else {
+			d++;
+		}
+	}
+	c.resize(k + 1);
+	for (auto &x : c) {
+		x = (mod - x) % mod;
+	}
+	c[0] = 0;
+	return c;
 }

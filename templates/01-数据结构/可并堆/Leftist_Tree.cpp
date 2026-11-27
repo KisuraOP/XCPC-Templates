@@ -100,7 +100,7 @@ struct leftistTree {
 		}
 	}
 
-	leftistTree(int n, int m) : rt(n + 1), 
+	leftistTree(int n, int m) : rt(n + 1),
 	p(max(n, m) + 1), bel(max(n, m) + 1), sz(m + 1, 1) {
 		iota(p.begin(), p.end(), 0);
 		a.reserve(m + 1);
@@ -147,13 +147,13 @@ struct leftistTree {
 			rt[get(x)] = q;
 			if (q) {
 				fa(q) = 0;
-				bel[_find(q)] = get(x); 
+				bel[_find(q)] = get(x);
 			}
 		} else {
 			l(f) == x ? l(f) = q : r(f) = q;
 			_pushup(f);
 		}
-		d(x) = -2; 
+		d(x) = -2;
 	}
 	void modify(int x, int y) {
 		if (x >= a.size() || d(x) == -2) {
@@ -162,7 +162,7 @@ struct leftistTree {
 		int z = get(x);
 		erase(x);
 		d(x) = l(x) = r(x) = fa(x) = tag(x) = 0;
-		v(x) = y; 
+		v(x) = y;
 		_union(z, x);
 	}
 	void range_add(int x, int y) {

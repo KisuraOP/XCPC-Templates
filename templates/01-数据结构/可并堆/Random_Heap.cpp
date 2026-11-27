@@ -93,7 +93,7 @@ struct Random_Heap {
 		return st[0];
 	}
 
-	Random_Heap(int n, int m) : rt(n + 1), 
+	Random_Heap(int n, int m) : rt(n + 1),
 	p(max(n, m) + 1), bel(max(n, m) + 1), rng(415411) {
 		a.push_back(Node());
 	}

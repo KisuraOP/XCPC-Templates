@@ -4,7 +4,7 @@ struct PAM {
 	string s;
 	vector<array<int, S>> ch;
 	vector<int> fail, len, cnt;
-	PAM(int n) : tot(-1), lst(0), fail(n + 2), 
+	PAM(int n) : tot(-1), lst(0), fail(n + 2),
 	len(n + 2), cnt(n + 2), ch(n + 2) {
 		init();
 	}

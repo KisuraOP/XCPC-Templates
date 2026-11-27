@@ -4,7 +4,7 @@ struct Fenwick {
 	Fenwick(int n) : n(n), t(n + 1) {}
 	void add(int i, int x) {
 		for ( ; i <= n; i += i & -i) {
-			t[i] += x; 
+			t[i] += x;
 		}
 	}
 	int sum(int i) {
@@ -13,7 +13,7 @@ struct Fenwick {
 			res += t[i];
 		}
 		return res;
-	} 
+	}
 };
 
 struct Node {
@@ -38,7 +38,7 @@ vector<int> solve(vector<int> &a, vector<int> &b, vector<int> &c) {
 	for (int i = 1; i <= n; i++) {
 		v[i] = {a[i], b[i], c[i], i};
 		d.push_back(c[i]);
-	} 
+	}
 	sort(d.begin(), d.end());
 	d.erase(unique(d.begin(), d.end()), d.end());
 	for (int i = 1; i <= n; i++) {

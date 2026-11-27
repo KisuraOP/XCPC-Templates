@@ -4,9 +4,9 @@
 // 计算 A(x)^k mod x^n
 vector<int> poly_pow(vector<int> a, int k, int n) {
 	shrink(a);
-    if (a.empty() || a.size() == 1 && a[0] == 0) {
-        return vector<int>(n, 0);
-    }
+	if (a.empty() || a.size() == 1 && a[0] == 0) {
+		return vector<int>(n, 0);
+	}
 	int d = -1;
 	for(int i = 0; i < a.size(); i++) {
 		if (a[i] != 0) {

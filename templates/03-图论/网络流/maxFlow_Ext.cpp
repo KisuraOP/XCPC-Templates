@@ -48,7 +48,7 @@ for (int x = 0; x <= n; x++) {
 struct Dinic {
 	struct Edge {
 		int x, cap;
-		Edge(int x, int cap) : x(x), cap(cap) {} 
+		Edge(int x, int cap) : x(x), cap(cap) {}
 	};
 	int n;
 	vector<Edge> e;
@@ -124,7 +124,7 @@ struct Dinic {
 		while (flow < lim && bfs(S, T)) {
 			cur.assign(n + 1, 0);
 			flow += dfs(S, T, lim - flow);
-		} 
+		}
 		return flow;
 	}
 	vector<int> cut(int S) {

@@ -13,7 +13,7 @@ Info operator+(const Info &a, const Info &b) {
 	c.sum = a.sum + b.sum;
 	c.mx = max(a.mx, b.mx);
 	c.mn = min(a.mn, b.mn);
-	return c;	
+	return c;
 };
 
 #define ls (p << 1)

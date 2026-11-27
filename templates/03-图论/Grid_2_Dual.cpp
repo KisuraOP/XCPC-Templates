@@ -1,7 +1,7 @@
 auto id = [&] (int x, int y) {
 	if (x == 0) {
 		return S;
-	} 
+	}
 	if (x == n) {
 		return T;
 	}
@@ -11,9 +11,9 @@ for (int i = 1; i <= n; i++) {
 	for (int j = 1; j < m; j++) {
 		int x = id(i - 1, j);
 		int y = id(i, j);
-        // x -> y
+		// x -> y
 	}
-}	
+}
 for (int i = 1; i < n; i++) {
 	for (int j = 1; j <= m; j++) {
 		if (j == 1 || j == m) {
@@ -21,6 +21,6 @@ for (int i = 1; i < n; i++) {
 		}
 		int x = id(i, j - 1);
 		int y = id(i, j);
-        // x -> y
+		// x -> y
 	}
 }

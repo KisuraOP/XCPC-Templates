@@ -11,7 +11,7 @@ P merge(P x, P y) {
 struct Fenwick {
 	int n;
 	vector<P> tr;
-	Fenwick(int n) { 
+	Fenwick(int n) {
 		this->n = n;
 		tr.assign(n + 1, P {0, 0});
 	}

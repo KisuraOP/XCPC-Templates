@@ -55,4 +55,3 @@ vector<int> gauss(vector<vector<int>> &a) {
 	return ans;
 }
 
-

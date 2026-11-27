@@ -17,7 +17,7 @@ int res = fen.kth(x);
 struct Fenwick {
 	int n;
 	vector<int> tr;
-	Fenwick(int n) { 
+	Fenwick(int n) {
 		this->n = n;
 		tr.assign(n + 1, 0);
 	}

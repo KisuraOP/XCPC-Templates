@@ -10,7 +10,7 @@ vector<int> stirl1_row(int n) {
 		h++;
 	}
 	vector<int> res = {0, 1};
-	int cur = 1; 
+	int cur = 1;
 	for (int i = h - 2; i >= 0; i--) {
 		auto shifted = poly_shift(res, cur);
 		res = res * shifted;

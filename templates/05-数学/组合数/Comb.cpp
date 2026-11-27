@@ -41,7 +41,7 @@ struct math {
 } binom;
 
 int C(int n, int m) {
-	return binom.C(n, m); 
+	return binom.C(n, m);
 }
 int fac(int n) {
 	if (binom.size < n) {

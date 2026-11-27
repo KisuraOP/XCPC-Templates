@@ -7,30 +7,30 @@ w(l, r) 为区间 [l, r] 分成一组的费用；i < m 时 f[i] = inf。
 */
 template<class W>
 vector<int> divide(int n, int m, W w) {
-    vector<int> f(n + 1, inf), g = f;
-    f[0] = 0;
-    for (int t = 1; t <= m; t++) {
-        swap(f, g);
-        fill(f.begin(), f.end(), inf);
-        auto dfs = [&](auto &&self, int l, int r, int ql, int qr) -> void {
-            if (l > r) {
-                return;
-            }
-            int mid = (l + r) / 2, p = ql;
-            for (int k = ql; k <= min(qr, mid - 1); k++) {
-                if (g[k] == inf) {
-                    continue;
-                }
-                int v = g[k] + w(k + 1, mid);
-                if (v <= f[mid]) {
-                    f[mid] = v;
-                    p = k;
-                }
-            }
-            self(self, l, mid - 1, ql, p);
-            self(self, mid + 1, r, p, qr);
-        };
-        dfs(dfs, t, n, t - 1, n - 1);
-    }
-    return f;
+	vector<int> f(n + 1, inf), g = f;
+	f[0] = 0;
+	for (int t = 1; t <= m; t++) {
+		swap(f, g);
+		fill(f.begin(), f.end(), inf);
+		auto dfs = [&](auto &&self, int l, int r, int ql, int qr) -> void {
+			if (l > r) {
+				return;
+			}
+			int mid = (l + r) / 2, p = ql;
+			for (int k = ql; k <= min(qr, mid - 1); k++) {
+				if (g[k] == inf) {
+					continue;
+				}
+				int v = g[k] + w(k + 1, mid);
+				if (v <= f[mid]) {
+					f[mid] = v;
+					p = k;
+				}
+			}
+			self(self, l, mid - 1, ql, p);
+			self(self, mid + 1, r, p, qr);
+		};
+		dfs(dfs, t, n, t - 1, n - 1);
+	}
+	return f;
 }

@@ -5,7 +5,7 @@ vector<Z> operator*(const vector<Z> &a, const vector<Z> &b) {
 		for (int j = 0; j < k; j++) {
 			z[(i + j) % k] += a[i] * b[j];
 		}
-	} 
+	}
 	return z;
 }
 

@@ -1,10 +1,10 @@
 /*
 CRT t;
 
-t.add(a, m); 
+t.add(a, m);
 加入同余条件 x \equiv a \pmod{m}。
 
-int ans = t.calc(); 
+int ans = t.calc();
 返回答案。
 */
 int Lcm(int x, int y) {

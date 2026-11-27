@@ -19,8 +19,8 @@ struct HLD {
 	vector<vector<int>> adj;
 	vector<int> fa, dep, sz, son;
 	vector<int> top, dfn, rev;
-	HLD(vector<vector<int>> &Adj, int rt) : n(Adj.size() - 1), 
-	adj(Adj), fa(n + 1), dep(n + 1), sz(n + 1), son(n + 1), 
+	HLD(vector<vector<int>> &Adj, int rt) : n(Adj.size() - 1),
+	adj(Adj), fa(n + 1), dep(n + 1), sz(n + 1), son(n + 1),
 	top(n + 1), dfn(n + 1), rev(n + 1), tim(0) {
 		dfs1(rt, 0);
 		dfs2(rt, rt);
@@ -41,28 +41,28 @@ struct HLD {
 				son[x] = y;
 			}
 		}
-	}	
+	}
 	void dfs2(int x, int t) {
 		top[x] = t;
 		dfn[x] = ++tim;
 		rev[tim] = x;
 		if (son[x] != 0) {
 			dfs2(son[x], t);
-		}	
+		}
 		for (auto y : adj[x]) {
 			if (y == fa[x] || y == son[x]) {
 				continue;
 			}
 			dfs2(y, y);
 		}
-	}	
+	}
 	int LCA(int x, int y) {
 		while (top[x] != top[y]) {
 			if (dep[top[x]] < dep[top[y]]) {
 				swap(x, y);
 			}
 			x = fa[top[x]];
-		} 
+		}
 		return (dep[x] < dep[y] ? x : y);
 	}
 	int jump(int x, int k) {

@@ -17,15 +17,15 @@ f 的参数为 int &p 时，可以更换子树根。
 
 翻转 [l, r]：
 t.range(l, r, [&](int p) {
-    t.flip(p);
+	t.flip(p);
 });
 
 求和后删除 [l, r]：
 int res;
 t.range(l, r, [&](int &p) {
-    res = t.a[p].sum;
-    t.drop(p);
-    p = 0;
+	res = t.a[p].sum;
+	t.drop(p);
+	p = 0;
 });
 t.rt 为根编号，t.a 为节点数组，0 为空节点。
 */

@@ -1,4 +1,4 @@
-/* 
+/*
 单次连出的边数为 O(log n)。
 
 SegEdge seg(n);

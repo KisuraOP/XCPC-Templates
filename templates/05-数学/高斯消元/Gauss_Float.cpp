@@ -57,4 +57,3 @@ vector<double> gauss(vector<vector<int>> &ori) {
 	return ans;
 }
 
-

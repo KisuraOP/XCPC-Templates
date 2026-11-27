@@ -47,7 +47,7 @@ void solve() {
 	for (int i = 1; i <= n; i++) {
 		cin >> a[i];
 	}
-	
+
 	vector<int> rt(n + 1);
 	rt[0] = build(1, n);
 	vector<int> lst(1e6 + 1);

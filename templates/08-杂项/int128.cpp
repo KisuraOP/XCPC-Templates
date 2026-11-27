@@ -7,7 +7,7 @@ istream &operator>>(istream &is, __int128 &n) {
 		neg = s[0] == '-';
 		s = s.substr(1);
 	}
-	for (char c : s) { 
+	for (char c : s) {
 		n = n * 10 - (c - '0');
 	}
 	if (!neg) {
@@ -25,8 +25,8 @@ ostream &operator<<(ostream &os, __int128 n) {
 		n = -n;
 	}
 	string s;
-	while (n < 0) { 
-		s += char('0' - n % 10); 
+	while (n < 0) {
+		s += char('0' - n % 10);
 		n /= 10;
 	}
 	reverse(s.begin(), s.end());

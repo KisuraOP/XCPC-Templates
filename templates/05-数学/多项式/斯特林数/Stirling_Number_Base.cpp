@@ -36,7 +36,7 @@ void init(int n) {
 	}
 }
 
-// ---------- 多项式乘法 (NTT) ---------- 
+// ---------- 多项式乘法 (NTT) ----------
 
 const int Ginv = qpow(G, mod - 2);
 vector<int> rt = {0, 1}, irt = {0, 1};
@@ -69,7 +69,7 @@ void dft(vector<int> &a) {
 	}
 	for (int k = n >> 1; k > 0; k >>= 1) {
 		for (int i = 0; i < n; i += 2 * k) {
-			const int* w = &rt[k]; 
+			const int* w = &rt[k];
 			for (int j = 0; j < k; j++) {
 				int u = a[i + j];
 				int v = a[i + j + k];

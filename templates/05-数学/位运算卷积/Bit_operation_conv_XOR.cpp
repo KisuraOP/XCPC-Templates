@@ -13,7 +13,6 @@ int qpow(int k, int n) {
 	return s;
 }
 
-
 void FWT_XOR(vector<int> &f, int v) {
 	int N = f.size();
 	for (int o = 2, k = 1; o <= N; o <<= 1, k <<= 1) {

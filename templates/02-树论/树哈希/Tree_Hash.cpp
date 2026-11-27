@@ -13,7 +13,6 @@ ull shift(ull x) {
 }
 // hash[x] += shift(hash[y])
 
-
 vector<ull> f(n + 1);
 auto dfs1 = [&] (auto self, int x, int fa) -> void {
 	f[x] = 1;
@@ -25,5 +24,4 @@ auto dfs1 = [&] (auto self, int x, int fa) -> void {
 	}
 };
 dfs1(dfs1, 1, 0);
-
 

@@ -41,25 +41,25 @@ vector<int> poly_deriv(vector<int> a) {
 }
 vector<int> invt;
 void pre_inv(int n) {
-    if (invt.empty()) {
-        invt.resize(2);
-        invt[1] = 1;
-    }
-    int sz = invt.size();
-    if (n <= sz) {
-    	return;
-    }
-    invt.resize(n);
-    for (int i = sz; i < n; i++) {
-        invt[i] = (mod - invt[mod % i] * (mod / i) % mod) % mod;
-    }
+	if (invt.empty()) {
+		invt.resize(2);
+		invt[1] = 1;
+	}
+	int sz = invt.size();
+	if (n <= sz) {
+		return;
+	}
+	invt.resize(n);
+	for (int i = sz; i < n; i++) {
+		invt[i] = (mod - invt[mod % i] * (mod / i) % mod) % mod;
+	}
 }
 vector<int> poly_integral(vector<int> a) {
 	if (a.empty()) {
 		return {};
 	}
-    int n = a.size();
-    pre_inv(n + 1);
+	int n = a.size();
+	pre_inv(n + 1);
 	a.push_back(0);
 	for (int i = n; i > 0; i--) {
 		a[i] = a[i - 1] * invt[i] % mod;

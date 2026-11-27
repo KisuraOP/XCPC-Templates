@@ -12,26 +12,26 @@ int len = get<2>(res);
 
 // 0-index
 tuple<vector<int>, int, int> manacher(string s) {
-    string t = "#";
-    for (auto c : s) {
-        t += c;
-        t += '#';
-    }
-    int n = t.size();
-    vector<int> r(n);
-    for (int i = 0, j = 0; i < n; i++) {
-        if (2 * j - i >= 0 && j + r[j] > i) {
-            r[i] = min(r[2 * j - i], j + r[j] - i);
-        }
-        while (i - r[i] >= 0 && i + r[i] < n && t[i - r[i]] == t[i + r[i]]) {
-            r[i] += 1;
-        }
-        if (i + r[i] > j + r[j]) {
-            j = i;
-        }
-    }
-    int pos = max_element(r.begin(), r.end()) - r.begin();
-    int ans = r[pos] - 1;
-    pos = pos / 2 - ans / 2;
-    return {r, pos, ans};
+	string t = "#";
+	for (auto c : s) {
+		t += c;
+		t += '#';
+	}
+	int n = t.size();
+	vector<int> r(n);
+	for (int i = 0, j = 0; i < n; i++) {
+		if (2 * j - i >= 0 && j + r[j] > i) {
+			r[i] = min(r[2 * j - i], j + r[j] - i);
+		}
+		while (i - r[i] >= 0 && i + r[i] < n && t[i - r[i]] == t[i + r[i]]) {
+			r[i] += 1;
+		}
+		if (i + r[i] > j + r[j]) {
+			j = i;
+		}
+	}
+	int pos = max_element(r.begin(), r.end()) - r.begin();
+	int ans = r[pos] - 1;
+	pos = pos / 2 - ans / 2;
+	return {r, pos, ans};
 }

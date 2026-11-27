@@ -9,14 +9,14 @@ int res = fen.sum(x1, y1, x2, y2);
 */
 
 struct Fenwick {
-	vector<vector<int>> f1, f2, f3, f4; 
+	vector<vector<int>> f1, f2, f3, f4;
 	int n, m;
 	Fenwick(int _n, int _m) : n(_n), m(_m) {
 		f1.assign(_n + 1, vector<int>(_m + 1));
 		f2.assign(_n + 1, vector<int>(_m + 1));
 		f3.assign(_n + 1, vector<int>(_m + 1));
 		f4.assign(_n + 1, vector<int>(_m + 1));
-	} 
+	}
 	void modify(int x, int y, int v) {
 		for (int i = x; i <= n; i += i & -i) {
 			for (int j = y; j <= m; j += j & -j) {

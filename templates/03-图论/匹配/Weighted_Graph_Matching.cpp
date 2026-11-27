@@ -10,7 +10,7 @@ mat[i] 表示和 i 匹配的点的编号。
 若 i 不和任何点匹配，mat[i] = 0。
 */
 struct Weighted_GraphMatching {
-	struct Q { 
+	struct Q {
 		int u, v, w;
 	};
 	int n, m, id, N;
@@ -20,7 +20,7 @@ struct Weighted_GraphMatching {
 	int h, t;
 	Weighted_GraphMatching(int n) : n(n), m(n), id(0), N(2 * n + 5),
 	e(N + 1, vector<Q>(N + 1, Q{0, 0, 0})), b(N + 1, vector<int>(N + 1)),
-	p(N + 1), lab(N + 1), lk(N + 1), sl(N + 1), st(N + 1), 
+	p(N + 1), lab(N + 1), lk(N + 1), sl(N + 1), st(N + 1),
 	f(N + 1), s(N + 1), ed(N + 1), q(N + 1) {}
 	#define all(x) (x).begin(), (x).end()
 
@@ -36,7 +36,7 @@ struct Weighted_GraphMatching {
 		if (!sl[v] || d(e[u][v]) < d(e[sl[v]][v])) {
 			sl[v] = u;
 		}
-	} 
+	}
 	void ss(int v) {
 		sl[v] = 0;
 		for (int u = 1; u <= n; u++) {
@@ -258,7 +258,7 @@ struct Weighted_GraphMatching {
 			h = 1;
 			t = 0;
 			for (int i = 1; i <= m; i++) {
-				if (st[i] == i && sl[i] && st[sl[i]] != i 
+				if (st[i] == i && sl[i] && st[sl[i]] != i
 					&& !d(e[sl[i]][i]) && on(e[sl[i]][i])) {
 					return true;
 				}
@@ -280,7 +280,7 @@ struct Weighted_GraphMatching {
 		}
 		int wm = 0;
 		for (auto [u, v, w] : edge) {
-			e[u][v].w = e[v][u].w = max(e[u][v].w, w); 
+			e[u][v].w = e[v][u].w = max(e[u][v].w, w);
 			wm = max(wm, e[u][v].w);
 		}
 		for (int i = 1; i <= n; i++) {

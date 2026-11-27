@@ -3,7 +3,7 @@ struct Node {
 	vector<int> sum, mx, mn, sx, sn, cx, cn;
 	vector<int> tc, ta, L, R;
 	#define N 4 * n + 5
-	Node(int n) : sum(N), mx(N), mn(N), sx(N), sn(N), cx(N), cn(N), tc(N), ta(N), L(N), R(N) {} 
+	Node(int n) : sum(N), mx(N), mn(N), sx(N), sn(N), cx(N), cn(N), tc(N), ta(N), L(N), R(N) {}
 
 	#define ls (p << 1)
 	#define rs (p << 1 | 1)
@@ -37,7 +37,7 @@ struct Node {
 		mx[p] += w;
 		mn[p] += w;
 		ta[p] += w;
-	} 
+	}
 	void Chmin(int p, int w) {
 		if (mx[p] == mn[p]) {
 			return Cover(p, w);
@@ -66,7 +66,7 @@ struct Node {
 		}
 		if (ta[p]) {
 			Add(ls, ta[p]);
-			Add(rs, ta[p]);			
+			Add(rs, ta[p]);
 			ta[p] = 0;
 		}
 		for (int x : {ls, rs}) {
@@ -98,7 +98,7 @@ struct Node {
 		if (l <= L[p] && r >= R[p]) {
 			return sum[p];
 		}
-		pushdown(p);	
+		pushdown(p);
 		int res = 0;
 		if (l <= mid) {
 			res += get_sum(ls, l, r);

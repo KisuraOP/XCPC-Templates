@@ -144,7 +144,7 @@ struct KDT {
 			return 0ll;
 		}
 		int mid = L + R >> 1;
-		nth_element(buf.begin() + L, buf.begin() + mid, buf.begin() + R + 1, 
+		nth_element(buf.begin() + L, buf.begin() + mid, buf.begin() + R + 1,
 			[&](Pt& a, Pt& b) {
 				return a.x[d] < b.x[d];
 			});
@@ -184,5 +184,4 @@ struct KDT {
 		return res;
 	}
 };
-
 

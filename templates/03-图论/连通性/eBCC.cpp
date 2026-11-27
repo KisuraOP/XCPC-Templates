@@ -6,7 +6,7 @@ struct eBCC {
 	vector<int> dfn, low, stk, c;
 	int tim, top, cnt, eid;
 
-	eBCC(int _n) : n(_n), adj(n + 1), dfn(n + 1), low(n + 1), 
+	eBCC(int _n) : n(_n), adj(n + 1), dfn(n + 1), low(n + 1),
 	stk(n + 1), c(n + 1), tim(0), top(0), cnt(0), eid(0) {}
 
 	void addEdge(int x, int y) {

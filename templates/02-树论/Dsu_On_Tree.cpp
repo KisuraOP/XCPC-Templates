@@ -38,7 +38,7 @@ auto calc = [&] (auto self, int x, int fa, int val, int p) -> void {
 		}
 		self(self, y, x, val, p);
 	}
-}; 
+};
 auto dfs2 = [&] (auto self, int x, int fa, int op) -> void {
 	for (auto y : adj[x]) {
 		if (y == fa || y == son[x]) {

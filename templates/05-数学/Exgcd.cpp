@@ -12,4 +12,4 @@ int inv(int a, int p) {
 	int d, x, y;
 	exgcd(a, p, d, x, y);
 	return (x % p + p) % p;
-} 
+}

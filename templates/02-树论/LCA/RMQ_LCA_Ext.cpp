@@ -17,7 +17,7 @@ struct rmqLCA {
 	vector<int> dfn, dis, dep, tin, tout;
 	vector<int> up[21];
 	vector<P> st[21];
-	rmqLCA(vector<vector<P>> &adj, int rt = 1): n(adj.size() - 1), 
+	rmqLCA(vector<vector<P>> &adj, int rt = 1): n(adj.size() - 1),
 	dfn(n + 1), dis(n + 1), dep(n + 1), tin(n + 1), tout(n + 1), tim(0) {
 		for (int i = 0; i < 21; i++) {
 			up[i].assign(n + 1, 0);

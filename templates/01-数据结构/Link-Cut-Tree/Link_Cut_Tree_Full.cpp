@@ -6,7 +6,7 @@ LCT t(v);
 
 以下操作均摊 O(log n)。
 
-link(x, y) / cut(x, y) / same(x, y) 
+link(x, y) / cut(x, y) / same(x, y)
 连边 / 删边 / 判断连通。
 
 make(x) 换根 / root(x) 返回当前树根。

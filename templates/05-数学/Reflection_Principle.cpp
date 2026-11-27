@@ -22,7 +22,7 @@ void init(int n) {
 	for (int i = n - 1; i >= 0; i--) {
 		invfac[i] = invfac[i + 1] * (i + 1) % mod;
 	}
-} 
+}
 int C(int n, int m) {
 	if (n < m || m < 0) {
 		return 0;
@@ -33,7 +33,7 @@ int C(int n, int m) {
 // (0, 0) -> (n, m) 不越过 y = x + a, y = x + b
 int solve(int n, int m, int a, int b) {
 	int u = max(a, b) + 1, v = min(a, b) - 1; // 越过
-	// int u = max(a, b), v = min(a, b); // 触碰	
+	// int u = max(a, b), v = min(a, b); // 触碰
 	if (v >= 0 || u <= 0 || m >= n + u || m <= n + v) {
 		return 0;
 	}

@@ -9,22 +9,22 @@ q.match(t);
 判断 t 是否为 s 的子序列，O(|t|)。
 */
 struct Subseq {
-    static constexpr int S = 26;
-    vector<array<int, S>> nxt;
-    Subseq(const string &s) : nxt(s.size()) {
-        for (int i = s.size() - 1; i >= 1; i--) {
-            nxt[i - 1] = nxt[i];
-            nxt[i - 1][s[i] - 'a'] = i;
-        }
-    }
-    bool match(const string &s) {
-        int p = 0;
-        for (int i = 1; i < s.size(); i++) {
-            p = nxt[p][s[i] - 'a'];
-            if (!p) {
-                return false;
-            }
-        }
-        return true;
-    }
+	static constexpr int S = 26;
+	vector<array<int, S>> nxt;
+	Subseq(const string &s) : nxt(s.size()) {
+		for (int i = s.size() - 1; i >= 1; i--) {
+			nxt[i - 1] = nxt[i];
+			nxt[i - 1][s[i] - 'a'] = i;
+		}
+	}
+	bool match(const string &s) {
+		int p = 0;
+		for (int i = 1; i < s.size(); i++) {
+			p = nxt[p][s[i] - 'a'];
+			if (!p) {
+				return false;
+			}
+		}
+		return true;
+	}
 };

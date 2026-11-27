@@ -4,8 +4,8 @@ GF(2) 高斯消元，使用 bitset。
 x ^ y = 1
 x      = 0
 vector<vector<int>> mat = {
-    {1,1,1}, // x + y = 1
-    {1,0,0}  // x     = 0
+	{1,1,1}, // x + y = 1
+	{1,0,0}  // x     = 0
 };
 Node res = gauss(mat, 2); // 2 个变量
 */
@@ -50,9 +50,9 @@ Node gauss(vector<vector<int>> &ori, int m) {
 	for (int i = 0; i < n; i++) {
 		bool all0 = true;
 		for (int j = 0; j < m; j++) {
-			if (a[i][j]) { 
-				all0 = false; 
-				break; 
+			if (a[i][j]) {
+				all0 = false;
+				break;
 			}
 		}
 		if (all0 && a[i][m]) {

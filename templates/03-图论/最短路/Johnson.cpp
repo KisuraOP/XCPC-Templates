@@ -50,7 +50,7 @@ struct Johnson {
 				}
 			}
 		}
-		return true;	
+		return true;
 	}
 	void dijkstra(int s) {
 		priority_queue<array<int, 2>> q;
@@ -87,7 +87,7 @@ struct Johnson {
 			dijkstra(i);
 			for (int j = 1; j <= n; j++) {
 				if (dis[j] == inf) {
-					ans[i][j] = inf; 
+					ans[i][j] = inf;
 				} else {
 					ans[i][j] = dis[j] + (h[j] - h[i]);
 				}

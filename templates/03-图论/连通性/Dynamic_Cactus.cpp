@@ -1,7 +1,7 @@
 /*
 DynamicCactus t(n, m);
 
-连边: t.link(u, v, w); 
+连边: t.link(u, v, w);
 若连边后仍为沙漠, 返回 true; 否则撤销操作, 返回 false.
 
 断边: t.cut(u, v, w);
@@ -15,7 +15,7 @@ struct DynamicCactus {
 	struct tree {
 		bool ring, edge, sqr, rev;
 		int fa, son[2], val, sum;
-		tree(const int &w = 0, const bool &f = 0, const bool &g = 0): 
+		tree(const int &w = 0, const bool &f = 0, const bool &g = 0):
 			fa(0), rev(0), val(w), sum(w), ring(f), sqr(f), edge(g) {
 			son[0] = son[1] = 0;
 		}
@@ -36,19 +36,19 @@ struct DynamicCactus {
 		recycle.resize(n + 3 * m);
 		init();
 	}
-	
+
 	const bool identity(int p) {
 		return t[t[p].fa].son[1] == p;
 	}
-	
+
 	const bool isroot(int p) {
 		return t[t[p].fa].son[0] ^ p && t[t[p].fa].son[1] ^ p;
 	}
-	
+
 	const bool isrothy(int p) {
 		return isroot(p) || t[t[p].fa].sqr;
 	}
-	
+
 	const void connect(int p, int fa, bool f) {
 		if (p) {
 			t[p].fa = fa;
@@ -72,7 +72,7 @@ struct DynamicCactus {
 			t[p].sum = min(t[l].sum, t[r].sum);
 		}
 	}
-	
+
 	const void pushdown(int p) {
 		if (t[p].rev) {
 			t[t[p].son[0]].reverse();
@@ -80,17 +80,17 @@ struct DynamicCactus {
 			t[p].rev = 0;
 		}
 	}
-	
+
 	const int spawn(int w, bool f, bool g) {
 		int p = top ? recycle[--top] : ++tail;
 		t[p] = tree(w, f, g);
 		return p;
 	}
-	
+
 	const void reuse(int p) {
 		recycle[top++] = p;
 	}
-	
+
 	const void rotate(int p) {
 		const bool f = identity(p);
 		int fa = t[p].fa;
@@ -103,14 +103,14 @@ struct DynamicCactus {
 		t[t[t[q].fa = fa].fa = p].fa = gfa;
 		pushup_Round(fa);
 	}
-	
+
 	const void relieve(int p) {
 		if (!isrothy(p)) {
 			relieve(t[p].fa);
 		}
 		pushdown(p);
 	}
-	
+
 	const void splay(int p) {
 		relieve(p);
 		for (int fa; !isrothy(p); rotate(p)) {
@@ -120,7 +120,7 @@ struct DynamicCactus {
 		}
 		pushup_Round(p);
 	}
-	
+
 	const void retwist(int p) {
 		splay(t[t[p].fa].fa);
 		if (!isrothy(t[t[p].fa].fa)) {
@@ -147,7 +147,7 @@ struct DynamicCactus {
 		pushup_Square(fa);
 		pushup_Round(p);
 	}
-	
+
 	const void access(int x) {
 		for (int y = 0; x; x = t[y = x].fa) {
 			splay(x);
@@ -159,25 +159,25 @@ struct DynamicCactus {
 			pushup_Round(x);
 		}
 	}
-	
+
 	const void makeroot(int x) {
 		access(x);
 		splay(x);
 		t[x].reverse();
 	}
-	
+
 	const void split(int x, int y) {
 		makeroot(x);
 		access(y);
 		splay(y);
 	}
-	
+
 	const void init() {
 		for (int i = 0; i < n; i++) {
 			spawn(0, 0, 0);
 		}
 	}
-	
+
 	const bool link(int x, int y, int z) {
 		if (x == y) {
 			return 0;
@@ -206,7 +206,7 @@ struct DynamicCactus {
 		pushup_Round(y);
 		return 1;
 	}
-	
+
 	const bool cut(int x, int y, int z) {
 		if (x == y) {
 			return 0;
@@ -246,7 +246,7 @@ struct DynamicCactus {
 		pushup_Round(y);
 		return 1;
 	}
-	
+
 	const int query(int x, int y) {
 		if (x == y) {
 			return 0;

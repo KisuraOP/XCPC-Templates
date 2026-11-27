@@ -7,7 +7,7 @@ constexpr int B2_y = 401;
 struct Hash_2D {
 	vector<int> p1x, p1y;
 	vector<int> p2x, p2y;
-	vector<vector<int>> H1, H2; 
+	vector<vector<int>> H1, H2;
 	int Add(int a, int b, int mod) {
 		return (a + b) % mod;
 	}
@@ -17,9 +17,9 @@ struct Hash_2D {
 	int Mul(int a, int b, int mod) {
 		return a * b % mod;
 	}
-	
+
 	int n, m;
-	Hash_2D(const vector<vector<int>> &a) { 
+	Hash_2D(const vector<vector<int>> &a) {
 		// {a} is 0-index
 		n = a.size();
 		m = a[0].size();

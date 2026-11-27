@@ -2,7 +2,7 @@
 // 区域点权加，区域点权和
 struct Tag {
 	int add = 0;
-	Tag() : add(0) {} 
+	Tag() : add(0) {}
 	Tag(int x) : add(x) {}
 	void apply(const Tag& oth) {
 		add += oth.add;
@@ -32,7 +32,7 @@ struct Tag {
 };
 struct Info {
 	int mx, mn;
-	Info() : mx(-inf), mn(inf) {} 
+	Info() : mx(-inf), mn(inf) {}
 	Info(int x) : mx(x), mn(x) {}
 	Info operator+(const Info& oth) const {
 		Info res;
@@ -90,7 +90,7 @@ struct Tag {
 };
 struct Info {
 	int mx;
-	Info() : mx(-inf) {} 
+	Info() : mx(-inf) {}
 	Info(int x) : mx(x) {}
 	Info operator+(const Info& oth) const {
 		Info res;
