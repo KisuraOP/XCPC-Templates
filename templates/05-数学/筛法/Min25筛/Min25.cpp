@@ -12,6 +12,7 @@ a[i] 为目标积性函数 f 在质数 p <= v[i] 上的和，可由多次 prime 
 calc(p, k, q, v) 返回 f(p^k)，q = p^k，v = f(p^(k-1))。
 返回 f 在 [1, n] 的和，f(1) = 1。
 */
+constexpr int mod = 998244353;
 struct Min25 {
 	int n;
 	vector<int> v{0}, pri;
@@ -38,12 +39,12 @@ struct Min25 {
 	vector<int> prime(F f, G g) {
 		vector<int> s(v.size());
 		for (int i = 1; i < v.size(); i++) {
-			s[i] = g(v[i]) - 1;
+			s[i] = (g(v[i]) - 1 + mod) % mod;
 		}
 		for (int p : pri) {
-			int x = f(p), y = s[id(p - 1)];
+			int x = f(p) % mod, y = s[id(p - 1)];
 			for (int i = 1; i < v.size() && p * p <= v[i]; i++) {
-				s[i] -= x * (s[id(v[i] / p)] - y);
+				s[i] = (s[i] - x * (s[id(v[i] / p)] - y) % mod + mod) % mod;
 			}
 		}
 		return s;
@@ -51,16 +52,16 @@ struct Min25 {
 	template<class F>
 	int sum(vector<int> s, F calc) {
 		for (int j = pri.size() - 1; j >= 0; j--) {
-			int p = pri[j], sp = s[id(p)], fp = calc(p, 1, p, 1);
+			int p = pri[j], sp = s[id(p)], fp = calc(p, 1, p, 1) % mod;
 			for (int i = 1; i < v.size() && p * p <= v[i]; i++) {
 				int x = v[i];
 				for (int q = p, k = 1, val = fp; q <= x / p; q *= p, k++) {
-					int nxt = calc(p, k + 1, q * p, val);
-					s[i] += val * (s[id(x / q)] - sp) + nxt;
+					int nxt = calc(p, k + 1, q * p, val) % mod;
+					s[i] = (s[i] + val * (s[id(x / q)] - sp) % mod + nxt + mod) % mod;
 					val = nxt;
 				}
 			}
 		}
-		return s[1] + 1;
+		return (s[1] + 1) % mod;
 	}
 };

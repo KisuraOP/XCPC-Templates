@@ -9,22 +9,23 @@ int phi2(int n) {
 	auto a = t.prime([](int x) {
 		return 1;
 	}, [](int x) {
-		return x;
+		return x % mod;
 	});
 	auto b = t.prime([](int x) {
-		return x;
+		return x % mod;
 	}, [](int x) {
-		return x * (x + 1) / 2;
+		return (__int128)x * (x + 1) / 2 % mod;
 	});
 	auto c = t.prime([](int x) {
-		return x * x;
+		return (__int128)x * x % mod;
 	}, [](int x) {
-		return x * (x + 1) * (2 * x + 1) / 6;
+		return (__int128)x * (x + 1) * (2 * x + 1) / 6 % mod;
 	});
 	for (int i = 1; i < c.size(); i++) {
-		c[i] += a[i] - 2 * b[i];
+		c[i] = ((c[i] + a[i] - 2 * b[i]) % mod + mod) % mod;
 	}
 	return t.sum(move(c), [](int p, int k, int q, int v) {
-		return k == 1 ? (p - 1) * (p - 1) : v * p * p;
+		int x = (p - 1) % mod, y = p % mod;
+		return k == 1 ? x * x % mod : v * y % mod * y % mod;
 	});
 }

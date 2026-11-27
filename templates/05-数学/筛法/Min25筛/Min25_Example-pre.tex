@@ -1,0 +1,11 @@
+要用 \texttt{Min\_25} 筛求积性函数 $f$ 的前缀和，先拆出 $f(p)$，再写 $f(p^k)$ 的递推，最后调用 \texttt{sum}。
+
+\begin{itemize}
+  \item 把 $f(p)$ 写成若干完全积性函数的线性组合 $f(p)=\sum_i c_i g_i(p)$。
+  \item 每个 $g_i$ 调用一次 \texttt{prime(g, s)}，其中 $s(x)$ 是 $g_i$ 在 $[1,x]$ 上的和；返回一个数组，第 $i$ 项为 $\sum_{p\le v[i]} g_i(p)$。
+  \item 不同 \texttt{prime} 返回的数组下标都对齐到同一个 $v$，可以直接按系数 $c_i$ 合并，得到质数处的 $f$ 和。
+  \item \texttt{calc(p, k, q, v)} 给出 $f(p^k)$：$k=1$ 返回 $f(p)$，$k>1$ 用上一层的 $v=f(p^{k-1})$ 推出 $f(p^k)$。
+  \item \texttt{sum(a, calc)} 返回 $\sum_{i=1}^n f(i)$，要求 $f(1)=1$。
+\end{itemize}
+
+以 $f(n)=\varphi(n)^2$ 为例：$\varphi^2(p)=p^2-2p+1$，所以分别对 $g=1,\ p,\ p^2$ 调用 \texttt{prime}，再按系数 $1,-2,1$ 合并。又有 $\varphi^2(p^k)=\varphi^2(p^{k-1})\,p^2$，所以 \texttt{calc} 在 $k=1$ 时返回 $(p-1)^2$，在 $k>1$ 时返回 $v\cdot p^2$。

@@ -7,8 +7,8 @@ prime2(n);
 int prime2(int n) {
 	Min25 t(n);
 	return t.prime([](int x) {
-		return x * x;
+		return (__int128)x * x % mod;
 	}, [](int x) {
-		return x * (x + 1) * (2 * x + 1) / 6;
+		return (__int128)x * (x + 1) * (2 * x + 1) / 6 % mod;
 	})[1];
 }
